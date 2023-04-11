@@ -17,3 +17,7 @@ Para el back-end utilizaré java con SpringBoot, ya que es la tecnología que he
 Para el front-end utilizaré jquery, tailwind y thymeleaf.
 
 Usaré una base de datos mysql y el despliegue será con amazon web services.
+
+## Enlace al prototipo
+
+Para ver el prototipo del diseño, haga clic [aquí.](https://www.figma.com/file/MEGJzRY9eFyyoBREM3YZ1z/TankoMarks?node-id=0%3A1&t=rLsBJjo1TVVslzUj-1)
