@@ -1,5 +1,8 @@
 # TankoMarks
 
+![icono](https://user-images.githubusercontent.com/128796454/231188421-9dd68a5c-194f-448d-8925-67b7964098a9.png)
+
+
 ## Objetivos del proyecto y temática
 
 TankoMarks será una aplicación web dirigida a los lectores, principalmente de manga, donde podrán anotar todos los mangas que llevan al día, marcando por qué capítulo van, pudiendo escribir comentarios sobre estos y seleccionando capítulos favoritos.
