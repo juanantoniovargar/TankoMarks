@@ -21,6 +21,10 @@ Para el front-end utilizaré jquery, tailwind y thymeleaf.
 
 Usaré una base de datos mysql y el despliegue será con amazon web services.
 
-## Enlace al prototipo
+## Prototipo del diseño
 
 Para ver el prototipo del diseño, haga clic [aquí.](https://www.figma.com/file/MEGJzRY9eFyyoBREM3YZ1z/TankoMarks?node-id=0%3A1&t=rLsBJjo1TVVslzUj-1)
+
+## Prototipo de la base de datos
+
+![prototipobbdd](https://user-images.githubusercontent.com/128796454/231215866-518c8dae-cd2b-42b7-84ae-c4799c5f9352.png)
