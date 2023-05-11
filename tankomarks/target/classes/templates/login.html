@@ -1,46 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
-<head th:replace="index :: head"></head>
+<!-- <head th:replace="index :: head"></head> -->
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TankoMarks</title>
+	<link th:href="@{/styles/style.css}" rel="stylesheet"/> 
+</head>
 
 <body>
+
+	<div class="container">
+
+		<img class="imagen-form" th:src="@{/images/logo.png}" alt="Logo de Tankomarks"> 
+
+		<div class="formulario">
+
 				<form th:action="@{/login}" method="post">
+
+					<h2>Inicia sesión en TankoMarks</h2>
 					
 					<!-- error message -->
 					<div th:if="${param.error}">
-						<div class="alert alert-danger">Invalid username or
-							password.</div>
+						<div class="msg msg-error">Contraseña o usuario incorrectos.</div>
 					</div>
 				
 					<!-- logout message -->
 					<div th:if="${param.logout}">
-						<div class="alert alert-info">You have been logged out.</div>
+						<div class="msg msg-info">Has cerrado sesión correctamente.</div>
 					</div>
 					
-					<div class = "form-group">
-						<label for ="username"> Username </label> :
-						<input type="text" class = "form-control" id ="username" name = "username"
-						placeholder="Enter Email ID" autofocus="autofocus">
+					<div class="campo-form">
+						<label class="label-form" for="email"> Correo electrónico </label>
+						<input class="input-form" type="text" id ="email" name = "email"/>
 					</div>
 					
-					<div class="form-group">
-						<label for="password">Password</label>: <input type="password"
-							id="password" name="password" class="form-control"
-							placeholder="Enter Password" />
+					<div class="campo-form">
+						<label class="label-form" for="password"> Contraseña </label>
+						<input class="input-form" type="password" id="password" name="password"/>
 					</div>
 					
-					<div class="form-group">
-						<div class="row">
-							<div class="col-sm-6 col-sm-offset-3">
-								<input type="submit" name="login-submit" id="login-submit"
-									class="form-control btn btn-primary" value="Log In" />
-							</div>
-						</div>
+					<div>
+						<input class="boton-form" type="submit" name="login-submit" id="login-submit" value="Iniciar Sesión"/>
 					</div>
+						
 				</form>
-				<div class="form-group">
-						<span>New user? <a href="/" th:href="@{/registro}">Register
-								here</a></span>
+
+				<div class="span-form">
+					<span>¿Nuevo usuario? <a class="enlace-form" th:href="@{/registro}">Crear cuenta</a></span>
 				</div>
+
+		</div>
+
+	</div>
+
 </body>
 </html>
