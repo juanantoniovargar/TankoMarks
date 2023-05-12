@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <!-- <head th:replace="index :: head"></head> -->
 
@@ -8,16 +8,16 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>TankoMarks</title>
-	<link th:href="@{/styles/style.css}" rel="stylesheet"/> 
+	<link href="../static/styles/style.css" th:href="@{/styles/style.css}" rel="stylesheet"/>
 </head>
 
 <body>
 
 	<div class="container">
 
-		<img class="imagen-form" th:src="@{/images/logo.png}" alt="Logo de Tankomarks"> 
+		<img class="imagen-form" src="../static/images/logo.png" th:src="@{/images/logo.png}" alt="Logo de Tankomarks"> 
 
-		<div class="formulario">
+			<div class="formulario">
 
 				<form th:action="@{/login}" method="post">
 
@@ -34,8 +34,8 @@
 					</div>
 					
 					<div class="campo-form">
-						<label class="label-form" for="email"> Correo electrónico </label>
-						<input class="input-form" type="text" id ="email" name = "email"/>
+						<label class="label-form" for="username"> Correo electrónico </label>
+						<input class="input-form" type="text" id ="username" name="username"/>
 					</div>
 					
 					<div class="campo-form">
@@ -53,7 +53,7 @@
 					<span>¿Nuevo usuario? <a class="enlace-form" th:href="@{/registro}">Crear cuenta</a></span>
 				</div>
 
-		</div>
+			</div>
 
 	</div>
 

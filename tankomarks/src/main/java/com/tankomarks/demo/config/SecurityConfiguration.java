@@ -30,7 +30,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
 		auth.setUserDetailsService(usuarioService);
 		auth.setPasswordEncoder(passwordEncoder());
-		auth.setHideUserNotFoundExceptions(false) ;
 		return auth;
 	}
 
@@ -40,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	String[] resources = new String[] {
-			"/include/**", "/css/**", "/icons/**", "/img/**", "/js/**", "/layer/**","/assets/**","/error/**"
+			"/styles/**", "/images/**", "/fonts/**", "/js/**","/error/**"
 	};
 
 	@Override
