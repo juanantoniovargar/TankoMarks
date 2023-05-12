@@ -28,3 +28,7 @@ Para ver el prototipo del diseño, haga clic [aquí.](https://www.figma.com/file
 ## Prototipo de la base de datos
 
 ![prototipobbdd](https://user-images.githubusercontent.com/128796454/231215866-518c8dae-cd2b-42b7-84ae-c4799c5f9352.png)
+
+## Vídeo explicativo de la primera revisión
+
+https://drive.google.com/file/d/1xep2lRm3-cO2TldPT1DCaH_OctR_pyzQ/view?usp=sharing
