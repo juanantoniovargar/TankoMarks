@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-//import java.util.ArrayList;
+import java.util.ArrayList;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,35 +37,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public Usuario guardar(RegistroDto registroDto) throws ConstraintViolationException {
-		
-		/*
-		Optional<Usuario> OptionalUserRole = usuarioRepository.findById(1);
-		Optional<Collection<Rol>> userRole = OptionalUserRole.get().getRol().stream().findFirst());
-	    
-		Usuario usuario = new Usuario(			
-							registroDto.getNombre(),
-							registroDto.getEmail(),
-							passwordEncoder.encode(registroDto.getPassword()),
-							Arrays.asList(userRole));
-		
-		return usuarioRepository.save(usuario);
-		
-		Usuario usuario = new Usuario(			
-		        		  	registroDto.getNombre(),
-		        		  	registroDto.getEmail(),
-		        		  	passwordEncoder.encode(registroDto.getPassword()),
-		        		  	new ArrayList<>()); 
-
-		Collection<Rol> roles = usuario.getRol();
-		Rol userRole = roles.stream().findFirst().orElse(null);
-		    
-		if (userRole == null) {
-		    userRole = new Rol("USER");
-		    roles.add(userRole); // Se agrega el nuevo rol a la colección
-		}
-		    
-		return usuarioRepository.save(usuario);
-		*/
 		
 		Usuario usuario = new Usuario(			
 				registroDto.getNombre(),
