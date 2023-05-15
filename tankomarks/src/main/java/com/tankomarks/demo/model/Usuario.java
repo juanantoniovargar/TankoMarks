@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 //import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "usuario", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
@@ -25,12 +26,15 @@ public class Usuario {
 	@Column(name = "id_usuario")
 	private int id_usuario;
 	
+	@NotNull
 	@Column(name = "nombre")
 	private String nombre;
 	
+	@NotNull
 	@Column(name = "email")
 	private String email;
 	
+	@NotNull
 	@Column(name = "password")
 	private String password;
 	
