@@ -17,7 +17,7 @@ Además del rol de usuario, también habrá un rol de administrador que podrá m
 
 Para el back-end utilizaré java con SpringBoot, ya que es la tecnología que he utilizado en la empresa.
 
-Para el front-end utilizaré jquery, tailwind y thymeleaf.
+Para el front-end utilizaré jquery y thymeleaf, a parte de javascript y css.
 
 Usaré una base de datos mysql y el despliegue será con amazon web services.
 
