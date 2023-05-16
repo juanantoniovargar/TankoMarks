@@ -12,9 +12,33 @@
 
 <body>
 
+	<nav>
+		<div class="topnav" id="myTopnav">
+			<a href="#hero" class="active">HOME</a>
+			<a href="#synopsis">SINOPSIS</a> 
+			<a href="#art">GALERÍA</a> 
+			<a href="#characters">PERSONAJES</a>
+			<a href="#volumes">SAGAS</a>
+			<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+				<i class="fa fa-bars"></i>
+			</a>
+		</div>
+	</nav>
+
 	<p sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar sesión.</a></p>
 
 	<p sec:authentication="principal.username"></p>
+
+	<script>
+		function myFunction() {
+		  var x = document.getElementById("myTopnav");
+		  if (x.className === "topnav") {
+			x.className += " responsive";
+		  } else {
+			x.className = "topnav";
+		  }
+		}
+	</script>
 
 </body>
 </html>
