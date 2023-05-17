@@ -17,5 +17,15 @@ public class TankomarksController {
 		
 		return "index";
 	}
+	
+	@GetMapping("/favoritos")
+	public String favoritos() {
+		return "favoritos";
+	}
+	
+	@GetMapping("/perfil")
+	public String perfil() {
+		return "perfil";
+	}
 
 }
