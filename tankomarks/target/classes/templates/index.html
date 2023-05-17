@@ -6,6 +6,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>TankoMarks</title>
+	<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+	<link rel="icon" href="../static/images/logo.ico" th:href="@{/images/logo.ico}"/>
 	<link href="../static/styles/style.css" th:href="@{/styles/style.css}" rel="stylesheet"/>
 	<script defer type="text/javascript" src="../static/js/validaciones.js" th:src="@{/js/validaciones.js}"></script>
 </head>
@@ -13,16 +15,21 @@
 <body>
 
 	<nav>
-		<div class="topnav" id="myTopnav">
-			<a href="#hero" class="active">HOME</a>
-			<a href="#synopsis">SINOPSIS</a> 
-			<a href="#art">GALERÍA</a> 
-			<a href="#characters">PERSONAJES</a>
-			<a href="#volumes">SAGAS</a>
-			<a href="javascript:void(0);" class="icon" onclick="myFunction()">
-				<i class="fa fa-bars"></i>
-			</a>
-		</div>
+
+		<img class="imagen-nav" src="../static/images/logo.png" th:src="@{/images/logo.png}" alt="Logo de Tankomarks">
+		
+		<a class="link-nav">Inicio</a>
+		<a class="link-nav">Favoritos</a>
+
+		<form class="busqueda-form" th:action="@{/}" method="get">
+			<input class="busqueda" type="text" name="busqueda" placeholder="Buscar..."> 
+			<button class="busqueda-submit" type="submit"> <i class="lupa fa-solid fa-magnifying-glass"></i> </button>
+		</form>
+
+		<a th:href="@{/logout}">
+			<i class="fa-solid fa-arrow-right-from-bracket"></i>
+		</a>
+
 	</nav>
 
 	<p sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar sesión.</a></p>
