@@ -40,94 +40,32 @@
 
 	</nav>
 
-	<p sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar sesión.</a></p>
-
 	<p sec:authentication="principal.username"></p>
 
+	<div th:each="manga : ${mangas}">
+		<img src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/>
+	</div>
+
+	ab <br>
 	a <br>
 	a <br>
 	a <br>
 	a <br>
 	a <br>
 	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
+
+	<footer>
+		<div class="copy-footer">
+			Copyright &copy; TankoMarks 2023
+		</div>
+
+		<div class="contact-footer">
+			<a class="icon-footer" href="mailto:juanan0012@gmail.com"><i class="fa-regular fa-envelope"></i></a>
+			<a class="icon-footer" href="#"><i class="fa-brands fa-twitter"></i></a>
+			<a class="icon-footer" href="#"><i class="fa-brands fa-facebook"></i></a>
+			<a class="icon-footer" href="#"><i class="fa-brands fa-instagram"></i></a>
+		</div>
+	</footer>
 
 </body>
 </html>

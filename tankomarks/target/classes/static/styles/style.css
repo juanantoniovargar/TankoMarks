@@ -5,10 +5,12 @@
 }
 
 body {
-    margin-top: 0%;
+    margin: 0%;
     background-color: black;
     color: white;
     font-family: cuerpo;
+    display: flex;
+    flex-direction: column;
 }
 
 /********************* FORMS STYLE *********************/
@@ -111,6 +113,8 @@ nav {
     top: 0;
     z-index: 99;
     background-color: black;
+    margin-left: 1%;
+    margin-right: 1%;
 }
 
 .imagen-nav {
@@ -217,4 +221,48 @@ nav {
         margin: 0;
     }
 
+}
+
+/********************* FOOTER STYLE *********************/
+
+footer {
+    background-color: #5A5555;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 120px;
+    margin-top: auto;
+}
+
+.icon-footer {
+    color: white;
+    font-size: 2rem;
+    margin: 0.5rem;
+}
+
+.copy-footer {
+    margin-left: 8rem;
+}
+
+.contact-footer {
+    margin-right: 8rem;
+}
+
+@media only screen and (max-width:768px) {
+    
+    footer {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .copy-footer, .contact-footer {
+        margin: 0%;
+    }
+
+}
+
+/*********************  *********************/
+
+.msg-busqueda {
+    text-align: center;
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
-<head th:fragment="head">
+<head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,18 +41,18 @@
 	</nav>
 
 	<p sec:authentication="principal.username"></p>
+    
+    <th:block th:if="${size > 0}">
 
 	<div th:each="manga : ${mangas}">
 		<img src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/>
 	</div>
 
-	ab <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
+    </th:block>
+
+	<div class="msg-busqueda" th:if="${size == 0}">
+        <h1>No se encontraron mangas.</h1>
+    </div>
 
 	<footer>
 		<div class="copy-footer">
