@@ -21,43 +21,43 @@
 
 		<img class="imagen-form" src="../static/images/logo.png" th:src="@{/images/logo.png}" alt="Logo de Tankomarks"> 
 
-			<div class="formulario">
+		<div class="formulario">
 
-				<form th:action="@{/login}" method="post">
+			<form th:action="@{/login}" method="post">
 
-					<h2>Inicia sesión en TankoMarks</h2>
-					
-					<!-- error message -->
-					<div th:if="${param.error}">
-						<div class="msg msg-error">Contraseña o usuario incorrectos.</div>
-					</div>
+				<h2 class="titulo-form">Inicia sesión en TankoMarks</h2>
 				
-					<!-- logout message -->
-					<div th:if="${param.logout}">
-						<div class="msg msg-info">Has cerrado sesión correctamente.</div>
-					</div>
-					
-					<div class="campo-form">
-						<label class="label-form" for="username"> Correo electrónico </label>
-						<input class="input-form" type="email" id ="username" name="username" required/>
-					</div>
-					
-					<div class="campo-form">
-						<label class="label-form" for="password"> Contraseña </label>
-						<input class="input-form" type="password" id="password" name="password" required/>
-					</div>
-					
-					<div>
-						<input class="boton-form" type="submit" name="login-submit" id="login-submit" value="Iniciar Sesión"/>
-					</div>
-						
-				</form>
-
-				<div class="span-form">
-					<span>¿Nuevo usuario? <a class="enlace-form" th:href="@{/registro}">Crear cuenta</a></span>
+				<!-- error message -->
+				<div th:if="${param.error}">
+					<div class="msg msg-error">Contraseña o usuario incorrectos.</div>
 				</div>
+			
+				<!-- logout message -->
+				<div th:if="${param.logout}">
+					<div class="msg msg-info">Has cerrado sesión correctamente.</div>
+				</div>
+				
+				<div class="campo-form">
+					<label class="label-form" for="username"> Correo electrónico </label>
+					<input class="input-form" type="email" id ="username" name="username" required/>
+				</div>
+				
+				<div class="campo-form">
+					<label class="label-form" for="password"> Contraseña </label>
+					<input class="input-form" type="password" id="password" name="password" required/>
+				</div>
+				
+				<div class="campo-boton-form">
+					<input class="boton-form" type="submit" name="login-submit" id="login-submit" value="Iniciar Sesión"/>
+				</div>
+					
+			</form>
 
+			<div class="span-form">
+				<span>¿Nuevo usuario? <a class="enlace-form" th:href="@{/registro}">Crear cuenta</a></span>
 			</div>
+
+		</div>
 
 	</div>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
@@ -15,132 +15,45 @@
 
 <body>
 
-	<nav>
+	<div class="container">
 
-		<img class="imagen-nav" src="../static/images/logo.png" th:src="@{/images/logo.png}" alt="Logo de Tankomarks">
-		
-		<a class="link-nav" th:href="@{/}">Inicio</a>
-		<a class="link-nav active" th:href="@{/favoritos}">Favoritos</a>
-		
-		<form class="busqueda-form" th:action="@{/}" method="get">
-			<input class="busqueda" type="text" name="busqueda" placeholder="Buscar..."> 
-			<button class="busqueda-submit" type="submit"> <i class="lupa fa-solid fa-magnifying-glass"></i> </button>
-		</form>
+		<nav>
+			<img class="imagen-nav" src="../static/images/logo.png" th:src="@{/images/logo.png}" alt="Logo de Tankomarks">
+			
+			<a class="link-nav" th:href="@{/}">Inicio</a>
+			<a class="link-nav active" th:href="@{/favoritos}">Favoritos</a>
+			
+			<form class="busqueda-form" th:action="@{/}" method="get">
+				<input class="busqueda" type="text" name="busqueda" placeholder="Buscar..."> 
+				<button class="busqueda-submit" type="submit"> <i class="lupa fa-solid fa-magnifying-glass"></i> </button>
+			</form>
 
-		<a class="user-nav" th:href="@{/perfil}">
-			<i class="fa-solid fa-circle-user"></i>
-		</a>
-		<a class="logout-nav" th:href="@{/logout}">
-			<i class="fa-solid fa-arrow-right-from-bracket"></i>
-		</a>
+			<a class="user-nav" th:href="@{/perfil}">
+				<i class="fa-solid fa-circle-user"></i>
+			</a>
+			<a class="logout-nav" th:href="@{/logout}">
+				<i class="fa-solid fa-arrow-right-from-bracket"></i>
+			</a>
 
-		<div class="toggle">
-			<i class="fa-solid fa-bars"></i>
-		</div>
+			<div class="toggle">
+				<i class="fa-solid fa-bars"></i>
+			</div>
+		</nav>
 
-	</nav>
+		<footer>
+			<div class="copy-footer">
+				Copyright &copy; TankoMarks 2023
+			</div>
 
-	<p sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar sesión.</a></p>
+			<div class="contact-footer">
+				<a class="icon-footer" href="mailto:juanan0012@gmail.com"><i class="fa-regular fa-envelope"></i></a>
+				<a class="icon-footer" href="#"><i class="fa-brands fa-twitter"></i></a>
+				<a class="icon-footer" href="#"><i class="fa-brands fa-facebook"></i></a>
+				<a class="icon-footer" href="#"><i class="fa-brands fa-instagram"></i></a>
+			</div>
+		</footer>
 
-	<p sec:authentication="principal.username"></p>
-
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-	a <br>
-
-	<footer>
-		<div class="copy-footer">
-			Copyright &copy; TankoMarks 2023
-		</div>
-
-		<div class="contact-footer">
-			<a class="icon-footer" href="mailto:juanan0012@gmail.com"><i class="fa-regular fa-envelope"></i></a>
-			<a class="icon-footer" href="#"><i class="fa-brands fa-twitter"></i></a>
-			<a class="icon-footer" href="#"><i class="fa-brands fa-facebook"></i></a>
-			<a class="icon-footer" href="#"><i class="fa-brands fa-instagram"></i></a>
-		</div>
-	</footer>
+	</div>
 
 </body>
 </html>
