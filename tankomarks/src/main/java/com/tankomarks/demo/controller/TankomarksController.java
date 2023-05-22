@@ -31,6 +31,11 @@ public class TankomarksController {
 		return "login";
 	}
 	
+	@GetMapping("/administracion")
+	public String administracion() {
+		return "administracion";
+	}
+	
 	@GetMapping("/")
 	public String home(Model model, String busqueda) {
 		
@@ -80,5 +85,10 @@ public class TankomarksController {
 		return "redirect:" + referer;
 		
 	}
+	
+	@GetMapping("/404")
+    public String handle404Error() {
+        return "error";
+    }
 
 }
