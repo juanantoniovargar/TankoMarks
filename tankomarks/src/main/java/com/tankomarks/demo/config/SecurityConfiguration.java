@@ -49,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 				.antMatchers(resources).permitAll()
-				.antMatchers("/registro").permitAll() //hasRole("ANONYMOUS")
+				.antMatchers("/registro").hasRole("ANONYMOUS")
 				.antMatchers("/", "/favoritos", "/perfil", "/leyendo", "/busqueda", "/leidos").hasAnyAuthority("USER") 
 				.antMatchers("/administracion").hasAnyAuthority("ADMIN")
 				.anyRequest().authenticated()
@@ -61,10 +61,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		            Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		            for (GrantedAuthority authority : authorities) {
 		                if (authority.getAuthority().equals("ADMIN")) {
-		                    // Si el rol es admin, redireccionar a /admin
+		                    // Si el rol es admin, redireccionar a /administracion
 		                    response.sendRedirect("/administracion");
 		                } else {
-		                    // Si el rol es user u otro, redireccionar a /index
+		                    // Si el rol es user u otro, redireccionar a /
 		                    response.sendRedirect("/");
 		                }
 		            }
