@@ -86,7 +86,7 @@
 
 			<div class="cuerpo">
 
-				<th:block  th:each="manga : ${mangas}">
+				<th:block  th:each="manga : ${mangasLeido}">
 
 					<a th:href="@{/tomos/} + ${manga.id_manga}"><img class="cuerpo-imagen" src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/></a>
 

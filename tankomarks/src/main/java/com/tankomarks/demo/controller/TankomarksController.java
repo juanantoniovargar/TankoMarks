@@ -63,8 +63,8 @@ public class TankomarksController {
 			
 			String email = principal.getName();
 			int id_usuario = usuarioRepo.getId_usuario(email);
-			model.addAttribute("mangasLeyendo", mangaRepo.MostrarMangasLeyendo(id_usuario));
-			model.addAttribute("mangas", mangaRepo.mostrarMangas()); //provisional, solo quiero mostrar leyendos y leídos
+			model.addAttribute("mangasLeyendo", mangaRepo.mostrarMangasLeyendo(id_usuario));
+			model.addAttribute("mangasLeido", mangaRepo.mostrarMangasLeido(id_usuario));
 			return "index";
 			
 		}
