@@ -13,6 +13,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 	
 	public Usuario findByEmail(String email);
 	
+	@Query(value="SELECT id_usuario FROM usuario WHERE email = :email", nativeQuery=true)
+    int getId_usuario(@Param("email") String email);
+	
 	@Modifying
     @Transactional    
     @Query(value="UPDATE usuario SET nombre = :nombre WHERE email = :email", nativeQuery=true)

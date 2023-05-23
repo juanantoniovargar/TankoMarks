@@ -42,11 +42,6 @@
 			</div>
 		</nav>
 
-		<!--
-		<div th:each="manga : ${mangas}">
-			<img src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/>
-		</div>
-		-->
 
 		<section class="mangas-leyendo">
 
@@ -60,13 +55,13 @@
 
 			<div class="cuerpo">
 
-				<th:block th:each="manga : ${mangas}">
+				<th:block th:each="manga : ${mangasLeyendo}">
 
-				<a href=""><img class="cuerpo-imagen" src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/></a>
+				<a th:href="@{/tomos/} + ${manga.id_manga}"><img class="cuerpo-imagen" src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/></a>
 
 				</th:block>
 
-				<a class="nuevo" href="">
+				<a class="nuevo" th:href="@{/nuevo}">
 
 					<i class="nuevo-icon fa-solid fa-plus"></i>
 
@@ -93,7 +88,7 @@
 
 				<th:block  th:each="manga : ${mangas}">
 
-					<a href=""><img class="cuerpo-imagen" src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/></a>
+					<a th:href="@{/tomos/} + ${manga.id_manga}"><img class="cuerpo-imagen" src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/></a>
 
 				</th:block>
 

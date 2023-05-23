@@ -373,6 +373,10 @@ footer {
     padding-right: 4rem;
 }
 
+.cabecera > a {
+    text-decoration: none;
+}
+
 .link-cabecera {
     color: #F44336;
     font-size: 0.9rem;

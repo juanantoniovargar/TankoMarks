@@ -1,6 +1,7 @@
 package com.tankomarks.demo.model;
 
 import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -43,6 +44,38 @@ public class Usuario {
 			   joinColumns = @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario"),
 			   inverseJoinColumns = @JoinColumn(name = "rol_id_rol", referencedColumnName = "id_rol"))
 	private Collection<Rol> rol;
+	
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "leyendo_manga", 
+			   joinColumns = @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario"),
+			   inverseJoinColumns = @JoinColumn(name = "manga_id_manga", referencedColumnName = "id_manga"))
+	private Set<Manga> leyendo_manga;
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "leido_manga", 
+			   joinColumns = @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario"),
+			   inverseJoinColumns = @JoinColumn(name = "manga_id_manga", referencedColumnName = "id_manga"))
+	private Set<Manga> leido_manga;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "leyendo_tomo", 
+			   joinColumns = @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario"),
+			   inverseJoinColumns = @JoinColumn(name = "tomo_id_tomo", referencedColumnName = "id_tomo"))
+	private Set<Tomo> leyendo_tomo;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "leido_tomo", 
+			   joinColumns = @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario"),
+			   inverseJoinColumns = @JoinColumn(name = "tomo_id_tomo", referencedColumnName = "id_tomo"))
+	private Set<Tomo> leido_tomo;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "leido_capitulo", 
+			   joinColumns = @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario"),
+			   inverseJoinColumns = @JoinColumn(name = "capitulo_id_capitulo", referencedColumnName = "id_capitulo"))
+	private Set<Capitulo> leido_capitulo;
+	
 
 	public Usuario() {
 		super();

@@ -47,7 +47,7 @@ public class TankomarksController {
 	}
 	
 	@GetMapping("/")
-	public String home(Model model, String busqueda) {
+	public String home(Model model, Principal principal, String busqueda) {
 		
 		if (busqueda != null) {
 			
@@ -61,6 +61,9 @@ public class TankomarksController {
 			
 		} else {
 			
+			String email = principal.getName();
+			int id_usuario = usuarioRepo.getId_usuario(email);
+			model.addAttribute("mangasLeyendo", mangaRepo.MostrarMangasLeyendo(id_usuario));
 			model.addAttribute("mangas", mangaRepo.mostrarMangas()); //provisional, solo quiero mostrar leyendos y leídos
 			return "index";
 			
