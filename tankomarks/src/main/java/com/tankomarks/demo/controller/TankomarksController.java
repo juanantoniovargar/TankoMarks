@@ -42,7 +42,10 @@ public class TankomarksController {
 	}
 	
 	@GetMapping("/administracion")
-	public String administracion() {
+	public String administracion(Model model) {
+		
+		model.addAttribute("mangas", mangaRepo.mostrarMangas());
+		
 		return "administracion";
 	}
 	

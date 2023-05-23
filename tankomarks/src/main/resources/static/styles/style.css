@@ -106,26 +106,11 @@ body {
     text-decoration: underline;
 }
 
-@media only screen and (max-width:800px) {
+@media only screen and (max-width:500px) {
     .formulario {
-        width: 100%;
+        margin: 0;
+        width: auto;
     }
-
-    /*.boton-form, .campo-form {
-        width: 80%;
-    }
-
-    .msg {
-        width: 66%;
-    }
-
-    .campo-boton-form {
-        display: flex;
-    }
-
-    .titulo-form {
-        text-align: left;
-    }*/
 
 }
 
@@ -391,10 +376,13 @@ footer {
     margin-bottom: 3rem;
 }
 
+.cuerpo-enlace, .nuevo {
+    margin: 3rem;
+}
+
 .cuerpo-imagen, .nuevo {
     width: 10rem;
     height: 14rem;
-    margin: 3rem;
 }
 
 .nuevo {
@@ -417,20 +405,16 @@ footer {
     padding: 3px;
 }
 
-@media only screen and (max-width:1050px) {
+@media only screen and (max-width:1090px) {
 
-    .cuerpo-imagen, .nuevo {
+    .cuerpo-enlace, .nuevo {
         margin-left: 2rem;
         margin-right: 2rem;
     }
 
 }
 
-@media only screen and (max-width:768px) {
-    
-    .cabecera {
-        padding: 0;
-    }
+@media only screen and (max-width:960px) {
 
     .cuerpo {
         display: grid;
@@ -441,7 +425,11 @@ footer {
 
 }
 
-@media only screen and (max-width:400px) {
+@media only screen and (max-width:500px) {
+
+    .cabecera {
+        padding: 0;
+    }
 
     .cuerpo {
         display: grid;
