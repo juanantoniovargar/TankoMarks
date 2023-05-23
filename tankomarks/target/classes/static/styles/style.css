@@ -291,7 +291,7 @@ footer {
 
 }
 
-/*********************  *********************/
+/********************* SEARCH SECTION STYLE *********************/
 
 .msg-busqueda {
     text-align: center;
@@ -336,4 +336,111 @@ footer {
     border: 1px solid #5A5555;
     border-radius: 15px;
     cursor: pointer;
+}
+
+@media only screen and (max-width:768px) {
+    
+    .boton-perfil {
+        display: block;
+        margin: auto;
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    .form-perfil {
+        margin: auto;
+        margin-bottom: 2rem;
+    }
+
+}
+
+/********************* LANDING PAGE STYLE *********************/
+
+.mangas-leyendo {
+    margin: 2rem;
+    border-bottom: 2px solid #CCCCCC;
+}
+
+.mangas-leidos {
+    margin: 2rem;
+}
+
+.cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+.link-cabecera {
+    color: #F44336;
+    font-size: 0.9rem;
+}
+
+.cuerpo {
+    background-color: #1E1E1E;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.cuerpo-imagen, .nuevo {
+    width: 10rem;
+    height: 14rem;
+    margin: 3rem;
+}
+
+.nuevo {
+    background-color: #310D0B;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.nuevo-icon {
+    width: 3rem;
+    height: 3rem;
+    border: 4px solid white;
+    border-radius: 50px;
+    padding: 3px;
+}
+
+@media only screen and (max-width:768px) {
+    
+    .cabecera {
+        padding: 0;
+    }
+
+    .cuerpo {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+    }
+
+    .cuerpo-imagen {
+        margin: 2rem;
+    }
+
+}
+
+@media only screen and (max-width:400px) {
+
+    .cuerpo {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 20px;
+    }
+
+    .cuerpo-imagen {
+        margin: 1rem;
+    }
+
 }

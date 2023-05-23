@@ -377,3 +377,62 @@ footer {
     color: #F44336;
     font-size: 0.9rem;
 }
+
+.cuerpo {
+    background-color: #1E1E1E;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.cuerpo-imagen, .nuevo {
+    width: 10rem;
+    height: 14rem;
+    margin: 3rem;
+}
+
+.nuevo {
+    background-color: #310D0B;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.nuevo-icon {
+    width: 3rem;
+    height: 3rem;
+    border: 4px solid white;
+    border-radius: 50px;
+    padding: 3px;
+}
+
+@media only screen and (max-width:768px) {
+    
+    .cabecera {
+        padding: 0;
+    }
+
+    .cuerpo {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+    }
+
+}
+
+@media only screen and (max-width:400px) {
+
+    .cuerpo {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 20px;
+    }
+
+}

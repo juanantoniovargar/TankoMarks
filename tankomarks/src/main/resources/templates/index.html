@@ -62,21 +62,17 @@
 
 				<th:block th:each="manga : ${mangas}">
 
-					<img class="cuerpo-imagen" src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/>
-
-					<img class="cuerpo-imagen" src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/>
-
-					<img class="cuerpo-imagen" src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/>
+				<a href=""><img class="cuerpo-imagen" src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/></a>
 
 				</th:block>
 
-				<div class="nuevo">
+				<a class="nuevo" href="">
 
-					<i class="fa-regular fa-circle-plus"></i>
+					<i class="nuevo-icon fa-solid fa-plus"></i>
 
 					<p>Añadir</p>
 
-				</div>
+				</a>
 
 			</div>
 
@@ -93,15 +89,13 @@
 				
 			</div>
 
-			<div class="cuerpo" th:each="manga : ${mangas}">
+			<div class="cuerpo">
 
-				<img class="cuerpo-imagen" src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/>
+				<th:block  th:each="manga : ${mangas}">
 
-				<img class="cuerpo-imagen" src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/>
+					<a href=""><img class="cuerpo-imagen" src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/></a>
 
-				<img class="cuerpo-imagen" src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/>
-
-				<img class="cuerpo-imagen" src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/>
+				</th:block>
 
 			</div>
 
