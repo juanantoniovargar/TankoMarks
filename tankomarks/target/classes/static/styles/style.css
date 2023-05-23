@@ -413,6 +413,15 @@ footer {
     padding: 3px;
 }
 
+@media only screen and (max-width:1050px) {
+
+    .cuerpo-imagen, .nuevo {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+}
+
 @media only screen and (max-width:768px) {
     
     .cabecera {
@@ -422,11 +431,8 @@ footer {
     .cuerpo {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-gap: 20px;
-    }
-
-    .cuerpo-imagen {
-        margin: 2rem;
+        justify-items: center;
+        align-items: center;
     }
 
 }
@@ -436,11 +442,8 @@ footer {
     .cuerpo {
         display: grid;
         grid-template-columns: 1fr;
-        grid-gap: 20px;
-    }
-
-    .cuerpo-imagen {
-        margin: 1rem;
+        justify-items: center;
+        align-items: center;
     }
 
 }
