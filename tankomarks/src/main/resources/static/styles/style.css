@@ -291,7 +291,7 @@ footer {
 
 }
 
-/*********************  *********************/
+/********************* SEARCH SECTION STYLE *********************/
 
 .msg-busqueda {
     text-align: center;
@@ -336,4 +336,44 @@ footer {
     border: 1px solid #5A5555;
     border-radius: 15px;
     cursor: pointer;
+}
+
+@media only screen and (max-width:768px) {
+    
+    .boton-perfil {
+        display: block;
+        margin: auto;
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    .form-perfil {
+        margin: auto;
+        margin-bottom: 2rem;
+    }
+
+}
+
+/********************* LANDING PAGE STYLE *********************/
+
+.mangas-leyendo {
+    margin: 2rem;
+    border-bottom: 2px solid #CCCCCC;
+}
+
+.mangas-leidos {
+    margin: 2rem;
+}
+
+.cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+.link-cabecera {
+    color: #F44336;
+    font-size: 0.9rem;
 }
