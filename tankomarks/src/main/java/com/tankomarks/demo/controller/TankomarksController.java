@@ -46,11 +46,22 @@ public class TankomarksController {
 	}
 	
 	@GetMapping("/administracion")
-	public String administracion(Model model) {
+	public String administracion(Model model, String busqueda) {
 		
-		model.addAttribute("mangas", mangaRepo.mostrarMangas());
+		if (busqueda != null) {
+			
+			List<Manga> manga = mangaRepo.buscarMangas(busqueda);
+			model.addAttribute("mangas", manga);
+			
+			int size = manga.size();
+			model.addAttribute("size", size);
+			
+		} else {
+			model.addAttribute("mangas", mangaRepo.mostrarMangas());
+		}
 		
 		return "administracion";
+		
 	}
 	
 	@GetMapping("/")
@@ -63,6 +74,8 @@ public class TankomarksController {
 			
 			int size = manga.size();
 			model.addAttribute("size", size);
+			
+			model.addAttribute("busqueda", busqueda);
 			
 			return "busqueda";
 			
