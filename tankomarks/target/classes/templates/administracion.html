@@ -54,11 +54,11 @@
 
 			<div class="admin-tabla" th:each="manga : ${mangas}">
 
-				<p th:text="${manga.id_manga}">2</p>
-				<img class="admin-imagen" src="../static/imagesDB/d1.jpg" th:src="${manga.enlacefoto}" alt="Portada del manga">
-				<p th:text="${manga.nombre}">Devilman</p>
-				<p th:text="${manga.demografia.nombre}">Shonen</p>
-				<a class="admin-tomos" th:href="@{/adminTomos/} + ${manga.id_manga}">Tomos</a>
+				<p th:text="${manga.id_manga}"></p>
+				<img class="admin-imagen" th:src="${manga.enlacefoto}" alt="Portada del manga">
+				<p th:text="${manga.nombre}"></p>
+				<p th:text="${manga.demografia.nombre}"></p>
+				<a class="admin-tomos" th:href="@{/adminTomos/} + ${manga.id_manga}"></a>
 
 				<a class="admin-edit" th:href="@{/editar/} + ${manga.id_manga}"><i class="fa-solid fa-pen-to-square"></i></a>
 				<a class="admin-delete" th:href="@{/eliminar/} + ${manga.id_manga}"><i class="fa-solid fa-trash"></i></a>

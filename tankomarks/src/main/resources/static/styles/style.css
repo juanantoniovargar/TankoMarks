@@ -521,3 +521,67 @@ footer {
     }
 
 }
+
+/********************* FAVOURITES SITE STYLE *********************/
+
+.busqueda-form-fav {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.busqueda-fav {
+    padding: 1.25rem;
+    background-color: transparent;
+    border-radius: 90px;
+    border: 3px solid #5A5555;
+    color: white;
+    width: 30rem;
+    font-size: 1.25rem;
+}
+
+.busqueda-submit-fav {
+    border-radius: 1000px;
+    height: 4.25rem;
+    width: 4.25rem;
+    border: 3px solid #5A5555;
+    font-size: 1.25rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.cap-fav {
+    background-color: #1E1E1E;
+    border-radius: 30px;
+    padding: 0.6rem;
+    margin-left: 10rem;
+    display: inline-block;
+}
+
+@media only screen and (max-width:610px) {
+
+    .busqueda-fav {
+        width: auto;
+    }
+
+    .cap-fav {
+        margin-left: 5rem;
+    }
+
+}
+
+@media only screen and (max-width:525px) {
+
+    .cap-fav {
+        margin-left: 2rem;
+    }
+
+}
+
+@media only screen and (max-width:370px) {
+
+    .busqueda-fav {
+        width: 10rem;
+    }
+
+}

@@ -42,6 +42,31 @@
 			</div>
 		</nav>
 
+
+		<div class="busqueda-form-fav">
+			<form th:action="@{/favoritos}" method="get">
+				<input class="busqueda-fav" type="text" name="busqueda" placeholder="Buscar..."> 
+				<button class="busqueda-submit-fav" type="submit"> <i class="lupa fa-solid fa-magnifying-glass"></i> </button>
+			</form>
+		</div>
+		
+		<th:block th:if="${size > 0 || size == null}">
+
+			<div th:each="valoracion : ${valoraciones}">
+				<p class="cap-fav" th:text="${valoracion.capitulo.nombre}">El guerrero negro</p> <br/>
+				<p class="cap-fav" th:text="${valoracion.capitulo.nombre}">El guerrero negro</p> <br/>
+				<p class="cap-fav" th:text="${valoracion.capitulo.nombre}">El guerrero negro</p> <br/>
+				<p class="cap-fav" th:text="${valoracion.capitulo.nombre}">El guerrero negro</p> <br/>
+				<p class="cap-fav" th:text="${valoracion.capitulo.nombre}">El guerrero negro</p> <br/>
+			</div>
+
+		</th:block>
+
+		<div class="msg-busqueda" th:if="${size == 0}">
+			<h1>No se encontraron capítulos añadidos a favoritos.</h1>
+		</div>
+
+
 		<footer>
 			<div class="copy-footer">
 				Copyright &copy; TankoMarks 2023

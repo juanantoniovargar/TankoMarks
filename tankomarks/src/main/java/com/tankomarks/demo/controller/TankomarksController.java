@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.tankomarks.demo.model.Manga;
 import com.tankomarks.demo.model.Usuario;
+import com.tankomarks.demo.model.Valoracion;
 import com.tankomarks.demo.repository.MangaRepository;
 import com.tankomarks.demo.repository.UsuarioRepository;
+import com.tankomarks.demo.repository.ValoracionRepository;
 
 @Controller
 public class TankomarksController {
@@ -27,6 +29,9 @@ public class TankomarksController {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepo;
+	
+	@Autowired
+	private ValoracionRepository valoracionRepo;
 	
 	
 	@GetMapping("/login")
@@ -75,8 +80,6 @@ public class TankomarksController {
 			int size = manga.size();
 			model.addAttribute("size", size);
 			
-			model.addAttribute("busqueda", busqueda);
-			
 			return "busqueda";
 			
 		} else {
@@ -92,8 +95,25 @@ public class TankomarksController {
 	}
 	
 	@GetMapping("/favoritos")
-	public String favoritos() {
+	public String favoritos(Model model, Principal principal, String busqueda) {
+		
+		String email = principal.getName();
+		int id_usuario = usuarioRepo.getId_usuario(email);
+		
+		if (busqueda != null) {
+			
+			List<Valoracion> valoracion = valoracionRepo.buscarValoraciones(busqueda, id_usuario);
+			model.addAttribute("valoraciones", valoracion);
+			
+			int size = valoracion.size();
+			model.addAttribute("size", size);
+			
+		} else {
+			model.addAttribute("valoraciones", valoracionRepo.mostrarValoraciones(id_usuario));
+		}
+		
 		return "favoritos";
+		
 	}
 	
 	@GetMapping("/perfil")
