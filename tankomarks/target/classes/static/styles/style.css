@@ -197,7 +197,7 @@ nav {
 
 @media only screen and (max-width:1050px) {
 
-    .link-nav, .busqueda-form, .user-nav, .logout-nav {
+    .link-nav, .busqueda-form, .user-nav, .logout-nav, .add-admin {
         display: none;
     }
 
@@ -210,7 +210,7 @@ nav {
         justify-content: center;
     }
 
-    .link-nav.show, .busqueda-form.show, .user-nav.show, .logout-nav.show {
+    .link-nav.show, .busqueda-form.show, .user-nav.show, .logout-nav.show, .add-admin.show {
         display: block;
         margin: 0;
         margin-bottom: 2rem;
@@ -436,6 +436,88 @@ footer {
         grid-template-columns: 1fr;
         justify-items: center;
         align-items: center;
+    }
+
+}
+
+/********************* ADMIN SITE STYLE *********************/
+
+.add-admin {
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 1.25rem;
+    background-color: #F44336;
+    color: white;
+    text-decoration: none;
+    margin-left: 3rem;
+}
+
+.admin-tabla {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    justify-items: center;
+    align-items: center;
+    padding: 2rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    border-top: 2px solid white;
+}
+
+.admin-cabecera {
+    border-top: 0;
+}
+
+.admin-imagen {
+    width: 7rem;
+    height: 9.8rem;
+}
+
+.admin-tomos {
+    color: white;
+}
+
+.admin-edit, .admin-delete {
+    font-size: 1.5rem;
+}
+
+.admin-edit {
+    color: #0083b3;
+}
+
+.admin-delete {
+    color: #C3362B;
+}
+
+@media only screen and (max-width:750px) {
+
+    .admin-tabla {
+        margin: 0;
+    }
+
+    .admin-cabecera {
+        font-size: 0.5rem;
+    }
+
+}
+
+@media only screen and (max-width:450px) {
+
+    .admin-tabla {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .admin-imagen {
+        width: 4rem;
+        height: 5.6rem;
+    }
+
+    .admin-edit, .admin-delete {
+        font-size: 1rem;
     }
 
 }

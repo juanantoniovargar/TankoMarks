@@ -57,7 +57,7 @@
 
 				<th:block th:each="manga : ${mangasLeyendo}">
 
-				<a class="cuerpo-enlace" th:href="@{/tomos/} + ${manga.id_manga}"><img class="cuerpo-imagen" src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/></a>
+				<a class="cuerpo-enlace" th:href="@{/tomos/} + ${manga.id_manga}"><img class="cuerpo-imagen" th:src="${manga.enlacefoto}" alt="Portada del manga"/></a>
 
 				</th:block>
 
@@ -86,9 +86,9 @@
 
 			<div class="cuerpo">
 
-				<th:block  th:each="manga : ${mangasLeido}">
+				<th:block th:each="manga : ${mangasLeido}">
 
-					<a class="cuerpo-enlace" th:href="@{/tomos/} + ${manga.id_manga}"><img class="cuerpo-imagen" src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/></a>
+					<a class="cuerpo-enlace" th:href="@{/tomos/} + ${manga.id_manga}"><img class="cuerpo-imagen" th:src="${manga.enlacefoto}" alt="Portada del manga"/></a>
 
 				</th:block>
 

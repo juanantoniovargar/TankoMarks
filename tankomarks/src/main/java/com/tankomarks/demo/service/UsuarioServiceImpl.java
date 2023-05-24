@@ -46,16 +46,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public Usuario guardar(RegistroDto registroDto) throws ConstraintViolationException {
 		
-		/*
-		Usuario usuario = new Usuario(			
-				registroDto.getNombre(),
-				registroDto.getEmail(),
-				passwordEncoder.encode(registroDto.getPassword()),
-				Arrays.asList(new Rol("USER")));
-
-		return usuarioRepository.save(usuario);
-		*/
-		
 		Rol userRole = rolRepository.findRolByNombre("USER");
 	    if (userRole == null) {
 	        userRole = new Rol("USER");

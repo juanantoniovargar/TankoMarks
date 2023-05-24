@@ -34,7 +34,11 @@ public class TankomarksController {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
-			return "redirect:/";
+			if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+	            return "redirect:/administracion";
+			} else {
+				return "redirect:/";
+			}
 		} else {
 			return "login";
 		}
