@@ -197,6 +197,34 @@ nav {
 
 @media only screen and (max-width:1050px) {
 
+    .imagen-nav {
+        margin: 0;
+    }
+
+    .link-nav {
+        margin: 1rem;
+    }
+
+    .busqueda-submit {
+        margin: 0.5rem;
+    }
+
+    .logout-nav, .user-nav {
+        margin-right: 1rem;
+    }
+
+}
+
+@media only screen and (max-width:780px) {
+
+    .busqueda {
+        width: 12rem;
+    }
+
+}
+
+@media only screen and (max-width:700px) {
+
     .link-nav, .busqueda-form, .user-nav, .logout-nav, .add-admin {
         display: none;
     }
@@ -563,6 +591,8 @@ footer {
     padding: 0.6rem;
     width: 25rem;
     color: white;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 @media only screen and (max-width:610px) {
