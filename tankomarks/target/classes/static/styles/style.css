@@ -197,6 +197,34 @@ nav {
 
 @media only screen and (max-width:1050px) {
 
+    .imagen-nav {
+        margin: 0;
+    }
+
+    .link-nav {
+        margin: 1rem;
+    }
+
+    .busqueda-submit {
+        margin: 0.5rem;
+    }
+
+    .logout-nav, .user-nav {
+        margin-right: 1rem;
+    }
+
+}
+
+@media only screen and (max-width:780px) {
+
+    .busqueda {
+        width: 12rem;
+    }
+
+}
+
+@media only screen and (max-width:700px) {
+
     .link-nav, .busqueda-form, .user-nav, .logout-nav, .add-admin {
         display: none;
     }
@@ -550,30 +578,27 @@ footer {
     cursor: pointer;
 }
 
+.caps-fav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .cap-fav {
     background-color: #1E1E1E;
     border-radius: 30px;
     padding: 0.6rem;
-    margin-left: 10rem;
-    display: inline-block;
+    width: 25rem;
+    color: white;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 @media only screen and (max-width:610px) {
 
-    .busqueda-fav {
+    .busqueda-fav, .cap-fav {
         width: auto;
-    }
-
-    .cap-fav {
-        margin-left: 5rem;
-    }
-
-}
-
-@media only screen and (max-width:525px) {
-
-    .cap-fav {
-        margin-left: 2rem;
     }
 
 }

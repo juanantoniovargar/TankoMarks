@@ -22,14 +22,17 @@
 		<nav>
 			<img class="imagen-nav" src="../static/images/logo.png" th:src="@{/images/logo.png}" alt="Logo de Tankomarks">
 			
-			<a class="link-nav" th:href="@{/administracion}">Inicio</a>
-			<a class="add-admin" th:href="@{/adminNuevo}">Añadir</a>
+			<a class="link-nav" th:href="@{/}">Inicio</a>
+			<a class="link-nav" th:href="@{/favoritos}">Favoritos</a>
 			
-			<form class="busqueda-form" th:action="@{/administracion}" method="get">
+			<form class="busqueda-form" th:action="@{/}" method="get">
 				<input class="busqueda" type="text" name="busqueda" placeholder="Buscar..."> 
 				<button class="busqueda-submit" type="submit"> <i class="lupa fa-solid fa-magnifying-glass"></i> </button>
 			</form>
 
+			<a class="user-nav" th:href="@{/perfil}">
+				<i class="fa-solid fa-circle-user"></i>
+			</a>
 			<a class="logout-nav" th:href="@{/logout}">
 				<i class="fa-solid fa-arrow-right-from-bracket"></i>
 			</a>
@@ -38,38 +41,11 @@
 				<i class="fa-solid fa-bars"></i>
 			</div>
 		</nav>
-
 		
-		<th:block th:if="${size > 0 || size == null}">
+		
+        <h1>¡Añade tu propio manga!</h1>
 
-			<div class="admin-tabla admin-cabecera">
-				<h3>ID</h3>
-				<h3>Imagen</h3>
-				<h3>Título</h3>
-				<h3>Demografía</h3>
-				<h3>Ver tomos</h3>
-				<h3>Editar</h3>
-				<h3>Eliminar</h3>
-			</div>
-
-			<div class="admin-tabla" th:each="manga : ${mangas}">
-
-				<p th:text="${manga.id_manga}"></p>
-				<img class="admin-imagen" th:src="${manga.enlacefoto}" alt="Portada del manga">
-				<p th:text="${manga.nombre}"></p>
-				<p th:text="${manga.demografia.nombre}"></p>
-				<a class="admin-tomos" th:href="@{/adminTomos/} + ${manga.id_manga}">Tomos</a>
-
-				<a class="admin-edit" th:href="@{/editar/} + ${manga.id_manga}"><i class="fa-solid fa-pen-to-square"></i></a>
-				<a class="admin-delete" th:href="@{/eliminar/} + ${manga.id_manga}"><i class="fa-solid fa-trash"></i></a>
-
-			</div>
-
-		</th:block>
-
-		<div class="msg-busqueda" th:if="${size == 0}">
-			<h1>No se encontraron mangas.</h1>
-		</div>
+        <!--th:href="@{/nuevo}" en el botón de añadir-->
 
 
 		<footer>
