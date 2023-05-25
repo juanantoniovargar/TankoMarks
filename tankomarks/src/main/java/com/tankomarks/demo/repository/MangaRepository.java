@@ -30,5 +30,8 @@ public interface MangaRepository extends JpaRepository<Manga, Integer> {
 			+ "JOIN leido_manga l ON m.id_manga = l.manga_id_manga "
 			+ "WHERE l.usuario_id_usuario = :id_usuario LIMIT 4", nativeQuery=true)
 	List<Manga> mostrarMangasLeido(@Param("id_usuario") int id_usuario);
+	
+	@Query(value="SELECT * FROM manga WHERE id_manga = :id_manga", nativeQuery=true)
+	List<Manga> mostrarDetallesManga(@Param("id_manga") int id_manga);
 
 }

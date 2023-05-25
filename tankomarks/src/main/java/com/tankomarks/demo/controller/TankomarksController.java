@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.tankomarks.demo.model.Manga;
@@ -155,6 +156,14 @@ public class TankomarksController {
 		String referer = request.getHeader("Referer");
 		return "redirect:" + referer;
 		
+	}
+	
+	@GetMapping("/detalles/{id_manga}")
+	public String detalles(@PathVariable("id_manga") int id_manga, Model model) {
+		
+		model.addAttribute("manga", mangaRepo.mostrarDetallesManga(id_manga));
+		
+		return "detalles";
 	}
 	
 	@GetMapping("/404")
