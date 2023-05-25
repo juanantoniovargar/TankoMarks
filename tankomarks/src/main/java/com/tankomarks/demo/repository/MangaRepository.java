@@ -15,6 +15,9 @@ public interface MangaRepository extends JpaRepository<Manga, Integer> {
 	
 	@Query(value="SELECT * FROM manga WHERE nombre LIKE %:busqueda%", nativeQuery=true)
 	List<Manga> buscarMangas(@Param("busqueda") String busqueda);
+
+	@Query(value="SELECT * FROM manga WHERE nombre LIKE %:busqueda% AND demografia_id_demografia = :demografia", nativeQuery=true)
+	List<Manga> buscarMangasFiltrados(@Param("busqueda") String busqueda, @Param("demografia") String demografia);
 	
 	@Query(value="SELECT m.* "
 			+ "FROM manga m "

@@ -26,6 +26,13 @@
 			<a class="add-admin" th:href="@{/adminNuevo}">Añadir</a>
 			
 			<form class="busqueda-form" th:action="@{/administracion}" method="get">
+				<select class="desplegable-nav" name="demografia">
+					<option value="0" selected>Todos</option>
+					<option value="1">Seinen</option>
+					<option value="2">Shonen</option>
+					<option value="3">Shojo</option>
+					<option value="4">Josei</option>
+				</select>
 				<input class="busqueda" type="text" name="busqueda" placeholder="Buscar..."> 
 				<button class="busqueda-submit" type="submit"> <i class="lupa fa-solid fa-magnifying-glass"></i> </button>
 			</form>

@@ -147,6 +147,16 @@ nav {
     color: #F44336;
 }
 
+.desplegable-nav {
+    color: white;
+    background-color: black;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-radius: 10px;
+    border: 2px solid #5A5555;
+    font-family: cuerpo;
+}
+
 .busqueda-form {
     margin-left: auto;
 }
@@ -171,7 +181,7 @@ nav {
     border-radius: 30px;
     border: 2px solid #5A5555;
     color: white;
-    width: 17.5rem;
+    width: 15rem;
 }
 
 .user-nav {
@@ -195,7 +205,7 @@ nav {
     display: none;
 }
 
-@media only screen and (max-width:1050px) {
+@media only screen and (max-width:1085px) {
 
     .imagen-nav {
         margin: 0;
@@ -215,15 +225,15 @@ nav {
 
 }
 
-@media only screen and (max-width:780px) {
+@media only screen and (max-width:815px) {
 
     .busqueda {
-        width: 12rem;
+        width: 10rem;
     }
 
 }
 
-@media only screen and (max-width:700px) {
+@media only screen and (max-width:735px) {
 
     .link-nav, .busqueda-form, .user-nav, .logout-nav, .add-admin {
         display: none;

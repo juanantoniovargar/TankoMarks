@@ -51,11 +51,19 @@ public class TankomarksController {
 	}
 	
 	@GetMapping("/administracion")
-	public String administracion(Model model, String busqueda) {
+	public String administracion(Model model, String busqueda, String demografia) {
 		
-		if (busqueda != null) {
+		if (busqueda != null && demografia.equals("0")) {
 			
 			List<Manga> manga = mangaRepo.buscarMangas(busqueda);
+			model.addAttribute("mangas", manga);
+			
+			int size = manga.size();
+			model.addAttribute("size", size);
+			
+		} else if (busqueda != null && !(demografia.equals("0"))) {
+			
+			List<Manga> manga = mangaRepo.buscarMangasFiltrados(busqueda, demografia);
 			model.addAttribute("mangas", manga);
 			
 			int size = manga.size();
@@ -70,11 +78,21 @@ public class TankomarksController {
 	}
 	
 	@GetMapping("/")
-	public String home(Model model, Principal principal, String busqueda) {
+	public String home(Model model, Principal principal, String busqueda, String demografia) {
 		
-		if (busqueda != null) {
+		if (busqueda != null && demografia.equals("0")) {
 			
-			List<Manga> manga = mangaRepo.buscarMangas(busqueda); 
+			List<Manga> manga = mangaRepo.buscarMangas(busqueda);
+			model.addAttribute("mangas", manga);
+			
+			int size = manga.size();
+			model.addAttribute("size", size);
+			
+			return "busqueda";
+			
+		} else if (busqueda != null && !(demografia.equals("0"))) {
+			
+			List<Manga> manga = mangaRepo.buscarMangasFiltrados(busqueda, demografia);
 			model.addAttribute("mangas", manga);
 			
 			int size = manga.size();
