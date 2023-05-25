@@ -44,8 +44,17 @@
 		
 		<th:block th:if="${size > 0}">
 
-			<div th:each="manga : ${mangas}">
-				<img src="../static/imagesDB/NewVolume_1.webp" th:src="${manga.enlacefoto}"/>
+			<div class="total-busqueda">
+
+				<th:block th:each="manga : ${mangas}">
+
+					<a class="busqueda-imagen enlace-busqueda" th:href="@{/detalles/} + ${manga.id_manga}">
+						<img class="cuerpo-imagen" th:src="${manga.enlacefoto}" alt="Portada del manga"/>
+						<h2 class="nombre-busqueda" th:text="${manga.nombre}"></h2>
+					</a>
+
+				</th:block>
+
 			</div>
 
 		</th:block>

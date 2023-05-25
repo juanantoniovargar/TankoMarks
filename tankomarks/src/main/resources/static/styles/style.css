@@ -304,13 +304,6 @@ footer {
 
 }
 
-/********************* SEARCH SECTION STYLE *********************/
-
-.msg-busqueda {
-    text-align: center;
-    margin: 5rem;
-}
-
 /********************* USER SECTION STYLE *********************/
 
 .form-perfil {
@@ -610,6 +603,80 @@ footer {
 
     .busqueda-fav {
         width: 10rem;
+    }
+
+}
+
+/********************* SEARCH SECTION STYLE *********************/
+
+.msg-busqueda {
+    text-align: center;
+    margin: 5rem;
+}
+
+.total-busqueda {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+.busqueda-imagen {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #1E1E1E;
+    border-radius: 30px;
+    border: 2px solid white;
+    width: 10rem;
+}
+
+.nombre-busqueda {
+    text-align: center;
+    color: white;
+}
+
+.enlace-busqueda {
+    text-decoration: none;
+}
+
+.busqueda-imagen:hover {
+    border-color: #F44336;
+    color: #F44336;
+}
+
+.busqueda-imagen:hover h2 {
+    color: #F44336;
+}
+
+@media only screen and (max-width:1150px) {
+
+    .total-busqueda {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+}
+
+@media only screen and (max-width:900px) {
+
+    .total-busqueda {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+@media only screen and (max-width:650px) {
+
+    .total-busqueda {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media only screen and (max-width:450px) {
+
+    .total-busqueda {
+        grid-template-columns: 1fr;
     }
 
 }
