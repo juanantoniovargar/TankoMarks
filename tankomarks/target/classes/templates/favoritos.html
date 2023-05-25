@@ -53,7 +53,7 @@
 		<th:block th:if="${size > 0 || size == null}">
 
 			<div th:each="valoracion : ${valoraciones}">
-				<p th:text="${valoracion.capitulo.nombre}"></p>
+				<p class="cap-fav" th:text="${valoracion.capitulo.nombre}"></p> <br/>
 			</div>
 
 		</th:block>

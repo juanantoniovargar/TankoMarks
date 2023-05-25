@@ -550,30 +550,25 @@ footer {
     cursor: pointer;
 }
 
+.caps-fav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .cap-fav {
     background-color: #1E1E1E;
     border-radius: 30px;
     padding: 0.6rem;
-    margin-left: 10rem;
-    display: inline-block;
+    width: 25rem;
+    color: white;
 }
 
 @media only screen and (max-width:610px) {
 
-    .busqueda-fav {
+    .busqueda-fav, .cap-fav {
         width: auto;
-    }
-
-    .cap-fav {
-        margin-left: 5rem;
-    }
-
-}
-
-@media only screen and (max-width:525px) {
-
-    .cap-fav {
-        margin-left: 2rem;
     }
 
 }

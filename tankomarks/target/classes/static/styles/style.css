@@ -549,3 +549,39 @@ footer {
     background-color: transparent;
     cursor: pointer;
 }
+
+.cap-fav {
+    background-color: #1E1E1E;
+    border-radius: 30px;
+    padding: 0.6rem;
+    margin-left: 10rem;
+    display: inline-block;
+}
+
+@media only screen and (max-width:610px) {
+
+    .busqueda-fav {
+        width: auto;
+    }
+
+    .cap-fav {
+        margin-left: 5rem;
+    }
+
+}
+
+@media only screen and (max-width:525px) {
+
+    .cap-fav {
+        margin-left: 2rem;
+    }
+
+}
+
+@media only screen and (max-width:370px) {
+
+    .busqueda-fav {
+        width: 10rem;
+    }
+
+}

@@ -52,12 +52,8 @@
 		
 		<th:block th:if="${size > 0 || size == null}">
 
-			<div th:each="valoracion : ${valoraciones}">
-				<p class="cap-fav" th:text="${valoracion.capitulo.nombre}">El guerrero negro</p> <br/>
-				<p class="cap-fav" th:text="${valoracion.capitulo.nombre}">El guerrero negro</p> <br/>
-				<p class="cap-fav" th:text="${valoracion.capitulo.nombre}">El guerrero negro</p> <br/>
-				<p class="cap-fav" th:text="${valoracion.capitulo.nombre}">El guerrero negro</p> <br/>
-				<p class="cap-fav" th:text="${valoracion.capitulo.nombre}">El guerrero negro</p> <br/>
+			<div class="caps-fav" th:each="valoracion : ${valoraciones}">
+				<a class="cap-fav" th:href="@{/detallesValoracion/} + ${valoracion.id_valoracion}" th:text="${valoracion.capitulo.nombre}"></a>
 			</div>
 
 		</th:block>
