@@ -593,6 +593,9 @@ footer {
     color: white;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    text-decoration: none;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 @media only screen and (max-width:610px) {
