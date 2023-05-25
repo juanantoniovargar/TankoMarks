@@ -471,7 +471,7 @@ footer {
 
 }
 
-/********************* ADMIN SITE STYLE *********************/
+/********************* ADMIN SECTION STYLE *********************/
 
 .add-admin {
     border: 2px solid white;
@@ -553,7 +553,7 @@ footer {
 
 }
 
-/********************* FAVOURITES SITE STYLE *********************/
+/********************* FAVOURITES SECTION STYLE *********************/
 
 .busqueda-form-fav {
     padding-top: 2rem;
@@ -691,7 +691,7 @@ footer {
 
 }
 
-/********************* SEARCH SECTION STYLE *********************/
+/********************* DETAILS SECTION STYLE *********************/
 
 .img-detalles {
     width: 20rem;
@@ -759,3 +759,7 @@ footer {
     }
 
 }
+
+/********************* VOLUMES SECTION STYLE *********************/
+
+

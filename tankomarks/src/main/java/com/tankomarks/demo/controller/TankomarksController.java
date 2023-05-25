@@ -19,6 +19,7 @@ import com.tankomarks.demo.model.Manga;
 import com.tankomarks.demo.model.Usuario;
 import com.tankomarks.demo.model.Valoracion;
 import com.tankomarks.demo.repository.MangaRepository;
+import com.tankomarks.demo.repository.TomoRepository;
 import com.tankomarks.demo.repository.UsuarioRepository;
 import com.tankomarks.demo.repository.ValoracionRepository;
 
@@ -33,6 +34,9 @@ public class TankomarksController {
 	
 	@Autowired
 	private ValoracionRepository valoracionRepo;
+
+	@Autowired
+	private TomoRepository tomoRepo;
 	
 	
 	@GetMapping("/login")
@@ -164,6 +168,14 @@ public class TankomarksController {
 		model.addAttribute("manga", mangaRepo.mostrarDetallesManga(id_manga));
 		
 		return "detalles";
+	}
+	
+	@GetMapping("/tomos/{manga_id_manga}")
+	public String tomos(@PathVariable("manga_id_manga") int manga, Model model) {
+		
+		model.addAttribute("tomos", tomoRepo.mostrarTomos(manga));
+		
+		return "tomos";
 	}
 	
 	@GetMapping("/404")
