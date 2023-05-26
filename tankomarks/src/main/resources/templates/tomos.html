@@ -50,12 +50,20 @@
 		</nav>
 
 		
-		<div th:each="tomo : ${tomos}">
+		<div class="cuerpo-tomo">
 
-            <a th:href="@{/capitulos/} + ${tomo.id_tomo}">
-                <img th:src="${tomo.enlacefoto}" alt="Portada del tomo"/>
-                <h1>Tomo: <span th:text="${tomo.numero}"></span></h1>
-            </a>
+			<th:block th:each="tomo : ${tomos}">
+
+				<a class="item-tomo" th:href="@{/capitulos/} + ${tomo.id_tomo}">
+					<img class="cuerpo-imagen" th:src="${tomo.enlacefoto}" alt="Portada del tomo"/>
+					<div>
+						<h1 class="nombre-tomo">Tomo: <span th:text="${tomo.numero}"></span></h1>
+						<!-- th:if leyendo, leido o ninguno -->
+						<p class="info-tomo">Leído</p> <!-- leyendo --> <!-- sin leer -->
+					</div>
+				</a>
+
+			</th:block>
 
         </div>
 

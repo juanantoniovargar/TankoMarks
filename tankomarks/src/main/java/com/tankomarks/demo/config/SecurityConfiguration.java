@@ -50,21 +50,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers(resources).permitAll()
 				.antMatchers("/registro").hasRole("ANONYMOUS")
-				.antMatchers("/", "/favoritos", "/perfil", "/leyendo", "/nuevo", "/leidos").hasAnyAuthority("USER") 
+				.antMatchers("/", "/favoritos", "/perfil", "/leyendo", "/nuevo", "/leidos").hasAnyAuthority("USER")
+				.regexMatchers("/detalles/\\d+", "/tomos/\\d+", "/capitulos/\\d+").hasAnyAuthority("USER")
 				.antMatchers("/administracion", "adminNuevo").hasAnyAuthority("ADMIN")
 				.anyRequest().authenticated()
 				.and()
 				.formLogin()
 				.loginPage("/login")
 				.successHandler((request, response, authentication) -> {
-		            // Obtener los roles del usuario autenticado
 		            Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		            for (GrantedAuthority authority : authorities) {
 		                if (authority.getAuthority().equals("ADMIN")) {
-		                    // Si el rol es admin, redireccionar a /administracion
 		                    response.sendRedirect("/administracion");
 		                } else {
-		                    // Si el rol es user u otro, redireccionar a /
 		                    response.sendRedirect("/");
 		                }
 		            }

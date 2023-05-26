@@ -762,4 +762,50 @@ footer {
 
 /********************* VOLUMES SECTION STYLE *********************/
 
+.cuerpo-tomo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+}
 
+.item-tomo {
+    display: flex;
+    justify-content: left;
+    align-items: start;
+    margin: 1.5rem;
+    padding: 1.5rem;
+    background-color: #1E1E1E;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.item-tomo > img {
+    margin-right: 1rem;
+}
+
+.nombre-tomo {
+    color: #F44336;
+}
+
+.info-tomo {
+    color: white;
+}
+
+@media only screen and (max-width:1165px) {
+
+    .cuerpo-tomo {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media only screen and (max-width:780px) {
+
+    .cuerpo-tomo {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/*********************  STYLE *********************/
