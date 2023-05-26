@@ -53,18 +53,20 @@
 		<div class="cuerpo-caps">
 
             <div th:each="capitulo : ${imagenCapitulos}">
-                <img class="" th:src="${capitulo.tomo.enlacefoto}" alt="Portada del tomo"/>
+                <img class="img-caps" th:src="${capitulo.tomo.enlacefoto}" alt="Portada del tomo"/>
             </div>
 
-            <div th:each="capitulo : ${capitulos}">
-                <div class="caps-fav">
+            <div class="caps-fav">
+                <th:block th:each="capitulo : ${capitulos}">
                     <a class="cap-fav" th:href="@{/detallesCapitulo/} + ${capitulo.id_capitulo}" th:text="${capitulo.nombre}"></a>
-                </div>
+                </th:block>
             </div>
 
         </div>  
 
-        <a th:href="${#httpServletRequest.getHeader('Referer')}">Volver</a>
+        <div class="volver-caps">
+            <a class="add-admin" th:href="${#httpServletRequest.getHeader('Referer')}">Volver</a>
+        </div>
 
 
 		<footer>
