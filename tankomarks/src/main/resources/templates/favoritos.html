@@ -60,7 +60,7 @@
 		<th:block th:if="${size > 0 || size == null}">
 
 			<div class="caps-fav" th:each="valoracion : ${valoraciones}">
-				<a class="cap-fav" th:href="@{/detallesValoracion/} + ${valoracion.id_valoracion}" th:text="${valoracion.capitulo.nombre}"></a>
+				<a class="cap-fav" th:href="@{/detallesCapitulo/} + ${valoracion.id_valoracion}" th:text="${valoracion.capitulo.nombre}"></a>
 			</div>
 
 		</th:block>

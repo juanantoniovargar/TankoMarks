@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.tankomarks.demo.model.Manga;
 import com.tankomarks.demo.model.Usuario;
 import com.tankomarks.demo.model.Valoracion;
+import com.tankomarks.demo.repository.CapituloRepository;
 import com.tankomarks.demo.repository.MangaRepository;
 import com.tankomarks.demo.repository.TomoRepository;
 import com.tankomarks.demo.repository.UsuarioRepository;
@@ -37,6 +38,9 @@ public class TankomarksController {
 
 	@Autowired
 	private TomoRepository tomoRepo;
+	
+	@Autowired
+	private CapituloRepository capituloRepo;
 	
 	
 	@GetMapping("/login")
@@ -177,6 +181,15 @@ public class TankomarksController {
 		model.addAttribute("nombreTomos", tomoRepo.mostrarNombreMangaTomos(manga));
 		
 		return "tomos";
+	}
+	
+	@GetMapping("/capitulos/{tomo_id_tomo}")
+	public String capitulos(@PathVariable("tomo_id_tomo") int tomo, Model model) {
+		
+		model.addAttribute("capitulos", capituloRepo.mostrarCapitulos(tomo));
+		model.addAttribute("imagenCapitulos", capituloRepo.mostrarImagenTomoCapitulos(tomo));
+		
+		return "capitulos";
 	}
 	
 	@GetMapping("/404")

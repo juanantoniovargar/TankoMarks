@@ -821,4 +821,11 @@ footer {
 
 }
 
-/*********************  STYLE *********************/
+/********************* CHAPTERS SECTION STYLE *********************/
+
+.cuerpo-caps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
