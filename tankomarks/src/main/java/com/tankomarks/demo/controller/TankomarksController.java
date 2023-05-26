@@ -174,6 +174,7 @@ public class TankomarksController {
 	public String tomos(@PathVariable("manga_id_manga") int manga, Model model) {
 		
 		model.addAttribute("tomos", tomoRepo.mostrarTomos(manga));
+		model.addAttribute("nombreTomos", tomoRepo.mostrarNombreMangaTomos(manga));
 		
 		return "tomos";
 	}

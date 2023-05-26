@@ -12,5 +12,8 @@ public interface TomoRepository extends JpaRepository<Tomo, Integer> {
 	
 	@Query(value="SELECT * FROM tomo WHERE manga_id_manga = :manga", nativeQuery=true)
 	List<Tomo> mostrarTomos(@Param("manga") int manga);
+	
+	@Query(value="SELECT id_tomo, manga_id_manga FROM tomo WHERE manga_id_manga = :manga LIMIT 1", nativeQuery=true)
+	List<Tomo> mostrarNombreMangaTomos(@Param("manga") int manga);
 
 }

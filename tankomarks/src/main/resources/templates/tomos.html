@@ -50,6 +50,10 @@
 		</nav>
 
 		
+		<div class="cabecera-tomo" th:each="tomo : ${nombreTomos}">
+			<a class="cabecera-tomo" th:href="@{/detalles/} + ${tomo.manga.id_manga}"><span th:text="${tomo.manga.nombre}"></span></a>
+		</div>
+
 		<div class="cuerpo-tomo">
 
 			<th:block th:each="tomo : ${tomos}">

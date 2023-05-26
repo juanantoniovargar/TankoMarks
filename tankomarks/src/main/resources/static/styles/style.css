@@ -792,6 +792,19 @@ footer {
     color: white;
 }
 
+.cabecera-tomo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.cabecera-tomo > a {
+    color: #F44336;
+    font-size: 2.5rem;
+    margin: auto;
+}
+
 @media only screen and (max-width:1165px) {
 
     .cuerpo-tomo {
