@@ -136,4 +136,44 @@ public class Usuario {
 		this.rol = rol;
 	}
 
+	public Set<Manga> getLeyendo_manga() {
+		return leyendo_manga;
+	}
+
+	public void setLeyendo_manga(Set<Manga> leyendo_manga) {
+		this.leyendo_manga = leyendo_manga;
+	}
+
+	public Set<Manga> getLeido_manga() {
+		return leido_manga;
+	}
+
+	public void setLeido_manga(Set<Manga> leido_manga) {
+		this.leido_manga = leido_manga;
+	}
+
+	public Set<Tomo> getLeyendo_tomo() {
+		return leyendo_tomo;
+	}
+
+	public void setLeyendo_tomo(Set<Tomo> leyendo_tomo) {
+		this.leyendo_tomo = leyendo_tomo;
+	}
+
+	public Set<Tomo> getLeido_tomo() {
+		return leido_tomo;
+	}
+
+	public void setLeido_tomo(Set<Tomo> leido_tomo) {
+		this.leido_tomo = leido_tomo;
+	}
+
+	public Set<Capitulo> getLeido_capitulo() {
+		return leido_capitulo;
+	}
+
+	public void setLeido_capitulo(Set<Capitulo> leido_capitulo) {
+		this.leido_capitulo = leido_capitulo;
+	}
+
 }

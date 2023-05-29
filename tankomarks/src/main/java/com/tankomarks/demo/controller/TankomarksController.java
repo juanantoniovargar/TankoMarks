@@ -175,10 +175,13 @@ public class TankomarksController {
 	}
 	
 	@GetMapping("/tomos/{manga_id_manga}")
-	public String tomos(@PathVariable("manga_id_manga") int manga, Model model) {
+	public String tomos(@PathVariable("manga_id_manga") int manga, Model model, Principal principal) {
+		
+		String email = principal.getName();
 		
 		model.addAttribute("tomos", tomoRepo.mostrarTomos(manga));
 		model.addAttribute("nombreTomos", tomoRepo.mostrarNombreMangaTomos(manga));
+	    model.addAttribute("usuario", usuarioRepo.findByEmail(email));
 		
 		return "tomos";
 	}

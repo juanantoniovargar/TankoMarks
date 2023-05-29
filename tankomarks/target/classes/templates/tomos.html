@@ -63,7 +63,13 @@
 					<div>
 						<h1 class="nombre-tomo">Tomo: <span th:text="${tomo.numero}"></span></h1>
 						<!-- th:if leyendo, leido o ninguno -->
-						<p class="info-tomo">Leído</p> <!-- leyendo --> <!-- sin leer -->
+						<p class="info-tomo">
+							<span th:if="${usuario.leido_tomo.contains(tomo)}">Leído</span>
+                			<th:block th:unless="${usuario.leido_tomo.contains(tomo)}">
+								<span th:if="${usuario.leyendo_tomo.contains(tomo)}">Leyendo</span>
+								<span th:unless="${usuario.leyendo_tomo.contains(tomo)}">No leído</span>
+							</th:block>
+						</p> <!-- leído --> <!-- leyendo --> <!-- sin leer -->
 					</div>
 				</a>
 
