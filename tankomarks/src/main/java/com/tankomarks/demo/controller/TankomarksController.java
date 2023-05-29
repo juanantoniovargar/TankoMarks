@@ -14,7 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tankomarks.demo.model.Capitulo;
 import com.tankomarks.demo.model.Manga;
 import com.tankomarks.demo.model.Usuario;
 import com.tankomarks.demo.model.Valoracion;
@@ -193,6 +195,41 @@ public class TankomarksController {
 		model.addAttribute("imagenCapitulos", capituloRepo.mostrarImagenTomoCapitulos(tomo));
 		
 		return "capitulos";
+		
+	}
+	
+	@GetMapping("/detallesCapitulo/{capitulo_id_capitulo}")
+	public String detallesCapitulo(@PathVariable("capitulo_id_capitulo") int id_capitulo, Model model, Principal principal) {
+		
+		String email = principal.getName();
+		int id_usuario = usuarioRepo.getId_usuario(email);
+		
+		Capitulo capitulo = capituloRepo.verificarEstado(id_usuario, id_capitulo);
+		boolean estaActivado = (capitulo != null) ? true : false;
+
+        model.addAttribute("estaActivado", estaActivado);
+        
+        model.addAttribute("capitulo", capituloRepo.mostrarDetallesCapitulo(id_capitulo));
+		
+		return "detallesCapitulo";
+		
+	}
+	
+	@PostMapping("/actualizarCapitulo")
+	public String actualizarCapitulo(@RequestParam("activado") boolean activado, int id_capitulo, HttpServletRequest request, Principal principal) {
+		
+		String email = principal.getName();
+		int id_usuario = usuarioRepo.getId_usuario(email);
+		
+		if (activado) {
+            capituloRepo.activarLeido(id_usuario, id_capitulo);
+        } else {
+        	capituloRepo.eliminarLeido(id_usuario, id_capitulo);
+        }
+		
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
+		
 	}
 	
 	@GetMapping("/404")
