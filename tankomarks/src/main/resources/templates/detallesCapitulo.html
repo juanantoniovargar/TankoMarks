@@ -86,7 +86,7 @@
 
         <div class="volver-caps">
             <a th:if="${referer.endsWith('/favoritos')}" class="link-volver" th:href="@{/favoritos}">Volver</a> <!-- th:if="${#httpServletRequest.requestURI == '/favoritos'}" -->
-			<!--<a th:unless="${referer.endsWith('/favoritos')}" class="link-volver" th:href="@{/capitulos/} + ${capitulo.tomo.id_tomo}">Volver</a>-->
+			<a th:unless="${referer.endsWith('/favoritos')}" class="link-volver" th:href="@{/capitulos/} + ${capitulo.tomo.id_tomo}">Volver</a>
         </div>
 
 
