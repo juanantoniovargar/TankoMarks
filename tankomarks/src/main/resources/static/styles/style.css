@@ -844,6 +844,16 @@ footer {
     margin-right: 6rem;
 }
 
+.link-volver {
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 1.25rem;
+    background-color: #F44336;
+    color: white;
+    text-decoration: none;
+    margin-left: 3rem;
+}
+
 @media only screen and (max-width:950px) {
 
     .img-caps {
@@ -855,3 +865,7 @@ footer {
     }
 
 }
+
+/********************* CHAPTERS DETAILS SECTION STYLE *********************/
+
+

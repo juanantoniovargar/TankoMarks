@@ -58,7 +58,8 @@
         </form>
 
         <div class="volver-caps">
-            <a class="add-admin" th:href="${#httpServletRequest.getHeader('Referer')}">Volver</a>
+            <a th:if="${referer.endsWith('/favoritos')}" class="add-admin" th:href="@{/favoritos}">Volver</a> <!-- th:if="${#httpServletRequest.requestURI == '/favoritos'}" -->
+			<a th:unless="${referer.endsWith('/favoritos')}" class="add-admin" th:href="@{/capitulos/} + ${capitulo.tomo.id_tomo}">Volver</a>
         </div>
 
 

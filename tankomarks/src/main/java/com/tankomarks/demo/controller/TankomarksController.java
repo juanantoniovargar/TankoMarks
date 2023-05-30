@@ -3,6 +3,8 @@ package com.tankomarks.demo.controller;
 import java.security.Principal;
 import java.util.List;
 
+//import javax.persistence.EntityManager;
+//import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tankomarks.demo.model.Capitulo;
 import com.tankomarks.demo.model.Manga;
@@ -43,6 +45,9 @@ public class TankomarksController {
 	
 	@Autowired
 	private CapituloRepository capituloRepo;
+	
+	// @Autowired
+	// EntityManager entityManager;
 	
 	
 	@GetMapping("/login")
@@ -199,7 +204,10 @@ public class TankomarksController {
 	}
 	
 	@GetMapping("/detallesCapitulo/{capitulo_id_capitulo}")
-	public String detallesCapitulo(@PathVariable("capitulo_id_capitulo") int id_capitulo, Model model, Principal principal) {
+	public String detallesCapitulo(@PathVariable("capitulo_id_capitulo") int id_capitulo, Model model, Principal principal, HttpServletRequest request) {
+		
+		String referer = request.getHeader("Referer");
+	    model.addAttribute("referer", referer);
 		
 		String email = principal.getName();
 		int id_usuario = usuarioRepo.getId_usuario(email);
@@ -216,7 +224,7 @@ public class TankomarksController {
 	}
 	
 	@PostMapping("/actualizarCapitulo")
-	public String actualizarCapitulo(@RequestParam("activado") boolean activado, int id_capitulo, HttpServletRequest request, Principal principal) {
+	public String actualizarCapitulo(boolean activado, int id_capitulo, HttpServletRequest request, Principal principal) {
 		
 		String email = principal.getName();
 		int id_usuario = usuarioRepo.getId_usuario(email);

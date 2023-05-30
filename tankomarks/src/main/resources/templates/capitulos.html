@@ -65,7 +65,7 @@
         </div>  
 
         <div class="volver-caps" th:each="capitulo : ${imagenCapitulos}">
-            <a class="add-admin" th:href="@{/tomos/} + ${capitulo.tomo.manga.id_manga}">Volver</a>
+            <a class="link-volver" th:href="@{/tomos/} + ${capitulo.tomo.manga.id_manga}">Volver</a>
         </div>
 
 
