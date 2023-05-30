@@ -264,6 +264,16 @@ public class TankomarksController {
 		
 	}
 	
+	@GetMapping("/leyendo")
+    public String leyendo() {
+        return "";
+    }
+	
+	@GetMapping("/leidos")
+    public String leidos() {
+        return "";
+    }
+	
 	@GetMapping("/adminNuevo")
     public String adminNuevo() {
         return "";
