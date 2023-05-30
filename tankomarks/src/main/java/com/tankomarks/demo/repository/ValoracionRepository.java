@@ -19,7 +19,7 @@ public interface ValoracionRepository extends JpaRepository<Valoracion, Integer>
 	@Query(value="SELECT v.* "
 			+ "FROM valoracion v "
 			+ "JOIN capitulo c ON v.capitulo_id_capitulo = c.id_capitulo "
-			+ "WHERE c.nombre LIKE %:busqueda%, favorito = 1 AND v.usuario_id_usuario = :id_usuario", nativeQuery=true)
+			+ "WHERE c.nombre LIKE %:busqueda% AND v.favorito = 1 AND v.usuario_id_usuario = :id_usuario", nativeQuery=true)
 	List<Valoracion> buscarValoraciones(@Param("busqueda") String busqueda, @Param("id_usuario") int id_usuario);
 	
 	@Query(value="SELECT * FROM valoracion WHERE usuario_id_usuario = :id_usuario AND capitulo_id_capitulo = :id_capitulo", nativeQuery=true)
