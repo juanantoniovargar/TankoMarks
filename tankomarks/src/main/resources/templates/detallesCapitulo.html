@@ -57,6 +57,17 @@
             <input type="hidden" name="id_capitulo" th:value="${capitulo.id_capitulo}">
         </form>
 
+		<form th:action="@{/guardarValoracion}" th:object="${valoracion}" method="post">
+
+			<input type="checkbox" name="favorito" th:checked="${valoracion.favorito}">
+
+			<textarea name="comentario" cols="30" rows="10" th:field="*{comentario}"></textarea>
+			
+            <input type="hidden" name="id_capitulo" th:value="${capitulo.id_capitulo}">
+			<button type="submit">Guardar</button>
+
+		</form>
+
         <div class="volver-caps">
             <a th:if="${referer.endsWith('/favoritos')}" class="add-admin" th:href="@{/favoritos}">Volver</a> <!-- th:if="${#httpServletRequest.requestURI == '/favoritos'}" -->
 			<a th:unless="${referer.endsWith('/favoritos')}" class="add-admin" th:href="@{/capitulos/} + ${capitulo.tomo.id_tomo}">Volver</a>

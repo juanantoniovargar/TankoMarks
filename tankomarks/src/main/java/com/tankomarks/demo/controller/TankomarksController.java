@@ -218,9 +218,33 @@ public class TankomarksController {
         model.addAttribute("estaActivado", estaActivado);
         
         model.addAttribute("capitulo", capituloRepo.mostrarDetallesCapitulo(id_capitulo));
+        
+        if (valoracionRepo.mostrarDetalleValoracion(id_usuario, id_capitulo) == null) {
+        	model.addAttribute("valoracion", new Valoracion());
+        } else {
+        	model.addAttribute("valoracion", valoracionRepo.mostrarDetalleValoracion(id_usuario, id_capitulo));
+        }
 		
 		return "detallesCapitulo";
 		
+	}
+	
+	@PostMapping("/guardarValoracion")
+	public String guardarValoracion(int id_capitulo, boolean favorito, String comentario, HttpServletRequest request, Principal principal) {
+		
+		String email = principal.getName();
+		int id_usuario = usuarioRepo.getId_usuario(email);
+		
+		if (valoracionRepo.mostrarDetalleValoracion(id_usuario, id_capitulo) == null) {
+			valoracionRepo.crearValoracion(favorito, comentario, id_capitulo, id_usuario);
+        } else {
+        	valoracionRepo.modificarValoracion(favorito, comentario, id_capitulo, id_usuario);
+        }
+		
+		valoracionRepo.eliminarValoracion();
+		
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
 	}
 	
 	@PostMapping("/actualizarCapitulo")
