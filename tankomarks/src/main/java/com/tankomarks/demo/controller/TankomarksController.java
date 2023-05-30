@@ -264,6 +264,61 @@ public class TankomarksController {
 		
 	}
 	
+	@GetMapping("/adminNuevo")
+    public String adminNuevo() {
+        return "";
+    }
+	
+	@GetMapping("/adminEditar")
+    public String adminEditar() {
+        return "";
+    }
+	
+	@GetMapping("/adminEliminar")
+    public String adminEliminar() {
+        return "";
+    }
+	
+	@GetMapping("/adminTomos")
+    public String adminTomos() {
+        return "error";
+    }
+	
+	@GetMapping("/adminNuevoTomo")
+    public String adminNuevoTomo() {
+        return "";
+    }
+	
+	@GetMapping("/adminEditarTomo")
+    public String adminEditarTomo() {
+        return "";
+    }
+	
+	@GetMapping("/adminEliminarTomo")
+    public String adminEliminarTomo() {
+        return "";
+    }
+	
+	@GetMapping("/adminCapitulos")
+    public String adminCapitulos() {
+        return "";
+    }
+	
+	@GetMapping("/adminNuevoCapitulo")
+    public String adminNuevoCapitulo() {
+        return "";
+    }
+	
+	@GetMapping("/adminEditarCapitulo")
+    public String adminEditarCapitulo() {
+        return "";
+    }
+	
+	@GetMapping("/adminEliminarCapitulo")
+    public String adminEliminarCapitulo() {
+        return "";
+    }
+	
 	@GetMapping("/404")
     public String handle404Error() {
         return "error";

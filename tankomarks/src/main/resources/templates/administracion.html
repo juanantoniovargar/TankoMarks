@@ -67,8 +67,8 @@
 				<p th:text="${manga.demografia.nombre}"></p>
 				<a class="admin-tomos" th:href="@{/adminTomos/} + ${manga.id_manga}">Tomos</a>
 
-				<a class="admin-edit" th:href="@{/editar/} + ${manga.id_manga}"><i class="fa-solid fa-pen-to-square"></i></a>
-				<a class="admin-delete" th:href="@{/eliminar/} + ${manga.id_manga}"><i class="fa-solid fa-trash"></i></a>
+				<a class="admin-edit" th:href="@{/adminEditar/} + ${manga.id_manga}"><i class="fa-solid fa-pen-to-square"></i></a>
+				<a class="admin-delete" th:href="@{/adminEliminar/} + ${manga.id_manga}"><i class="fa-solid fa-trash"></i></a>
 
 			</div>
 

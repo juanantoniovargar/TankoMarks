@@ -50,27 +50,43 @@
 		</nav>
 
 
-        <h1 th:text="${capitulo.nombre}"></h1>
+		<div class="cabecera-detalle-cap">
 
-        <form id="actualizar-cap" th:action="@{/actualizarCapitulo}" method="post">
-            <input id="check-cap" type="checkbox" name="activado" th:checked="${estaActivado}"/>
-            <input type="hidden" name="id_capitulo" th:value="${capitulo.id_capitulo}">
-        </form>
+			<h1 th:text="${capitulo.nombre}"></h1>
 
-		<form th:action="@{/guardarValoracion}" th:object="${valoracion}" method="post">
+			<form id="actualizar-cap" th:action="@{/actualizarCapitulo}" method="post">
 
-			<input type="checkbox" name="favorito" th:checked="${valoracion.favorito}">
+				<input id="check-cap" type="checkbox" name="activado" th:checked="${estaActivado}"/>
+				<label class="check-cap" for="check-cap"><i class="check-icon-cap fa-solid fa-check"></i></label>
 
-			<textarea name="comentario" cols="30" rows="10" th:field="*{comentario}"></textarea>
+				<input type="hidden" name="id_capitulo" th:value="${capitulo.id_capitulo}">
+
+			</form>
+
+		</div>
+
+		<form class="cuerpo-detalle-cap" th:action="@{/guardarValoracion}" th:object="${valoracion}" method="post">
+
+			<div class="datos-valoracion">
+
+				<input id="check-val" type="checkbox" name="favorito" th:checked="${valoracion.favorito}">
+				<label class="check-val" for="check-val"><i class="vacia fa-regular fa-star"></i><i class="llena fa-solid fa-star"></i></label>
+
+				<textarea class="texto-val" name="comentario" rows="10" th:field="*{comentario}" placeholder="Escribe aquí tu comentario..."></textarea>
+
+			</div>
 			
             <input type="hidden" name="id_capitulo" th:value="${capitulo.id_capitulo}">
-			<button type="submit">Guardar</button>
+
+			<div class="button-val">
+				<button class="link-volver" type="submit">Guardar</button>
+			</div>
 
 		</form>
 
         <div class="volver-caps">
-            <a th:if="${referer.endsWith('/favoritos')}" class="add-admin" th:href="@{/favoritos}">Volver</a> <!-- th:if="${#httpServletRequest.requestURI == '/favoritos'}" -->
-			<a th:unless="${referer.endsWith('/favoritos')}" class="add-admin" th:href="@{/capitulos/} + ${capitulo.tomo.id_tomo}">Volver</a>
+            <a th:if="${referer.endsWith('/favoritos')}" class="link-volver" th:href="@{/favoritos}">Volver</a> <!-- th:if="${#httpServletRequest.requestURI == '/favoritos'}" -->
+			<!--<a th:unless="${referer.endsWith('/favoritos')}" class="link-volver" th:href="@{/capitulos/} + ${capitulo.tomo.id_tomo}">Volver</a>-->
         </div>
 
 

@@ -852,6 +852,8 @@ footer {
     color: white;
     text-decoration: none;
     margin-left: 3rem;
+    cursor: pointer;
+    font-family: cuerpo;
 }
 
 @media only screen and (max-width:950px) {
@@ -868,4 +870,100 @@ footer {
 
 /********************* CHAPTERS DETAILS SECTION STYLE *********************/
 
+.cabecera-detalle-cap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    margin-top: 2rem;
+}
 
+#check-cap, #check-val {
+    display: none;
+}
+
+.check-cap {
+    font-size: 2rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    border: 2px solid white;
+}
+
+.check-icon-cap, .llena {
+    visibility: hidden;
+}
+
+#check-cap:checked + .check-cap > .check-icon-cap {
+    visibility: visible;
+}
+
+.check-val {
+    font-size: 2rem;
+    margin-left: 2rem;
+    position: relative;
+}
+
+.vacia, .llena {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#check-val:checked + .check-val > .llena {
+    visibility: visible;
+}
+
+#check-val:checked + .check-val > .vacia {
+    visibility: hidden;
+}
+
+.cuerpo-detalle-cap {
+    padding: 2rem;
+    background-color: #1E1E1E;
+    border-radius: 20px;
+    margin: 2rem;
+    width: 70%;
+}
+
+.datos-valoracion {
+    display: flex;
+    flex-direction: column;
+}
+
+.texto-val {
+    font-size: 1.2rem;
+    font-family: cuerpo;
+    margin: 2rem;
+    margin-top: 4rem;
+}
+
+.button-val {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-right: 2rem;
+}
+
+@media only screen and (max-width:600px) {
+
+    .cabecera-detalle-cap {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+}
+
+@media only screen and (max-width:420px) {
+
+    .texto-val, .check-val, .button-val {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .cuerpo-detalle-cap {
+        margin-left: 0;
+        width: 80%;
+    }
+
+}
