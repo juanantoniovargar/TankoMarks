@@ -57,9 +57,26 @@
             </div>
 
             <div class="caps-fav">
+
                 <th:block th:each="capitulo : ${capitulos}">
+
+				<div class="capitulos">
+
                     <a class="cap-fav" th:href="@{/detallesCapitulo/} + ${capitulo.id_capitulo}" th:text="${capitulo.nombre}"></a>
+
+					<form id="actualizar-cap" th:action="@{/actualizarCapitulo}" method="post">
+
+						<input id="check-cap" type="checkbox" name="activado" th:checked="${usuario.leido_capitulo.contains(capitulo)}"/>
+						<label class="check-cap" for="check-cap"><i class="check-icon-cap fa-solid fa-check"></i></label>
+		
+						<input type="hidden" name="id_capitulo" th:value="${capitulo.id_capitulo}">
+		
+					</form>
+					
+				</div>
+
                 </th:block>
+
             </div>
 
         </div>  
