@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2023 a las 10:27:58
+-- Tiempo de generación: 31-05-2023 a las 10:48:36
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -455,7 +455,10 @@ CREATE TABLE `leido_capitulo` (
 --
 
 INSERT INTO `leido_capitulo` (`usuario_id_usuario`, `capitulo_id_capitulo`) VALUES
-(2, 1);
+(2, 1),
+(2, 2),
+(2, 3),
+(2, 4);
 
 -- --------------------------------------------------------
 
@@ -475,8 +478,8 @@ CREATE TABLE `leido_manga` (
 INSERT INTO `leido_manga` (`usuario_id_usuario`, `manga_id_manga`) VALUES
 (2, 5),
 (2, 6),
-(2, 7),
-(2, 8);
+(2, 8),
+(2, 12);
 
 -- --------------------------------------------------------
 
@@ -488,6 +491,13 @@ CREATE TABLE `leido_tomo` (
   `usuario_id_usuario` int(11) NOT NULL,
   `tomo_id_tomo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `leido_tomo`
+--
+
+INSERT INTO `leido_tomo` (`usuario_id_usuario`, `tomo_id_tomo`) VALUES
+(2, 3);
 
 -- --------------------------------------------------------
 
@@ -526,7 +536,7 @@ CREATE TABLE `leyendo_tomo` (
 --
 
 INSERT INTO `leyendo_tomo` (`usuario_id_usuario`, `tomo_id_tomo`) VALUES
-(2, 3);
+(2, 4);
 
 -- --------------------------------------------------------
 
@@ -537,44 +547,30 @@ INSERT INTO `leyendo_tomo` (`usuario_id_usuario`, `tomo_id_tomo`) VALUES
 CREATE TABLE `manga` (
   `id_manga` int(11) NOT NULL,
   `descripcion` varchar(1000) NOT NULL,
-  `enlacefoto` varchar(255) NOT NULL,
+  `enlacefoto` varchar(255) DEFAULT NULL,
   `nombre` varchar(255) NOT NULL,
-  `demografia_id_demografia` int(11) NOT NULL
+  `demografia_id_demografia` int(11) NOT NULL,
+  `usuario_id_usuario` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `manga`
 --
 
-INSERT INTO `manga` (`id_manga`, `descripcion`, `enlacefoto`, `nombre`, `demografia_id_demografia`) VALUES
-(1, 'Perteneciente al género épico fantástico, está ambientada en una tierra inspirada y con amplias similitudes a la Europa de la Alta Edad Media y Edad Moderna. Cuenta la historia de Guts, un mercenario huérfano. La misma está dividida en dos partes: la primera cuenta su juventud y cómo conoce a Griffith, líder de un grupo mercenario llamado como la \"Banda del Halcón\". La segunda parte es su historia tras el fatídico Eclipse.', '../../../imagesDB/NewVolume_1.webp', 'Berserk', 1),
-(2, 'Un tímido adolescente llamado Akira Fudo vive en la casa de su amigo Miki Makimura mientras sus padres trabajan en el extranjero. Un día, su amigo de la infancia, Ryo Asuka, le revela que la Tierra está a punto de ser invadida por demonios, seres monstruosos que hibernan durante siglos en el hielo y que están a punto de volver a la superficie, y la única forma de derrotarlos es tomar el control de los poderes de los propios demonios para poder combatirlos.', '../../../imagesDB/d1.jpg', 'Devilman', 2),
-(3, 'Durante el período de los Estados Combatientes en China, Xin y Piao son dos jóvenes hermanos que sueñan con convertirse en grandes generales, a pesar de su baja condición como esclavos huérfanos. Un día, se encuentran con un hombre de la nobleza, quien le brinda a Piao la oportunidad de realizar una importante tarea en el palacio real del estado de Qin. Separándose, Xin y Piao se prometen mutuamente que algún día se convertirán en los mejores generales del mundo. Sin embargo, después de que ocurre un feroz golpe de estado en el palacio, Xin se encuentra con un Piao moribundo, cuyas últimas palabras lo impulsan a la acción y lo llevan a encontrarse con Ying Zheng, el joven que pronto se convertirá en el rey de Qin.', '../../../imagesDB/k1.jpg', 'Kingdom', 1),
-(4, 'Kei Kurono es un estudiante egoísta y apático que se ve obligado a salvar a una persona de morir atropellada por un tren subterráneo debido a que su compañero de la infancia Masaru Kato lo llama para que le ayude. Como consecuencia él y Kato mueren en el intento.\r\n\r\nPosteriormente aparecen en un apartamento visualmente normal con otras personas igual de desconcertadas que ellos. Allí, una misteriosa esfera negra les obliga a participar de un sádico juego y para ello les pone a su disposición todo un exótico arsenal futurista que deberán aprender a usar para combatir a diversas especies de alienígenas y otras amenazas que para la gente común pasan desapercibidas.', '../../../imagesDB/g1.jpg', 'Gantz', 1),
-(5, 'Las Claymore son una organización de mujeres mutadas para destruir yomas, unos monstruos que tienen la habilidad de adoptar apariencia humana y camuflarse entre personas sin poder ser detectados y dedicarse tranquilamente a devorar entrañas de los pobres individuos que tengan la desgracia de toparse con ellos. Los ojos plateados de las claymores pueden detectarlos y erradicarlos. La protagonista de la historia es Claire, la claymore de menor nivel de la organización, de las llamadas por los ajenos a ella así. Cuando se detecta la aparición de uno de estos seres, el pueblo afectado los llama y se envía a una de estas mujeres a aniquilar a todos los demonios por un precio razonable. Razonable dentro de lo que supone acabar con un demonio enorme, claro, baratas no son.', '../../../imagesDB/c1.jpg', 'Claymore', 2),
-(6, 'Vinland Saga es una serie de manga escrita e ilustrada por Makoto Yukimura. La historia está ambientada en la región de Danelaw en el siglo XI y se basa en varias sagas islandesas: el Flateyjarbók, la Saga de los groenlandeses y la Saga de Erik el Rojo. Esta saga relata la historia de Thorfinn en su camino para vengarse de la muerte de su padre en batalla. Sus hazañas para poder retar al asesino de su padre lo llevan a involucrarse en la fuera por la corona de Inglaterra.', '../../../imagesDB/v1.jpg', 'Vinland Saga', 1),
-(7, '\'Chainsaw Man\' es la historia de Denji, un adolescente que carga con las inmensas deudas de su padre y que malvive como puede para saldarlas, ya sea vendiendo sus órganos o haciendo todo tipo de trabajos malpagados. Su única compañía es Pochita, un demonio motosierra.\r\n\r\nUn día, Denji es traicionado y asesinado, pero gracias a un trato demoníaco renace como Chainsaw Man, con lo que pasa a trabajar profesionalmente con el Departamento de Seguridad Nacional para cazar demonios.', '../../../imagesDB/cm1.jpg', 'Chainsaw Man', 2),
-(8, 'La historia se centra en la isla «Paradis», ubicada al noreste del país de «Marley», en donde Eren Jaeger vive con su familia (entre ellos su hermana adoptiva Mikasa Ackerman) y su mejor amigo Armin Arlert. Su pueblo colinda con la «Muralla María», la más externa del Reino de las «tres murallas». Estos enormes murallas fueron construidos hace cien años con el fin de protegerse de los «titanes», unas enormes criaturas que casi aniquilan a la humanidad, y se caracterizan por tener una estatura de entre tres hasta sesenta metros de alto, una estructura corporal parecida a los humanos a quienes devoran de forma instintiva, y cuyo único punto débil conocido es ser cortados por la nuca.', '../../../imagesDB/sk1.jpg', 'Shingeki no Kyojin', 2),
-(9, 'Sakura Kinomoto es una pequeña niña (de 10 años al principio de la historia), que libera por accidente el mágico poder de las cartas clow que se encontraban atrapadas en un misterioso libro mágico en el sótano de su casa, ahora Sakura tendrá que convertirse en una cardcaptor para ir en busca de las cartas clow y enfrentar los poderes de cada una de las cartas para así poderlas capturar. Todo esto lo lograra con ayuda de su mejor amiga Tomoyo, quien graba cada uno de los movimientos de la card captor y Kero, el guardián que protegía el libro, quien también le ayudara a controlar su magia y la apoyara en los momentos más difíciles de su misión.\n\nMás tarde contara con la ayuda de Shaoran Li el descendiente directo del Mago Clow, este chico al principio irá en busca de las cartas clow, teniendo así conflictos con Sakura, que poco a poco los irán dejando a un lado, conformando un gran equipo y a la vez sintiendo algo que poco a poco va apareciendo por sakura.', '../../../imagesDB/sc1.jpg', 'Sakura Cardcaptor', 3),
-(10, 'Narra la historia de Miki Koishikawa, una estudiante de 16 años, cuyos padres realizan un intercambio de parejas con la familia Matsura, que tiene un hijo de su edad, Yuu. Los padres deciden vivir bajo el mismo techo con sus hijos. Miki, que demuestra no estar conforme al principio, se enamora poco a poco del hijo de los Matsura. Ambos se corresponderán, pero a lo largo de la serie sortean muchas dificultades y conocen a más personas que complicarán la relación.', '../../../imagesDB/m1.jpg', 'Marmalade Boy', 3),
-(11, 'Se centra en un Japón alterno del periodo Edo, donde una desconocida enfermedad elimina a la mayoría de la población masculina.\r\n\r\nLa escasez de varones provocan que estos sean cuidadosamente protegidos. Con todo lo que conlleva esto, la sociedad adopta un estado matriarcal en la que Ooku se convierte en un harén de hombres al servicio del ahora shogun femenino.', '../../../imagesDB/o1.jpg', 'Ooku: The Inner Chambers', 4),
-(12, 'Imagina que caminas por un oscuro callejón del barrio chino de Los Ángeles. Encuentras una pintoresca tienda de mascotas regentada por el dueño de una tienda de voz suave, el Conde D. Este misterioso hombre te embauca para que entres en su tienda y compres un raro animal de apariencia humanoide. Incapaz de resistirse a sus esfuerzos, sales de la tienda con tu nueva mascota y un contrato de tres puntos con consecuencias nefastas si se rompe.', '../../../imagesDB/p1.jpg', 'Petshop of Horrors', 4),
-(13, 'Nana Ōsaki es una cantante punk cuyo único deseo es poder debutar con su grupo y superar a la banda Trapnest, en la cual su ex-novio, Ren Honjō, se desempeña como guitarrista. Nana y Ren fueron pareja y compañeros en la misma banda en el pasado, Black Stones (también conocidos como Blast para abreviar), pero se separaron cuando a Ren le ofrecieron la oportunidad de reemplazar a un integrante de la popular banda Trapnest, por lo que abandonó a su banda para dirigirse a Tokio. Nana, tras darse cuenta de que si iba con él a Tokio vería sus oportunidades de hacerse una cantante popular notablemente disminuidas, decide que una vida en la que simplemente sea considerada la novia de Ren, quedando profesionalmente a su sombra y cumpliendo un papel más de ama de casa que de mujer independiente, no es la vida que ella desea. Por lo que, finalmente, decide quedarse con los suyos.', '../../../imagesDB/n1.jpg', 'Nana', 3);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `manga_propio`
---
-
-CREATE TABLE `manga_propio` (
-  `id_manga_propio` int(11) NOT NULL,
-  `descripcion` varchar(255) NOT NULL,
-  `enlacefoto` varchar(255) NOT NULL,
-  `nombre` varchar(255) NOT NULL,
-  `demografia_id_demografia` int(11) NOT NULL,
-  `usuario_id_usuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `manga` (`id_manga`, `descripcion`, `enlacefoto`, `nombre`, `demografia_id_demografia`, `usuario_id_usuario`) VALUES
+(1, 'Perteneciente al género épico fantástico, está ambientada en una tierra inspirada y con amplias similitudes a la Europa de la Alta Edad Media y Edad Moderna. Cuenta la historia de Guts, un mercenario huérfano. La misma está dividida en dos partes: la primera cuenta su juventud y cómo conoce a Griffith, líder de un grupo mercenario llamado como la \"Banda del Halcón\". La segunda parte es su historia tras el fatídico Eclipse.', '../../../imagesDB/NewVolume_1.webp', 'Berserk', 1, NULL),
+(2, 'Un tímido adolescente llamado Akira Fudo vive en la casa de su amigo Miki Makimura mientras sus padres trabajan en el extranjero. Un día, su amigo de la infancia, Ryo Asuka, le revela que la Tierra está a punto de ser invadida por demonios, seres monstruosos que hibernan durante siglos en el hielo y que están a punto de volver a la superficie, y la única forma de derrotarlos es tomar el control de los poderes de los propios demonios para poder combatirlos.', '../../../imagesDB/d1.jpg', 'Devilman', 2, NULL),
+(3, 'Durante el período de los Estados Combatientes en China, Xin y Piao son dos jóvenes hermanos que sueñan con convertirse en grandes generales, a pesar de su baja condición como esclavos huérfanos. Un día, se encuentran con un hombre de la nobleza, quien le brinda a Piao la oportunidad de realizar una importante tarea en el palacio real del estado de Qin. Separándose, Xin y Piao se prometen mutuamente que algún día se convertirán en los mejores generales del mundo. Sin embargo, después de que ocurre un feroz golpe de estado en el palacio, Xin se encuentra con un Piao moribundo, cuyas últimas palabras lo impulsan a la acción y lo llevan a encontrarse con Ying Zheng, el joven que pronto se convertirá en el rey de Qin.', '../../../imagesDB/k1.jpg', 'Kingdom', 1, NULL),
+(4, 'Kei Kurono es un estudiante egoísta y apático que se ve obligado a salvar a una persona de morir atropellada por un tren subterráneo debido a que su compañero de la infancia Masaru Kato lo llama para que le ayude. Como consecuencia él y Kato mueren en el intento.\r\n\r\nPosteriormente aparecen en un apartamento visualmente normal con otras personas igual de desconcertadas que ellos. Allí, una misteriosa esfera negra les obliga a participar de un sádico juego y para ello les pone a su disposición todo un exótico arsenal futurista que deberán aprender a usar para combatir a diversas especies de alienígenas y otras amenazas que para la gente común pasan desapercibidas.', '../../../imagesDB/g1.jpg', 'Gantz', 1, NULL),
+(5, 'Las Claymore son una organización de mujeres mutadas para destruir yomas, unos monstruos que tienen la habilidad de adoptar apariencia humana y camuflarse entre personas sin poder ser detectados y dedicarse tranquilamente a devorar entrañas de los pobres individuos que tengan la desgracia de toparse con ellos. Los ojos plateados de las claymores pueden detectarlos y erradicarlos. La protagonista de la historia es Claire, la claymore de menor nivel de la organización, de las llamadas por los ajenos a ella así. Cuando se detecta la aparición de uno de estos seres, el pueblo afectado los llama y se envía a una de estas mujeres a aniquilar a todos los demonios por un precio razonable. Razonable dentro de lo que supone acabar con un demonio enorme, claro, baratas no son.', '../../../imagesDB/c1.jpg', 'Claymore', 2, NULL),
+(6, 'Vinland Saga es una serie de manga escrita e ilustrada por Makoto Yukimura. La historia está ambientada en la región de Danelaw en el siglo XI y se basa en varias sagas islandesas: el Flateyjarbók, la Saga de los groenlandeses y la Saga de Erik el Rojo. Esta saga relata la historia de Thorfinn en su camino para vengarse de la muerte de su padre en batalla. Sus hazañas para poder retar al asesino de su padre lo llevan a involucrarse en la fuera por la corona de Inglaterra.', '../../../imagesDB/v1.jpg', 'Vinland Saga', 1, NULL),
+(7, '\'Chainsaw Man\' es la historia de Denji, un adolescente que carga con las inmensas deudas de su padre y que malvive como puede para saldarlas, ya sea vendiendo sus órganos o haciendo todo tipo de trabajos malpagados. Su única compañía es Pochita, un demonio motosierra.\r\n\r\nUn día, Denji es traicionado y asesinado, pero gracias a un trato demoníaco renace como Chainsaw Man, con lo que pasa a trabajar profesionalmente con el Departamento de Seguridad Nacional para cazar demonios.', '../../../imagesDB/cm1.jpg', 'Chainsaw Man', 2, NULL),
+(8, 'La historia se centra en la isla «Paradis», ubicada al noreste del país de «Marley», en donde Eren Jaeger vive con su familia (entre ellos su hermana adoptiva Mikasa Ackerman) y su mejor amigo Armin Arlert. Su pueblo colinda con la «Muralla María», la más externa del Reino de las «tres murallas». Estos enormes murallas fueron construidos hace cien años con el fin de protegerse de los «titanes», unas enormes criaturas que casi aniquilan a la humanidad, y se caracterizan por tener una estatura de entre tres hasta sesenta metros de alto, una estructura corporal parecida a los humanos a quienes devoran de forma instintiva, y cuyo único punto débil conocido es ser cortados por la nuca.', '../../../imagesDB/sk1.jpg', 'Shingeki no Kyojin', 2, NULL),
+(9, 'Sakura Kinomoto es una pequeña niña (de 10 años al principio de la historia), que libera por accidente el mágico poder de las cartas clow que se encontraban atrapadas en un misterioso libro mágico en el sótano de su casa, ahora Sakura tendrá que convertirse en una cardcaptor para ir en busca de las cartas clow y enfrentar los poderes de cada una de las cartas para así poderlas capturar. Todo esto lo lograra con ayuda de su mejor amiga Tomoyo, quien graba cada uno de los movimientos de la card captor y Kero, el guardián que protegía el libro, quien también le ayudara a controlar su magia y la apoyara en los momentos más difíciles de su misión.\n\nMás tarde contara con la ayuda de Shaoran Li el descendiente directo del Mago Clow, este chico al principio irá en busca de las cartas clow, teniendo así conflictos con Sakura, que poco a poco los irán dejando a un lado, conformando un gran equipo y a la vez sintiendo algo que poco a poco va apareciendo por sakura.', '../../../imagesDB/sc1.jpg', 'Sakura Cardcaptor', 3, NULL),
+(10, 'Narra la historia de Miki Koishikawa, una estudiante de 16 años, cuyos padres realizan un intercambio de parejas con la familia Matsura, que tiene un hijo de su edad, Yuu. Los padres deciden vivir bajo el mismo techo con sus hijos. Miki, que demuestra no estar conforme al principio, se enamora poco a poco del hijo de los Matsura. Ambos se corresponderán, pero a lo largo de la serie sortean muchas dificultades y conocen a más personas que complicarán la relación.', '../../../imagesDB/m1.jpg', 'Marmalade Boy', 3, NULL),
+(11, 'Se centra en un Japón alterno del periodo Edo, donde una desconocida enfermedad elimina a la mayoría de la población masculina.\r\n\r\nLa escasez de varones provocan que estos sean cuidadosamente protegidos. Con todo lo que conlleva esto, la sociedad adopta un estado matriarcal en la que Ooku se convierte en un harén de hombres al servicio del ahora shogun femenino.', '../../../imagesDB/o1.jpg', 'Ooku: The Inner Chambers', 4, NULL),
+(12, 'Imagina que caminas por un oscuro callejón del barrio chino de Los Ángeles. Encuentras una pintoresca tienda de mascotas regentada por el dueño de una tienda de voz suave, el Conde D. Este misterioso hombre te embauca para que entres en su tienda y compres un raro animal de apariencia humanoide. Incapaz de resistirse a sus esfuerzos, sales de la tienda con tu nueva mascota y un contrato de tres puntos con consecuencias nefastas si se rompe.', '../../../imagesDB/p1.jpg', 'Petshop of Horrors', 4, NULL),
+(13, 'Nana Ōsaki es una cantante punk cuyo único deseo es poder debutar con su grupo y superar a la banda Trapnest, en la cual su ex-novio, Ren Honjō, se desempeña como guitarrista. Nana y Ren fueron pareja y compañeros en la misma banda en el pasado, Black Stones (también conocidos como Blast para abreviar), pero se separaron cuando a Ren le ofrecieron la oportunidad de reemplazar a un integrante de la popular banda Trapnest, por lo que abandonó a su banda para dirigirse a Tokio. Nana, tras darse cuenta de que si iba con él a Tokio vería sus oportunidades de hacerse una cantante popular notablemente disminuidas, decide que una vida en la que simplemente sea considerada la novia de Ren, quedando profesionalmente a su sombra y cumpliendo un papel más de ama de casa que de mujer independiente, no es la vida que ella desea. Por lo que, finalmente, decide quedarse con los suyos.', '../../../imagesDB/n1.jpg', 'Nana', 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -603,63 +599,62 @@ INSERT INTO `rol` (`id_rol`, `nombre`) VALUES
 
 CREATE TABLE `tomo` (
   `id_tomo` int(11) NOT NULL,
-  `enlacefoto` varchar(255) NOT NULL,
+  `enlacefoto` varchar(255) DEFAULT NULL,
   `numero` int(11) NOT NULL,
-  `manga_id_manga` int(11) DEFAULT NULL,
-  `manga_propio_id_manga_propio` int(11) DEFAULT NULL
+  `manga_id_manga` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tomo`
 --
 
-INSERT INTO `tomo` (`id_tomo`, `enlacefoto`, `numero`, `manga_id_manga`, `manga_propio_id_manga_propio`) VALUES
-(3, '../../../imagesDB/NewVolume_1.webp', 1, 1, NULL),
-(4, '../../../imagesDB/NewVolume_2.webp', 2, 1, NULL),
-(5, '../../../imagesDB/NewVolume_3.webp', 3, 1, NULL),
-(6, '../../../imagesDB/NewVolume_4.webp', 4, 1, NULL),
-(7, '../../../imagesDB/NewVolume_5.webp', 5, 1, NULL),
-(8, '../../../imagesDB/NewVolume_6.webp', 6, 1, NULL),
-(9, '../../../imagesDB/NewVolume_7.webp', 7, 1, NULL),
-(10, '../../../imagesDB/NewVolume_8.webp', 8, 1, NULL),
-(11, '../../../imagesDB/NewVolume_9.webp', 9, 1, NULL),
-(12, '../../../imagesDB/NewVolume_10.webp', 10, 1, NULL),
-(13, '../../../imagesDB/NewVolume_11.webp', 11, 1, NULL),
-(14, '../../../imagesDB/NewVolume_12.webp', 12, 1, NULL),
-(15, '../../../imagesDB/NewVolume_13.webp', 13, 1, NULL),
-(16, '../../../imagesDB/NewVolume_14.webp', 14, 1, NULL),
-(17, '../../../imagesDB/NewVolume_15.webp', 15, 1, NULL),
-(18, '../../../imagesDB/NewVolume_16.webp', 16, 1, NULL),
-(19, '../../../imagesDB/Volume_17.webp', 17, 1, NULL),
-(20, '../../../imagesDB/Volume_18.webp', 18, 1, NULL),
-(21, '../../../imagesDB/Volume_19.webp', 19, 1, NULL),
-(22, '../../../imagesDB/Volume_20.webp', 20, 1, NULL),
-(23, '../../../imagesDB/Volume_21.webp', 21, 1, NULL),
-(24, '../../../imagesDB/Volume_22.webp', 22, 1, NULL),
-(25, '../../../imagesDB/Volume_23.webp', 23, 1, NULL),
-(26, '../../../imagesDB/Volume_24.webp', 24, 1, NULL),
-(27, '../../../imagesDB/Volume_25.webp', 25, 1, NULL),
-(28, '../../../imagesDB/Volume_26.webp', 26, 1, NULL),
-(29, '../../../imagesDB/Volume_27.webp', 27, 1, NULL),
-(30, '../../../imagesDB/Volume_28.webp', 28, 1, NULL),
-(31, '../../../imagesDB/Volume_29.webp', 29, 1, NULL),
-(32, '../../../imagesDB/Volume_30.webp', 30, 1, NULL),
-(33, '../../../imagesDB/Volume_31.webp', 31, 1, NULL),
-(34, '../../../imagesDB/Volume_32.webp', 32, 1, NULL),
-(35, '../../../imagesDB/Volume_33.webp', 33, 1, NULL),
-(36, '../../../imagesDB/Volume_34.webp', 34, 1, NULL),
-(37, '../../../imagesDB/Volume_35.webp', 35, 1, NULL),
-(38, '../../../imagesDB/Volume_36.webp', 36, 1, NULL),
-(39, '../../../imagesDB/Volumen_37.webp', 37, 1, NULL),
-(40, '../../../imagesDB/Volumen_38.webp', 38, 1, NULL),
-(41, '../../../imagesDB/Volumen_39.webp', 39, 1, NULL),
-(42, '../../../imagesDB/Volumen_40.webp', 40, 1, NULL),
-(43, '../../../imagesDB/Volumen_41.webp', 41, 1, NULL),
-(44, '../../../imagesDB/d1.jpg', 1, 2, NULL),
-(45, '../../../imagesDB/d2.jpg', 2, 2, NULL),
-(46, '../../../imagesDB/d3.jpg', 3, 2, NULL),
-(47, '../../../imagesDB/d4.jpg', 4, 2, NULL),
-(48, '../../../imagesDB/d5.jpg', 5, 2, NULL);
+INSERT INTO `tomo` (`id_tomo`, `enlacefoto`, `numero`, `manga_id_manga`) VALUES
+(3, '../../../imagesDB/NewVolume_1.webp', 1, 1),
+(4, '../../../imagesDB/NewVolume_2.webp', 2, 1),
+(5, '../../../imagesDB/NewVolume_3.webp', 3, 1),
+(6, '../../../imagesDB/NewVolume_4.webp', 4, 1),
+(7, '../../../imagesDB/NewVolume_5.webp', 5, 1),
+(8, '../../../imagesDB/NewVolume_6.webp', 6, 1),
+(9, '../../../imagesDB/NewVolume_7.webp', 7, 1),
+(10, '../../../imagesDB/NewVolume_8.webp', 8, 1),
+(11, '../../../imagesDB/NewVolume_9.webp', 9, 1),
+(12, '../../../imagesDB/NewVolume_10.webp', 10, 1),
+(13, '../../../imagesDB/NewVolume_11.webp', 11, 1),
+(14, '../../../imagesDB/NewVolume_12.webp', 12, 1),
+(15, '../../../imagesDB/NewVolume_13.webp', 13, 1),
+(16, '../../../imagesDB/NewVolume_14.webp', 14, 1),
+(17, '../../../imagesDB/NewVolume_15.webp', 15, 1),
+(18, '../../../imagesDB/NewVolume_16.webp', 16, 1),
+(19, '../../../imagesDB/Volume_17.webp', 17, 1),
+(20, '../../../imagesDB/Volume_18.webp', 18, 1),
+(21, '../../../imagesDB/Volume_19.webp', 19, 1),
+(22, '../../../imagesDB/Volume_20.webp', 20, 1),
+(23, '../../../imagesDB/Volume_21.webp', 21, 1),
+(24, '../../../imagesDB/Volume_22.webp', 22, 1),
+(25, '../../../imagesDB/Volume_23.webp', 23, 1),
+(26, '../../../imagesDB/Volume_24.webp', 24, 1),
+(27, '../../../imagesDB/Volume_25.webp', 25, 1),
+(28, '../../../imagesDB/Volume_26.webp', 26, 1),
+(29, '../../../imagesDB/Volume_27.webp', 27, 1),
+(30, '../../../imagesDB/Volume_28.webp', 28, 1),
+(31, '../../../imagesDB/Volume_29.webp', 29, 1),
+(32, '../../../imagesDB/Volume_30.webp', 30, 1),
+(33, '../../../imagesDB/Volume_31.webp', 31, 1),
+(34, '../../../imagesDB/Volume_32.webp', 32, 1),
+(35, '../../../imagesDB/Volume_33.webp', 33, 1),
+(36, '../../../imagesDB/Volume_34.webp', 34, 1),
+(37, '../../../imagesDB/Volume_35.webp', 35, 1),
+(38, '../../../imagesDB/Volume_36.webp', 36, 1),
+(39, '../../../imagesDB/Volumen_37.webp', 37, 1),
+(40, '../../../imagesDB/Volumen_38.webp', 38, 1),
+(41, '../../../imagesDB/Volumen_39.webp', 39, 1),
+(42, '../../../imagesDB/Volumen_40.webp', 40, 1),
+(43, '../../../imagesDB/Volumen_41.webp', 41, 1),
+(44, '../../../imagesDB/d1.jpg', 1, 2),
+(45, '../../../imagesDB/d2.jpg', 2, 2),
+(46, '../../../imagesDB/d3.jpg', 3, 2),
+(47, '../../../imagesDB/d4.jpg', 4, 2),
+(48, '../../../imagesDB/d5.jpg', 5, 2);
 
 -- --------------------------------------------------------
 
@@ -681,7 +676,8 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`id_usuario`, `email`, `nombre`, `password`) VALUES
 (1, 'admin@gmail.com', 'admin', '$2a$10$tXksoL6QCYd.VSamMz0HGO45UU5IE3ixW8XqWiklxYmZTxO3xxYQe'),
 (2, 'juan@gmail.com', 'juan', '$2a$10$NYrACzzG.NpwaL7WRXtJ5.0Bx3s9egBv1zLJA/NyWQtIHndWzSRea'),
-(3, 'juan1@gmail.com', 'antoino', '$2a$10$Fz9VTzDztGg.UPzJgXQvKuiBpZwFOXPUH9nBSKDOFgW.BC9nH7OYG');
+(3, 'juan1@gmail.com', 'antoino', '$2a$10$Fz9VTzDztGg.UPzJgXQvKuiBpZwFOXPUH9nBSKDOFgW.BC9nH7OYG'),
+(5, 'a@gmail.com', 'a', '$2a$10$GN9ikTtQdgfZSmlLCeUnAeWKvSO2aKp6za3CE1eAHhT1tgJqw1.9G');
 
 -- --------------------------------------------------------
 
@@ -701,7 +697,8 @@ CREATE TABLE `usuarios_roles` (
 INSERT INTO `usuarios_roles` (`usuario_id_usuario`, `rol_id_rol`) VALUES
 (1, 2),
 (2, 1),
-(3, 1);
+(3, 1),
+(5, 1);
 
 -- --------------------------------------------------------
 
@@ -722,7 +719,10 @@ CREATE TABLE `valoracion` (
 --
 
 INSERT INTO `valoracion` (`id_valoracion`, `comentario`, `favorito`, `capitulo_id_capitulo`, `usuario_id_usuario`) VALUES
-(1, 'Buen capítulo.', b'1', 1, 2);
+(1, 'Buen capítulo.', b'1', 1, 2),
+(2, 'aaa', b'1', 2, 2),
+(11, '', b'1', 3, 2),
+(12, 'hola', b'0', 4, 2);
 
 --
 -- Índices para tablas volcadas
@@ -781,15 +781,8 @@ ALTER TABLE `leyendo_tomo`
 --
 ALTER TABLE `manga`
   ADD PRIMARY KEY (`id_manga`),
-  ADD KEY `FK7x9a1p2dn2na64pebvdn7vpqu` (`demografia_id_demografia`);
-
---
--- Indices de la tabla `manga_propio`
---
-ALTER TABLE `manga_propio`
-  ADD PRIMARY KEY (`id_manga_propio`),
-  ADD KEY `FKeh9raourf41aw4kswu06qxnaw` (`demografia_id_demografia`),
-  ADD KEY `FKeyhyptqutby8kx37qhwbe8776` (`usuario_id_usuario`);
+  ADD KEY `FK7x9a1p2dn2na64pebvdn7vpqu` (`demografia_id_demografia`),
+  ADD KEY `fk_manga_usuario` (`usuario_id_usuario`);
 
 --
 -- Indices de la tabla `rol`
@@ -802,8 +795,7 @@ ALTER TABLE `rol`
 --
 ALTER TABLE `tomo`
   ADD PRIMARY KEY (`id_tomo`),
-  ADD KEY `FK64645tatrxascla2r6t9s67ug` (`manga_id_manga`),
-  ADD KEY `FK35rnpnojpf5lj6cif2cglj9wi` (`manga_propio_id_manga_propio`);
+  ADD KEY `FK64645tatrxascla2r6t9s67ug` (`manga_id_manga`);
 
 --
 -- Indices de la tabla `usuario`
@@ -850,12 +842,6 @@ ALTER TABLE `manga`
   MODIFY `id_manga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT de la tabla `manga_propio`
---
-ALTER TABLE `manga_propio`
-  MODIFY `id_manga_propio` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
@@ -871,13 +857,13 @@ ALTER TABLE `tomo`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `valoracion`
 --
 ALTER TABLE `valoracion`
-  MODIFY `id_valoracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_valoracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas
@@ -928,20 +914,13 @@ ALTER TABLE `leyendo_tomo`
 -- Filtros para la tabla `manga`
 --
 ALTER TABLE `manga`
-  ADD CONSTRAINT `FK7x9a1p2dn2na64pebvdn7vpqu` FOREIGN KEY (`demografia_id_demografia`) REFERENCES `demografia` (`id_demografia`);
-
---
--- Filtros para la tabla `manga_propio`
---
-ALTER TABLE `manga_propio`
-  ADD CONSTRAINT `FKeh9raourf41aw4kswu06qxnaw` FOREIGN KEY (`demografia_id_demografia`) REFERENCES `demografia` (`id_demografia`),
-  ADD CONSTRAINT `FKeyhyptqutby8kx37qhwbe8776` FOREIGN KEY (`usuario_id_usuario`) REFERENCES `usuario` (`id_usuario`);
+  ADD CONSTRAINT `FK7x9a1p2dn2na64pebvdn7vpqu` FOREIGN KEY (`demografia_id_demografia`) REFERENCES `demografia` (`id_demografia`),
+  ADD CONSTRAINT `fk_manga_usuario` FOREIGN KEY (`usuario_id_usuario`) REFERENCES `usuario` (`id_usuario`);
 
 --
 -- Filtros para la tabla `tomo`
 --
 ALTER TABLE `tomo`
-  ADD CONSTRAINT `FK35rnpnojpf5lj6cif2cglj9wi` FOREIGN KEY (`manga_propio_id_manga_propio`) REFERENCES `manga_propio` (`id_manga_propio`),
   ADD CONSTRAINT `FK64645tatrxascla2r6t9s67ug` FOREIGN KEY (`manga_id_manga`) REFERENCES `manga` (`id_manga`);
 
 --

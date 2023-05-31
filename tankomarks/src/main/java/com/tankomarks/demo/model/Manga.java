@@ -28,7 +28,6 @@ public class Manga {
 	@Column(name = "descripcion")
 	private String descripcion;
 	
-	@NotNull
 	@Column(name = "enlacefoto")
 	private String enlacefoto;
 	
@@ -36,18 +35,24 @@ public class Manga {
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "demografia_id_demografia")
 	private Demografia demografia;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "usuario_id_usuario")
+	private Usuario usuario_id_usuario;
 
 	public Manga() {
 		super();
 	}
 
-	public Manga(int id_manga, String nombre, String descripcion, String enlacefoto, Demografia demografia) {
+	public Manga(int id_manga, @NotNull String nombre, @NotNull String descripcion, String enlacefoto,
+			@NotNull Demografia demografia, Usuario usuario_id_usuario) {
 		super();
 		this.id_manga = id_manga;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.enlacefoto = enlacefoto;
 		this.demografia = demografia;
+		this.usuario_id_usuario = usuario_id_usuario;
 	}
 
 	public int getId_manga() {
@@ -88,6 +93,14 @@ public class Manga {
 
 	public void setDemografia(Demografia demografia) {
 		this.demografia = demografia;
+	}
+
+	public Usuario getUsuario_id_usuario() {
+		return usuario_id_usuario;
+	}
+
+	public void setUsuario_id_usuario(Usuario usuario_id_usuario) {
+		this.usuario_id_usuario = usuario_id_usuario;
 	}
 
 }

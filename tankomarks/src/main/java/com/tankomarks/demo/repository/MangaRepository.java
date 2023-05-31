@@ -10,13 +10,13 @@ import com.tankomarks.demo.model.Manga;
 
 public interface MangaRepository extends JpaRepository<Manga, Integer> {
 	
-	@Query(value="SELECT * FROM manga", nativeQuery=true)
+	@Query(value="SELECT * FROM manga WHERE usuario_id_usuario IS NULL", nativeQuery=true)
 	List<Manga> mostrarMangas();
 	
-	@Query(value="SELECT * FROM manga WHERE nombre LIKE %:busqueda%", nativeQuery=true)
+	@Query(value="SELECT * FROM manga WHERE nombre LIKE %:busqueda% AND usuario_id_usuario IS NULL", nativeQuery=true)
 	List<Manga> buscarMangas(@Param("busqueda") String busqueda);
 
-	@Query(value="SELECT * FROM manga WHERE nombre LIKE %:busqueda% AND demografia_id_demografia = :demografia", nativeQuery=true)
+	@Query(value="SELECT * FROM manga WHERE nombre LIKE %:busqueda% AND usuario_id_usuario IS NULL AND demografia_id_demografia = :demografia", nativeQuery=true)
 	List<Manga> buscarMangasFiltrados(@Param("busqueda") String busqueda, @Param("demografia") String demografia);
 	
 	@Query(value="SELECT m.* "

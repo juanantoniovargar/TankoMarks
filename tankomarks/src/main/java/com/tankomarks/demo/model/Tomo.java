@@ -24,29 +24,23 @@ public class Tomo {
 	@Column(name = "numero")
 	private int numero;
 	
-	@NotNull
 	@Column(name = "enlacefoto")
 	private String enlacefoto;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "manga_id_manga")
 	private Manga manga;
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "manga_propio_id_manga_propio")
-	private MangaPropio mangaPropio;
 
 	public Tomo() {
 		super();
 	}
 
-	public Tomo(int id_tomo, @NotNull int numero, @NotNull String enlacefoto, Manga manga, MangaPropio mangaPropio) {
+	public Tomo(int id_tomo, @NotNull int numero, @NotNull String enlacefoto, Manga manga) {
 		super();
 		this.id_tomo = id_tomo;
 		this.numero = numero;
 		this.enlacefoto = enlacefoto;
 		this.manga = manga;
-		this.mangaPropio = mangaPropio;
 	}
 
 	public int getId_tomo() {
@@ -79,14 +73,6 @@ public class Tomo {
 
 	public void setManga(Manga manga) {
 		this.manga = manga;
-	}
-
-	public MangaPropio getMangaPropio() {
-		return mangaPropio;
-	}
-
-	public void setMangaPropio(MangaPropio mangaPropio) {
-		this.mangaPropio = mangaPropio;
 	}
 
 }
