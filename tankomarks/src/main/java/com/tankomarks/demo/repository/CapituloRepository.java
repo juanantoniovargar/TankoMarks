@@ -37,5 +37,47 @@ public interface CapituloRepository extends JpaRepository<Capitulo, Integer> {
     @Transactional
     @Query(value="DELETE FROM leido_capitulo WHERE usuario_id_usuario = :id_usuario AND capitulo_id_capitulo = :id_capitulo", nativeQuery=true)
     int eliminarLeido(@Param("id_usuario") int id_usuario, @Param("id_capitulo") int id_capitulo);
-
+	
+	@Query(value="SELECT COUNT(*) AS count_leyendo_tomo "
+			+ "FROM leyendo_tomo lt "
+			+ "JOIN tomo t ON lt.tomo_id_tomo = t.id_tomo "
+			+ "JOIN capitulo c ON c.tomo_id_tomo = t.id_tomo "
+			+ "JOIN leido_capitulo lc ON lc.capitulo_id_capitulo = c.id_capitulo "
+			+ "WHERE lt.usuario_id_usuario = :id_usuario "
+			+ "AND t.id_tomo = :id_tomo "
+			+ "AND lt.tomo_id_tomo = t.id_tomo", nativeQuery=true)
+    int verificaLeyendoTomo(@Param("id_usuario") int id_usuario, @Param("id_tomo") int id_tomo);
+	
+	@Query(value="SELECT COUNT(*) AS count_leido_capitulo "
+			+ "FROM capitulo c "
+			+ "JOIN tomo t ON c.tomo_id_tomo = t.id_tomo "
+			+ "LEFT JOIN leido_capitulo lc ON lc.capitulo_id_capitulo = c.id_capitulo "
+			+ "WHERE lc.usuario_id_usuario = :id_usuario "
+			+ "AND t.id_tomo = :id_tomo "
+			+ "AND lc.capitulo_id_capitulo IS NOT NULL", nativeQuery=true)
+    int numCapitulosLeidos(@Param("id_usuario") int id_usuario, @Param("id_tomo") int id_tomo);
+	
+	@Query(value="SELECT COUNT(*) AS total_capitulos FROM capitulo WHERE tomo_id_tomo = :id_tomo", nativeQuery=true)
+    int totalCapitulosPorTomo(@Param("id_tomo") int id_tomo);
+	
+	@Modifying
+    @Transactional
+    @Query(value="INSERT INTO leido_tomo (usuario_id_usuario, tomo_id_tomo) VALUES (:id_usuario, :id_tomo)", nativeQuery=true)
+    int activarLeidoTomo(@Param("id_usuario") int id_usuario, @Param("id_tomo") int id_tomo);
+	
+	@Modifying
+    @Transactional
+    @Query(value="INSERT INTO leyendo_tomo (usuario_id_usuario, tomo_id_tomo) VALUES (:id_usuario, :id_tomo)", nativeQuery=true)
+    int activarLeyendoTomo(@Param("id_usuario") int id_usuario, @Param("id_tomo") int id_tomo);
+	
+	@Modifying
+    @Transactional
+    @Query(value="DELETE FROM leido_tomo WHERE usuario_id_usuario = :id_usuario AND tomo_id_tomo = :id_tomo", nativeQuery=true)
+    int eliminarLeidoTomo(@Param("id_usuario") int id_usuario, @Param("id_tomo") int id_tomo);
+	
+	@Modifying
+    @Transactional
+    @Query(value="DELETE FROM leyendo_tomo WHERE usuario_id_usuario = :id_usuario AND tomo_id_tomo = :id_tomo", nativeQuery=true)
+    int eliminarLeyendoTomo(@Param("id_usuario") int id_usuario, @Param("id_tomo") int id_tomo);
+	
 }

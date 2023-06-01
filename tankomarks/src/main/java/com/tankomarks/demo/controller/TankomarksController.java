@@ -248,10 +248,11 @@ public class TankomarksController {
 		
 		String referer = request.getHeader("Referer");
 		return "redirect:" + referer;
+		
 	}
 	
 	@PostMapping("/actualizarCapitulo")
-	public String actualizarCapitulo(boolean activado, int id_capitulo, HttpServletRequest request, Principal principal) {
+	public String actualizarCapitulo(boolean activado, int id_capitulo, int id_tomo, HttpServletRequest request, Principal principal) {
 		
 		String email = principal.getName();
 		int id_usuario = usuarioRepo.getId_usuario(email);
@@ -261,6 +262,29 @@ public class TankomarksController {
         } else {
         	capituloRepo.eliminarLeido(id_usuario, id_capitulo);
         }
+		
+		if ((capituloRepo.verificaLeyendoTomo(id_usuario, id_tomo) == 0)) {
+			
+			if (activado) {
+				capituloRepo.activarLeyendoTomo(id_usuario, id_tomo);
+	        } else {
+	        	capituloRepo.eliminarLeyendoTomo(id_usuario, id_tomo);
+	        }
+			
+			if ((capituloRepo.numCapitulosLeidos(id_usuario, id_tomo)) == (capituloRepo.totalCapitulosPorTomo(id_tomo) - 1)) {
+				capituloRepo.eliminarLeidoTomo(id_usuario, id_tomo);
+				if (!activado) {
+					capituloRepo.activarLeyendoTomo(id_usuario, id_tomo);
+				}
+				
+			}
+			
+		}
+		
+		if ((capituloRepo.numCapitulosLeidos(id_usuario, id_tomo)) == (capituloRepo.totalCapitulosPorTomo(id_tomo))) {
+			capituloRepo.eliminarLeyendoTomo(id_usuario, id_tomo);
+			capituloRepo.activarLeidoTomo(id_usuario, id_tomo);
+		}
 		
 		String referer = request.getHeader("Referer");
 		return "redirect:" + referer;

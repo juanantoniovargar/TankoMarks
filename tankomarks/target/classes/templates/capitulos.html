@@ -66,10 +66,12 @@
 
 					<form id="actualizar-cap" th:action="@{/actualizarCapitulo}" method="post">
 
-						<input id="check-cap" type="checkbox" name="activado" th:checked="${usuario.leido_capitulo.contains(capitulo)}"/>
-						<label class="check-cap" for="check-cap"><i class="check-icon-cap fa-solid fa-check"></i></label>
+						<input th:id="${capitulo.id_capitulo}" class="check-cap-input" type="checkbox" name="activado" th:checked="${usuario.leido_capitulo.contains(capitulo)}"/>
+						<label class="check-cap" th:for="${capitulo.id_capitulo}"><i class="check-icon-cap fa-solid fa-check"></i></label>
 		
 						<input type="hidden" name="id_capitulo" th:value="${capitulo.id_capitulo}">
+						
+						<input type="hidden" name="id_tomo" th:value="${capitulo.tomo.id_tomo}">
 		
 					</form>
 					

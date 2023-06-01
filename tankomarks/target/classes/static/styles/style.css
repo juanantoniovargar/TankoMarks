@@ -884,7 +884,7 @@ footer {
     margin-top: 2rem;
 }
 
-#check-cap, #check-val {
+.check-cap-input, #check-val {
     display: none;
 }
 
@@ -900,7 +900,7 @@ footer {
     visibility: hidden;
 }
 
-#check-cap:checked + .check-cap > .check-icon-cap {
+.check-cap-input:checked + .check-cap > .check-icon-cap {
     visibility: visible;
 }
 
