@@ -174,11 +174,59 @@ public class TankomarksController {
 	}
 	
 	@GetMapping("/detalles/{id_manga}")
-	public String detalles(@PathVariable("id_manga") int id_manga, Model model) {
+	public String detalles(@PathVariable("id_manga") int id_manga, Model model, Principal principal) {
+		
+		String email = principal.getName();
+		model.addAttribute("usuario", usuarioRepo.findByEmail(email));
 		
 		model.addAttribute("manga", mangaRepo.mostrarDetallesManga(id_manga));
 		
 		return "detalles";
+	}
+	
+	@PostMapping("/actualizarManga")
+	public String actualizarManga(boolean activadoLeer, boolean activadoLeido, int id_manga, HttpServletRequest request, Principal principal) {
+		
+		String email = principal.getName();
+		int id_usuario = usuarioRepo.getId_usuario(email);
+		
+		if (activadoLeido && activadoLeer && mangaRepo.verificaLeido(id_usuario, id_manga) == 1) {
+
+        	mangaRepo.eliminarLeido(id_usuario, id_manga);
+			mangaRepo.activarLeyendo(id_usuario, id_manga);
+			
+		}
+		
+		if (activadoLeido && activadoLeer && mangaRepo.verificaLeyendo(id_usuario, id_manga) == 1) {
+
+        	mangaRepo.eliminarLeyendo(id_usuario, id_manga);
+			mangaRepo.activarLeido(id_usuario, id_manga);
+			
+		}
+		
+		if (activadoLeer && !activadoLeido) {
+			
+			mangaRepo.activarLeyendo(id_usuario, id_manga);
+			
+        } else if (mangaRepo.verificaLeyendo(id_usuario, id_manga) == 1) {
+        	
+        	mangaRepo.eliminarLeyendo(id_usuario, id_manga);
+        	
+        }
+		
+		if (activadoLeido && !activadoLeer) {
+			
+			mangaRepo.activarLeido(id_usuario, id_manga);
+			
+        } else if (mangaRepo.verificaLeido(id_usuario, id_manga) == 1) {
+        	
+        	mangaRepo.eliminarLeido(id_usuario, id_manga);
+        
+        }
+		
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
+		
 	}
 	
 	@GetMapping("/tomos/{manga_id_manga}")
@@ -191,6 +239,7 @@ public class TankomarksController {
 	    model.addAttribute("usuario", usuarioRepo.findByEmail(email));
 		
 		return "tomos";
+		
 	}
 	
 	@GetMapping("/capitulos/{tomo_id_tomo}")
@@ -252,7 +301,7 @@ public class TankomarksController {
 	}
 	
 	@PostMapping("/actualizarCapitulo")
-	public String actualizarCapitulo(boolean activado, int id_capitulo, int id_tomo, HttpServletRequest request, Principal principal) {
+	public String actualizarCapitulo(boolean activado, int id_capitulo, int id_tomo, int id_manga, HttpServletRequest request, Principal principal) {
 		
 		String email = principal.getName();
 		int id_usuario = usuarioRepo.getId_usuario(email);

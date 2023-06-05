@@ -68,6 +68,26 @@
 
                 <p>Demografía: <span th:text="${manga.demografia.nombre}"></span></p>
 
+				<hr/>
+
+				<form id="actualizar-cap" class="detalle-form" th:action="@{/actualizarManga}" method="post">
+
+					<div>
+						<span class="detalle-span">Leer </span>
+						<input id="leer" class="check-cap-input" type="checkbox" name="activadoLeer" th:checked="${usuario.leyendo_manga.contains(manga)}"/>
+						<label class="check-cap detalle-input" for="leer"><i class="check-icon-cap fa-solid fa-check"></i></label>
+					</div>
+
+					<div>
+						<span class="detalle-span">Leído </span>
+						<input id="leido" class="check-cap-input" type="checkbox" name="activadoLeido" th:checked="${usuario.leido_manga.contains(manga)}"/>
+						<label class="check-cap detalle-input" for="leido"><i class="check-icon-cap fa-solid fa-check"></i></label>
+					</div>
+	
+					<input type="hidden" name="id_manga" th:value="${manga.id_manga}">
+	
+				</form>
+
             </div>
 
         </div>
