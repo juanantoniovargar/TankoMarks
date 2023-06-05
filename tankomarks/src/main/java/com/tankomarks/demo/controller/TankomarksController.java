@@ -301,7 +301,7 @@ public class TankomarksController {
 	}
 	
 	@PostMapping("/actualizarCapitulo")
-	public String actualizarCapitulo(boolean activado, int id_capitulo, int id_tomo, int id_manga, HttpServletRequest request, Principal principal) {
+	public String actualizarCapitulo(boolean activado, int id_capitulo, int id_tomo, HttpServletRequest request, Principal principal) {
 		
 		String email = principal.getName();
 		int id_usuario = usuarioRepo.getId_usuario(email);
