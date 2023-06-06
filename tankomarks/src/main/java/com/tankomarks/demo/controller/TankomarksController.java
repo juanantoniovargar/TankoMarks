@@ -373,10 +373,10 @@ public class TankomarksController {
         
     }
 	
-	@GetMapping("/adminTomos")
-    public String adminTomos() {
+	@GetMapping("/adminTomos/{manga_id_manga}")
+    public String adminTomos(@PathVariable("manga_id_manga") int id_manga, Model model) {
 		
-		
+		model.addAttribute("tomos", tomoRepo.mostrarTomos(id_manga));
 		
         return "adminTomos";
         
@@ -392,9 +392,14 @@ public class TankomarksController {
         return "";
     }
 	
-	@GetMapping("/adminEliminarTomo")
-    public String adminEliminarTomo() {
-        return "";
+	@GetMapping("/adminEliminarTomo/{id_tomo}")
+    public String adminEliminarTomo(@PathVariable("id_tomo") int id_tomo, Model model, HttpServletRequest request) {
+		
+		tomoRepo.eliminarTomo(id_tomo);
+		
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
+		
     }
 	
 	@GetMapping("/adminCapitulos")

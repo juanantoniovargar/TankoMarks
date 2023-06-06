@@ -9,7 +9,7 @@ $(".boton-perfil").click(function(){
     $(".boton-perfil").hide(1000);
 });
 
-// confirmacion eliminar
+// confirmacion eliminar manga administracion
 function adminEliminar(id_manga) {
     swal({
         title: "¿Estás seguro?",
@@ -35,6 +35,36 @@ function adminEliminar(id_manga) {
             });
         } else {
             swal("El manga no se eliminará.");
+        }
+    });
+}
+
+// confirmacion eliminar tomo administracion
+function adminEliminarTomo(id_tomo) {
+    swal({
+        title: "¿Estás seguro?",
+        text: "Una vez eliminado, no podrás recuperar el tomo.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((OK) => {
+        if (OK) {
+            $.ajax({
+                url:"/adminEliminarTomo/" + id_tomo,
+                success: function(res) {
+                    console.log(res);
+                }
+            })
+            swal("El tomo se ha eliminado correctamente.", {
+                icon: "success",
+            }).then((ok) => {
+                if (ok) {
+                    location.href = document.referrer; // "/adminTomos/" + id_manga
+                }
+            });
+        } else {
+            swal("El tomo no se eliminará.");
         }
     });
 }

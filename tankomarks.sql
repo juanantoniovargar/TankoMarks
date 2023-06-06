@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-05-2023 a las 10:48:36
+-- Tiempo de generación: 06-06-2023 a las 10:20:12
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -416,7 +416,9 @@ INSERT INTO `capitulo` (`id_capitulo`, `nombre`, `tomo_id_tomo`) VALUES
 (376, 'El desfiladero', 43),
 (377, 'Visión mortal', 43),
 (378, 'Mono saltarín', 43),
-(379, 'Lágrima de rocío', 43);
+(379, 'Lágrima de rocío', 43),
+(380, 'capitulo 1', 49),
+(381, 'capitulo 2', 49);
 
 -- --------------------------------------------------------
 
@@ -458,7 +460,10 @@ INSERT INTO `leido_capitulo` (`usuario_id_usuario`, `capitulo_id_capitulo`) VALU
 (2, 1),
 (2, 2),
 (2, 3),
-(2, 4);
+(2, 4),
+(2, 5),
+(2, 6),
+(2, 7);
 
 -- --------------------------------------------------------
 
@@ -476,10 +481,13 @@ CREATE TABLE `leido_manga` (
 --
 
 INSERT INTO `leido_manga` (`usuario_id_usuario`, `manga_id_manga`) VALUES
-(2, 5),
+(2, 4),
 (2, 6),
+(2, 7),
 (2, 8),
-(2, 12);
+(2, 9),
+(2, 11),
+(2, 13);
 
 -- --------------------------------------------------------
 
@@ -497,7 +505,8 @@ CREATE TABLE `leido_tomo` (
 --
 
 INSERT INTO `leido_tomo` (`usuario_id_usuario`, `tomo_id_tomo`) VALUES
-(2, 3);
+(2, 3),
+(2, 4);
 
 -- --------------------------------------------------------
 
@@ -518,7 +527,9 @@ INSERT INTO `leyendo_manga` (`usuario_id_usuario`, `manga_id_manga`) VALUES
 (2, 1),
 (2, 2),
 (2, 3),
-(2, 4);
+(2, 5),
+(2, 10),
+(2, 12);
 
 -- --------------------------------------------------------
 
@@ -536,7 +547,7 @@ CREATE TABLE `leyendo_tomo` (
 --
 
 INSERT INTO `leyendo_tomo` (`usuario_id_usuario`, `tomo_id_tomo`) VALUES
-(2, 4);
+(2, 5);
 
 -- --------------------------------------------------------
 
@@ -601,7 +612,7 @@ CREATE TABLE `tomo` (
   `id_tomo` int(11) NOT NULL,
   `enlacefoto` varchar(255) DEFAULT NULL,
   `numero` int(11) NOT NULL,
-  `manga_id_manga` int(11) DEFAULT NULL
+  `manga_id_manga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -654,7 +665,8 @@ INSERT INTO `tomo` (`id_tomo`, `enlacefoto`, `numero`, `manga_id_manga`) VALUES
 (45, '../../../imagesDB/d2.jpg', 2, 2),
 (46, '../../../imagesDB/d3.jpg', 3, 2),
 (47, '../../../imagesDB/d4.jpg', 4, 2),
-(48, '../../../imagesDB/d5.jpg', 5, 2);
+(48, '../../../imagesDB/d5.jpg', 5, 2),
+(49, '../../../imagesDB/cm1.jpg', 1, 7);
 
 -- --------------------------------------------------------
 
@@ -676,8 +688,9 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`id_usuario`, `email`, `nombre`, `password`) VALUES
 (1, 'admin@gmail.com', 'admin', '$2a$10$tXksoL6QCYd.VSamMz0HGO45UU5IE3ixW8XqWiklxYmZTxO3xxYQe'),
 (2, 'juan@gmail.com', 'juan', '$2a$10$NYrACzzG.NpwaL7WRXtJ5.0Bx3s9egBv1zLJA/NyWQtIHndWzSRea'),
-(3, 'juan1@gmail.com', 'antoino', '$2a$10$Fz9VTzDztGg.UPzJgXQvKuiBpZwFOXPUH9nBSKDOFgW.BC9nH7OYG'),
-(5, 'a@gmail.com', 'a', '$2a$10$GN9ikTtQdgfZSmlLCeUnAeWKvSO2aKp6za3CE1eAHhT1tgJqw1.9G');
+(3, 'juan1@gmail.com', 'juan1', '$2a$10$Fz9VTzDztGg.UPzJgXQvKuiBpZwFOXPUH9nBSKDOFgW.BC9nH7OYG'),
+(5, 'a@gmail.com', 'a', '$2a$10$GN9ikTtQdgfZSmlLCeUnAeWKvSO2aKp6za3CE1eAHhT1tgJqw1.9G'),
+(6, 'aki@gmail.com', 'aki', '$2a$10$wCBx5L82AVOKvKJmxlVDnOIhlMtm0XwJHml57IMQaLvjsLwJDlt2.');
 
 -- --------------------------------------------------------
 
@@ -698,7 +711,8 @@ INSERT INTO `usuarios_roles` (`usuario_id_usuario`, `rol_id_rol`) VALUES
 (1, 2),
 (2, 1),
 (3, 1),
-(5, 1);
+(5, 1),
+(6, 1);
 
 -- --------------------------------------------------------
 
@@ -722,7 +736,8 @@ INSERT INTO `valoracion` (`id_valoracion`, `comentario`, `favorito`, `capitulo_i
 (1, 'Buen capítulo.', b'1', 1, 2),
 (2, 'aaa', b'1', 2, 2),
 (11, '', b'1', 3, 2),
-(12, 'hola', b'0', 4, 2);
+(12, 'hola', b'0', 4, 2),
+(14, '', b'1', 6, 2);
 
 --
 -- Índices para tablas volcadas
@@ -827,7 +842,7 @@ ALTER TABLE `valoracion`
 -- AUTO_INCREMENT de la tabla `capitulo`
 --
 ALTER TABLE `capitulo`
-  MODIFY `id_capitulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=380;
+  MODIFY `id_capitulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=382;
 
 --
 -- AUTO_INCREMENT de la tabla `demografia`
@@ -839,7 +854,7 @@ ALTER TABLE `demografia`
 -- AUTO_INCREMENT de la tabla `manga`
 --
 ALTER TABLE `manga`
-  MODIFY `id_manga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_manga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -851,19 +866,19 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `tomo`
 --
 ALTER TABLE `tomo`
-  MODIFY `id_tomo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_tomo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `valoracion`
 --
 ALTER TABLE `valoracion`
-  MODIFY `id_valoracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_valoracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Restricciones para tablas volcadas

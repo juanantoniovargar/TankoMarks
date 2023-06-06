@@ -2,7 +2,10 @@ package com.tankomarks.demo.repository;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -15,5 +18,10 @@ public interface TomoRepository extends JpaRepository<Tomo, Integer> {
 	
 	@Query(value="SELECT id_tomo, manga_id_manga FROM tomo WHERE manga_id_manga = :manga LIMIT 1", nativeQuery=true)
 	List<Tomo> mostrarNombreMangaTomos(@Param("manga") int manga);
+	
+	@Modifying
+    @Transactional
+    @Query(value="DELETE FROM tomo WHERE id_tomo = :id_tomo", nativeQuery=true)
+    int eliminarTomo(@Param("id_tomo") int id_tomo);
 
 }
