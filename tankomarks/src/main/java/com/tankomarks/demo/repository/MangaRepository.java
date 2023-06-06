@@ -39,6 +39,11 @@ public interface MangaRepository extends JpaRepository<Manga, Integer> {
 	
 	@Modifying
     @Transactional
+    @Query(value="DELETE FROM manga WHERE id_manga = :id_manga", nativeQuery=true)
+    int eliminarManga(@Param("id_manga") int id_manga);
+	
+	@Modifying
+    @Transactional
     @Query(value="INSERT INTO leyendo_manga (usuario_id_usuario, manga_id_manga) VALUES (:id_usuario, :id_manga)", nativeQuery=true)
     int activarLeyendo(@Param("id_usuario") int id_usuario, @Param("id_manga") int id_manga);
 	

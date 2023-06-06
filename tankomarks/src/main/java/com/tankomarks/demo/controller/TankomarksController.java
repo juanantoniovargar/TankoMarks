@@ -182,6 +182,7 @@ public class TankomarksController {
 		model.addAttribute("manga", mangaRepo.mostrarDetallesManga(id_manga));
 		
 		return "detalles";
+		
 	}
 	
 	@PostMapping("/actualizarManga")
@@ -338,6 +339,11 @@ public class TankomarksController {
 		
 	}
 	
+	@GetMapping("/mangasPropios")
+    public String mangasPropios() {
+        return "";
+    }
+	
 	@GetMapping("/leyendo")
     public String leyendo() {
         return "";
@@ -358,14 +364,22 @@ public class TankomarksController {
         return "";
     }
 	
-	@GetMapping("/adminEliminar")
-    public String adminEliminar() {
-        return "";
+	@GetMapping("/adminEliminar/{id_manga}")
+    public String adminEliminar(@PathVariable("id_manga") int id_manga, Model model) {
+		
+		mangaRepo.eliminarManga(id_manga);
+		
+        return "redirect:/administracion";
+        
     }
 	
 	@GetMapping("/adminTomos")
     public String adminTomos() {
-        return "error";
+		
+		
+		
+        return "adminTomos";
+        
     }
 	
 	@GetMapping("/adminNuevoTomo")
