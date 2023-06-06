@@ -195,9 +195,7 @@ public class TankomarksController {
         	mangaRepo.eliminarLeido(id_usuario, id_manga);
 			mangaRepo.activarLeyendo(id_usuario, id_manga);
 			
-		}
-		
-		if (activadoLeido && activadoLeer && mangaRepo.verificaLeyendo(id_usuario, id_manga) == 1) {
+		} else if (activadoLeido && activadoLeer && mangaRepo.verificaLeyendo(id_usuario, id_manga) == 1) {
 
         	mangaRepo.eliminarLeyendo(id_usuario, id_manga);
 			mangaRepo.activarLeido(id_usuario, id_manga);
@@ -208,7 +206,7 @@ public class TankomarksController {
 			
 			mangaRepo.activarLeyendo(id_usuario, id_manga);
 			
-        } else if (mangaRepo.verificaLeyendo(id_usuario, id_manga) == 1) {
+        } else if (!activadoLeer && mangaRepo.verificaLeyendo(id_usuario, id_manga) == 1) {
         	
         	mangaRepo.eliminarLeyendo(id_usuario, id_manga);
         	
@@ -218,7 +216,7 @@ public class TankomarksController {
 			
 			mangaRepo.activarLeido(id_usuario, id_manga);
 			
-        } else if (mangaRepo.verificaLeido(id_usuario, id_manga) == 1) {
+        } else if (!activadoLeido && mangaRepo.verificaLeido(id_usuario, id_manga) == 1) {
         	
         	mangaRepo.eliminarLeido(id_usuario, id_manga);
         
