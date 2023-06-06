@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TankoMarks</title>
+	<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+	<link rel="icon" href="../static/images/logo.ico" th:href="@{/images/logo.ico}"/>
+	<link href="../static/styles/style.css" th:href="@{/styles/style.css}" rel="stylesheet"/>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script defer type="text/javascript" src="../static/js/nav.js" th:src="@{/js/nav.js}"></script>
+	<script defer type="text/javascript" src="../static/js/validaciones.js" th:src="@{/js/validaciones.js}"></script>
+	<script defer type="text/javascript" src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+</head>
+
+<body>
+
+	<div class="container">
+
+		<img class="imagen-form" src="../static/images/logo.png" th:src="@{/images/logo.png}" alt="Logo de Tankomarks"> 
+
+		<div class="formulario">
+
+			<form th:action="@{/adminGuardar}" method="post">
+
+				<h2 class="titulo-form">Formulario para manga</h2>
+
+                <div class="form-manga">
+				
+                    <div class="campo-form campo-manga">
+                        <label class="label-form"> Nombre </label>
+                        <input class="input-form" type="text" name="nombre" th:field="*{nombre}" required/>
+                    </div>
+                    
+                    <div class="campo-form campo-manga">
+                        <label class="label-form"> Demografía </label>
+                        <select class="desplegable-nav desplegable-form" name="demografia" th:field="*{demografia}" required>
+                            <option value="1">Seinen</option>
+                            <option value="2">Shonen</option>
+                            <option value="3">Shojo</option>
+                            <option value="4">Josei</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="campo-form campo-manga">
+                    <label class="label-form"> Descripcion </label>
+                    <textarea class="input-form textarea-form" name="descripcion" th:field="*{descripcion}" maxlength="1000" required></textarea>
+                </div>
+
+                <div class="campo-form campo-manga">
+                    <label class="label-form"> Foto </label>
+                    <input class="input-form" type="file" name="enlacefoto" th:file="*{enlacefoto}" required>
+                </div>
+				
+				<div class="campo-boton-form">
+					<input class="boton-form" type="submit" name="login-submit" id="login-submit" value="Guardar"/>
+				</div>
+					
+			</form>
+
+			<div class="span-form">
+				<span>¿Nuevo usuario? <a class="enlace-form" th:href="@{/registro}">Crear cuenta</a></span>
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+</html>

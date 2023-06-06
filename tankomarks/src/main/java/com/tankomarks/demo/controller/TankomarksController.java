@@ -355,13 +355,63 @@ public class TankomarksController {
     }
 	
 	@GetMapping("/adminNuevo")
-    public String adminNuevo() {
-        return "";
+    public String adminNuevo(Model model) {
+		
+		model.addAttribute("manga", new Manga());
+		
+        return "formularioManga";
+        
     }
+	
+	/*
+	
+	<form action="/guardarImagen" method="post" enctype="multipart/form-data">
+  		<input type="file" name="imagen" accept="image/*">
+  		<input type="submit" value="Subir imagen">
+	</form>
+
+
+	@PostMapping("/guardarImagen")
+	public String guardarImagen(@RequestParam("imagen") MultipartFile archivo) {
+  		// Verificar si se ha seleccionado un archivo
+  		if (!archivo.isEmpty()) {
+    		try {
+      			// Obtener los bytes del archivo
+      			byte[] bytes = archivo.getBytes();
+      
+      			// Guardar el archivo en el sistema de archivos
+      			Path rutaArchivo = Paths.get("ruta/donde/guardar/imagen.jpg");
+      			Files.write(rutaArchivo, bytes);
+      
+      			// Realizar otras acciones necesarias, como guardar la ruta del archivo en la base de datos
+      
+      			// Redirigir o mostrar un mensaje de éxito al usuario
+      			return "redirect:/formulario?exito";
+      
+    		} catch (IOException e) {
+      			e.printStackTrace();
+      			// Manejar la excepción en caso de error al guardar el archivo
+    		}
+  		}
+  
+  		// Redirigir o mostrar un mensaje de error al usuario
+  		return "redirect:/formulario?error";
+	}
+
+	*/
+	
+	@PostMapping("/adminGuardar")
+	public String adminGuardar(Manga manga) {
+		
+		String ruta = "../../../imagesDB/";
+		
+		return "redirect:/administracion";
+		
+	}
 	
 	@GetMapping("/adminEditar")
     public String adminEditar() {
-        return "";
+        return "formularioManga";
     }
 	
 	@GetMapping("/adminEliminar/{id_manga}")
@@ -384,12 +434,12 @@ public class TankomarksController {
 	
 	@GetMapping("/adminNuevoTomo")
     public String adminNuevoTomo() {
-        return "";
+        return "formularioTomo";
     }
 	
 	@GetMapping("/adminEditarTomo")
     public String adminEditarTomo() {
-        return "";
+        return "formularioTomo";
     }
 	
 	@GetMapping("/adminEliminarTomo/{id_tomo}")
@@ -413,12 +463,12 @@ public class TankomarksController {
 	
 	@GetMapping("/adminNuevoCapitulo")
     public String adminNuevoCapitulo() {
-        return "";
+        return "formularioCapitulo";
     }
 	
 	@GetMapping("/adminEditarCapitulo")
     public String adminEditarCapitulo() {
-        return "";
+        return "formularioCapitulo";
     }
 	
 	@GetMapping("/adminEliminarCapitulo/{id_capitulo}")
