@@ -402,9 +402,13 @@ public class TankomarksController {
 		
     }
 	
-	@GetMapping("/adminCapitulos")
-    public String adminCapitulos() {
-        return "";
+	@GetMapping("/adminCapitulos/{tomo_id_tomo}")
+    public String adminCapitulos(@PathVariable("tomo_id_tomo") int id_tomo, Model model) {
+		
+		model.addAttribute("capitulos", capituloRepo.mostrarCapitulos(id_tomo));
+		
+        return "adminCapitulos";
+        
     }
 	
 	@GetMapping("/adminNuevoCapitulo")
@@ -417,9 +421,14 @@ public class TankomarksController {
         return "";
     }
 	
-	@GetMapping("/adminEliminarCapitulo")
-    public String adminEliminarCapitulo() {
-        return "";
+	@GetMapping("/adminEliminarCapitulo/{id_capitulo}")
+    public String adminEliminarCapitulo(@PathVariable("id_capitulo") int id_capitulo, Model model, HttpServletRequest request) {
+
+		capituloRepo.eliminarCapitulo(id_capitulo);
+		
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
+		
     }
 	
 	@GetMapping("/404")

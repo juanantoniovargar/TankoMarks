@@ -494,6 +494,28 @@ footer {
     border-top: 2px solid white;
 }
 
+.admin-tabla-tomo {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    justify-items: center;
+    align-items: center;
+    padding: 2rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    border-top: 2px solid white;
+}
+
+.admin-tabla-cap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+    padding: 2rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    border-top: 2px solid white;
+}
+
 .admin-cabecera {
     border-top: 0;
 }
@@ -522,7 +544,7 @@ footer {
 
 @media only screen and (max-width:750px) {
 
-    .admin-tabla {
+    .admin-tabla, .admin-tabla-tomo, .admin-tabla-cap {
         margin: 0;
     }
 
@@ -534,7 +556,7 @@ footer {
 
 @media only screen and (max-width:450px) {
 
-    .admin-tabla {
+    .admin-tabla, .admin-tabla-tomo, .admin-tabla-cap {
         display: flex;
         justify-content: space-between;
         align-items: center;

@@ -68,3 +68,36 @@ function adminEliminarTomo(id_tomo) {
         }
     });
 }
+
+// confirmacion eliminar capitulo administracion
+function adminEliminarCapitulo(id_capitulo) {
+
+    let currentPageURL = window.location.href;
+
+    swal({
+        title: "¿Estás seguro?",
+        text: "Una vez eliminado, no podrás recuperar el capítulo.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((OK) => {
+        if (OK) {
+            $.ajax({
+                url:"/adminEliminarCapitulo/" + id_capitulo,
+                success: function(res) {
+                    console.log(res);
+                }
+            })
+            swal("El capítulo se ha eliminado correctamente.", {
+                icon: "success",
+            }).then((ok) => {
+                if (ok) {
+                    location.href = currentPageURL; 
+                }
+            });
+        } else {
+            swal("El capítulo no se eliminará.");
+        }
+    });
+}
