@@ -336,6 +336,7 @@ footer {
 }
 
 .boton-perfil {
+    font-family: cuerpo;
     padding: 1rem;
     background-color: black;
     color: white;
@@ -346,6 +347,7 @@ footer {
 }
 
 .submit-perfil {
+    font-family: cuerpo;
     padding: 1rem;
     background-color: #F44336;
     color: white;
