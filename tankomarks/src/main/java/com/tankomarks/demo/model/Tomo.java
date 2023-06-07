@@ -24,6 +24,7 @@ public class Tomo {
 	@Column(name = "numero")
 	private int numero;
 	
+	@NotNull
 	@Column(name = "enlacefoto")
 	private String enlacefoto;
 	

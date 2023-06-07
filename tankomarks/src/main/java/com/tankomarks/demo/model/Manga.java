@@ -28,6 +28,7 @@ public class Manga {
 	@Column(name = "descripcion")
 	private String descripcion;
 	
+	@NotNull
 	@Column(name = "enlacefoto")
 	private String enlacefoto;
 	
@@ -44,7 +45,7 @@ public class Manga {
 		super();
 	}
 
-	public Manga(int id_manga, @NotNull String nombre, @NotNull String descripcion, String enlacefoto,
+	public Manga(int id_manga, @NotNull String nombre, @NotNull String descripcion, @NotNull String enlacefoto,
 			@NotNull Demografia demografia, Usuario usuario_id_usuario) {
 		super();
 		this.id_manga = id_manga;

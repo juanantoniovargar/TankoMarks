@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-06-2023 a las 10:20:12
+-- Tiempo de generación: 07-06-2023 a las 08:24:22
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -558,7 +558,7 @@ INSERT INTO `leyendo_tomo` (`usuario_id_usuario`, `tomo_id_tomo`) VALUES
 CREATE TABLE `manga` (
   `id_manga` int(11) NOT NULL,
   `descripcion` varchar(1000) NOT NULL,
-  `enlacefoto` varchar(255) DEFAULT NULL,
+  `enlacefoto` varchar(255) NOT NULL,
   `nombre` varchar(255) NOT NULL,
   `demografia_id_demografia` int(11) NOT NULL,
   `usuario_id_usuario` int(11) DEFAULT NULL
@@ -610,7 +610,7 @@ INSERT INTO `rol` (`id_rol`, `nombre`) VALUES
 
 CREATE TABLE `tomo` (
   `id_tomo` int(11) NOT NULL,
-  `enlacefoto` varchar(255) DEFAULT NULL,
+  `enlacefoto` varchar(255) NOT NULL,
   `numero` int(11) NOT NULL,
   `manga_id_manga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -842,7 +842,7 @@ ALTER TABLE `valoracion`
 -- AUTO_INCREMENT de la tabla `capitulo`
 --
 ALTER TABLE `capitulo`
-  MODIFY `id_capitulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=382;
+  MODIFY `id_capitulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=385;
 
 --
 -- AUTO_INCREMENT de la tabla `demografia`
@@ -866,7 +866,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `tomo`
 --
 ALTER TABLE `tomo`
-  MODIFY `id_tomo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id_tomo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
