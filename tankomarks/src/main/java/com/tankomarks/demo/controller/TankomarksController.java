@@ -374,7 +374,7 @@ public class TankomarksController {
     }
 	
 	@PostMapping("/adminGuardar")
-	public String adminGuardar(Manga manga, @RequestParam("foto") MultipartFile foto, @RequestParam("StringDemografia") String StringDemografia) {
+	public String adminGuardar(Manga manga, @RequestParam("foto") MultipartFile foto, @RequestParam("demografia") String StringDemografia) {
 		
 		try {
 			
@@ -425,9 +425,17 @@ public class TankomarksController {
     }
 	
 	@GetMapping("/adminEliminar/{id_manga}")
-    public String adminEliminar(@PathVariable("id_manga") int id_manga, Model model) {
+    public String adminEliminar(@PathVariable("id_manga") int id_manga, Model model) throws IOException {
+		
+		Manga manga = mangaRepo.mostrarDetallesManga(id_manga);
+		String rutaImagen = "src/main/resources/static/imagesDB/" + manga.getEnlacefoto();
+		String rutaLimpia = rutaImagen.replace("../../../imagesDB/", "");
+	    Path path = Paths.get(rutaLimpia);
+	    Files.delete(path);
 		
 		mangaRepo.eliminarManga(id_manga);
+		
+		//borrar tambien tomos y capitulos
 		
         return "redirect:/administracion";
         
@@ -456,6 +464,8 @@ public class TankomarksController {
     public String adminEliminarTomo(@PathVariable("id_tomo") int id_tomo, Model model, HttpServletRequest request) {
 		
 		tomoRepo.eliminarTomo(id_tomo);
+		
+		//borrar tambien capitulos
 		
 		String referer = request.getHeader("Referer");
 		return "redirect:" + referer;
