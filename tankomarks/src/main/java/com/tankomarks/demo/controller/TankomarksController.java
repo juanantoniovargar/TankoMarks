@@ -378,7 +378,7 @@ public class TankomarksController {
 		
 		try {
 			
-		    // Obtener los bytes del archivo
+			// Obtener los bytes del archivo
 		    byte[] bytes = foto.getBytes();
 		      
 		    // Guardar el archivo en el sistema de archivos
@@ -386,10 +386,10 @@ public class TankomarksController {
 		    String nombreFotoOriginal = foto.getOriginalFilename();
 		    String extensionFoto = nombreFotoOriginal.substring(nombreFotoOriginal.lastIndexOf("."));
 		    String nombreFotoFinal = nombreFotoUnico + extensionFoto;
-		    
+			    
 		    Path rutaArchivo = Paths.get("src/main/resources/static/imagesDB/" + nombreFotoFinal); // "../imagesDB/" + nombreFotoFinal
-		    Files.write(rutaArchivo, bytes);
-		    
+			Files.write(rutaArchivo, bytes);
+			    
 		    // Realizar otras acciones necesarias, como guardar la ruta del archivo en la base de datos
 			String ruta = "../../../imagesDB/";
 			String enlacefoto = ruta + nombreFotoFinal;
@@ -403,7 +403,7 @@ public class TankomarksController {
 			mangaRepo.save(manga);
 		      
 		    // Redirigir al usuario
-			return "redirect:/administracion";
+			return "redirect:/administracion?success";
 		      
 		} catch (IOException e) {
 		    e.printStackTrace();

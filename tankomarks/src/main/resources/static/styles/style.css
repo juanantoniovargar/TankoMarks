@@ -520,6 +520,13 @@ footer {
 
 /********************* ADMIN SECTION STYLE *********************/
 
+.msg-admin {
+    text-align: center;
+    width: 40%;
+    margin: auto;
+    margin-top: 2rem;
+}
+
 .add-admin {
     border: 2px solid white;
     border-radius: 20px;

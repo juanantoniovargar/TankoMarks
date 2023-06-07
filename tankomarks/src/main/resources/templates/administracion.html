@@ -50,6 +50,11 @@
 		
 		<th:block th:if="${size > 0 || size == null}">
 
+			<!-- success message -->
+			<div th:if="${param.success}">
+				<div class="msg msg-success msg-admin">Manga creado correctamente.</div>
+			</div>
+
 			<div class="admin-tabla admin-cabecera">
 				<h3>ID</h3>
 				<h3>Imagen</h3>
