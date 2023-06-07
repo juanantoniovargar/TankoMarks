@@ -63,7 +63,7 @@
 			<div class="admin-tabla" th:each="manga : ${mangas}">
 
 				<p th:text="${manga.id_manga}"></p>
-				<img class="admin-imagen" th:src="${manga.enlacefoto}" alt="Portada del manga">
+				<img class="admin-imagen" th:src="${manga.enlacefoto}" alt="Portada del manga"> <!-- @{${manga.enlacefoto}} -->
 				<p th:text="${manga.nombre}"></p>
 				<p th:text="${manga.demografia.nombre}"></p>
 				<a class="admin-tomos" th:href="@{/adminTomos/} + ${manga.id_manga}">Tomos</a>

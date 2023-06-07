@@ -387,9 +387,9 @@ public class TankomarksController {
 		    String extensionFoto = nombreFotoOriginal.substring(nombreFotoOriginal.lastIndexOf("."));
 		    String nombreFotoFinal = nombreFotoUnico + extensionFoto;
 		    
-		    Path rutaArchivo = Paths.get("src/main/resources/static/imagesDB/" + nombreFotoFinal);
+		    Path rutaArchivo = Paths.get("src/main/resources/static/imagesDB/" + nombreFotoFinal); // "../imagesDB/" + nombreFotoFinal
 		    Files.write(rutaArchivo, bytes);
-		      
+		    
 		    // Realizar otras acciones necesarias, como guardar la ruta del archivo en la base de datos
 			String ruta = "../../../imagesDB/";
 			String enlacefoto = ruta + nombreFotoFinal;
@@ -409,15 +409,19 @@ public class TankomarksController {
 		    e.printStackTrace();
 		    // Manejar la excepción en caso de error al guardar el archivo
 		    // Mostrar mensaje de error al usuario
-			return "redirect:/formulario?error";
+			return "redirect:/adminNuevo?error";
 			
 	    }
 		
 	}
 	
-	@GetMapping("/adminEditar")
-    public String adminEditar() {
+	@GetMapping("/adminEditar/{id_manga}")
+    public String adminEditar(@PathVariable("id_manga") int id_manga, Model model) {
+		
+		model.addAttribute("manga", mangaRepo.mostrarDetallesManga(id_manga));
+		
         return "formularioManga";
+        
     }
 	
 	@GetMapping("/adminEliminar/{id_manga}")
