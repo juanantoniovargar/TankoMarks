@@ -98,6 +98,10 @@ body {
     font-size: 1rem;
 }
 
+.file-form {
+    padding-top: 12px;
+}
+
 .textarea-form {
     height: 100px;
 }
@@ -112,6 +116,12 @@ body {
     margin-top: 1.5rem;
     border: 1px solid black;
     cursor: pointer;
+    font-family: cuerpo;
+}
+
+.volver-form {
+    width: 80%;
+    text-decoration: none;
 }
 
 .span-form {
@@ -126,7 +136,21 @@ body {
     text-decoration: underline;
 }
 
+@media only screen and (max-width:820px) {
+
+    .form-manga {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .volver-form {
+        width: 90%;
+    }
+
+}
+
 @media only screen and (max-width:500px) {
+    
     .formulario {
         margin: 0;
         width: auto;

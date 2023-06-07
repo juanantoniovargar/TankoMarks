@@ -1,10 +1,14 @@
 package com.tankomarks.demo.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.List;
+import java.util.UUID;
 
 //import javax.persistence.EntityManager;
-//import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +20,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.tankomarks.demo.model.Capitulo;
+import com.tankomarks.demo.model.Demografia;
 import com.tankomarks.demo.model.Manga;
 import com.tankomarks.demo.model.Usuario;
 import com.tankomarks.demo.model.Valoracion;
 import com.tankomarks.demo.repository.CapituloRepository;
+import com.tankomarks.demo.repository.DemografiaRepository;
 import com.tankomarks.demo.repository.MangaRepository;
 import com.tankomarks.demo.repository.TomoRepository;
 import com.tankomarks.demo.repository.UsuarioRepository;
@@ -45,6 +52,9 @@ public class TankomarksController {
 	
 	@Autowired
 	private CapituloRepository capituloRepo;
+	
+	@Autowired
+	private DemografiaRepository demografiaRepo;
 	
 	// @Autowired
 	// EntityManager entityManager;
@@ -363,49 +373,45 @@ public class TankomarksController {
         
     }
 	
-	/*
-	
-	<form action="/guardarImagen" method="post" enctype="multipart/form-data">
-  		<input type="file" name="imagen" accept="image/*">
-  		<input type="submit" value="Subir imagen">
-	</form>
-
-
-	@PostMapping("/guardarImagen")
-	public String guardarImagen(@RequestParam("imagen") MultipartFile archivo) {
-  		// Verificar si se ha seleccionado un archivo
-  		if (!archivo.isEmpty()) {
-    		try {
-      			// Obtener los bytes del archivo
-      			byte[] bytes = archivo.getBytes();
-      
-      			// Guardar el archivo en el sistema de archivos
-      			Path rutaArchivo = Paths.get("ruta/donde/guardar/imagen.jpg");
-      			Files.write(rutaArchivo, bytes);
-      
-      			// Realizar otras acciones necesarias, como guardar la ruta del archivo en la base de datos
-      
-      			// Redirigir o mostrar un mensaje de éxito al usuario
-      			return "redirect:/formulario?exito";
-      
-    		} catch (IOException e) {
-      			e.printStackTrace();
-      			// Manejar la excepción en caso de error al guardar el archivo
-    		}
-  		}
-  
-  		// Redirigir o mostrar un mensaje de error al usuario
-  		return "redirect:/formulario?error";
-	}
-
-	*/
-	
 	@PostMapping("/adminGuardar")
-	public String adminGuardar(Manga manga) {
+	public String adminGuardar(Manga manga, @RequestParam("foto") MultipartFile foto, @RequestParam("StringDemografia") String StringDemografia) {
 		
-		String ruta = "../../../imagesDB/";
-		
-		return "redirect:/administracion";
+		try {
+			
+		    // Obtener los bytes del archivo
+		    byte[] bytes = foto.getBytes();
+		      
+		    // Guardar el archivo en el sistema de archivos
+		    String nombreFotoUnico = UUID.randomUUID().toString();
+		    String nombreFotoOriginal = foto.getOriginalFilename();
+		    String extensionFoto = nombreFotoOriginal.substring(nombreFotoOriginal.lastIndexOf("."));
+		    String nombreFotoFinal = nombreFotoUnico + extensionFoto;
+		    
+		    Path rutaArchivo = Paths.get("src/main/resources/static/imagesDB/" + nombreFotoFinal);
+		    Files.write(rutaArchivo, bytes);
+		      
+		    // Realizar otras acciones necesarias, como guardar la ruta del archivo en la base de datos
+			String ruta = "../../../imagesDB/";
+			String enlacefoto = ruta + nombreFotoFinal;
+			manga.setEnlacefoto(enlacefoto);
+			
+			Demografia demografia = demografiaRepo.convierteDemografia(StringDemografia);
+			manga.setDemografia(demografia);
+			
+			// !!!!!!! USAR IF PARA MANGA.SETUSUARIO !!!!!!!
+			
+			mangaRepo.save(manga);
+		      
+		    // Redirigir al usuario
+			return "redirect:/administracion";
+		      
+		} catch (IOException e) {
+		    e.printStackTrace();
+		    // Manejar la excepción en caso de error al guardar el archivo
+		    // Mostrar mensaje de error al usuario
+			return "redirect:/formulario?error";
+			
+	    }
 		
 	}
 	

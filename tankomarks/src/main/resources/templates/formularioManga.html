@@ -24,9 +24,14 @@
 
 		<div class="formulario">
 
-			<form th:action="@{/adminGuardar}" method="post">
+			<form th:action="@{/adminGuardar}" th:object="${manga}" method="post" enctype="multipart/form-data">
 
 				<h2 class="titulo-form">Formulario para manga</h2>
+
+                <!-- error message -->
+				<div th:if="${param.error}">
+					<div class="msg msg-error">Archivo de imagen no válido.</div>
+				</div>
 
                 <div class="form-manga">
 				
@@ -37,7 +42,7 @@
                     
                     <div class="campo-form campo-manga">
                         <label class="label-form"> Demografía </label>
-                        <select class="desplegable-nav desplegable-form" name="demografia" th:field="*{demografia}" required>
+                        <select class="desplegable-nav desplegable-form" name="StringDemografia" required> <!-- th:field="*{demografia}" -->
                             <option value="1">Seinen</option>
                             <option value="2">Shonen</option>
                             <option value="3">Shojo</option>
@@ -54,12 +59,18 @@
 
                 <div class="campo-form campo-manga">
                     <label class="label-form"> Foto </label>
-                    <input class="input-form file-form" type="file" name="enlacefoto" th:file="*{enlacefoto}" required>
+                    <input class="input-form file-form" type="file" accept="image/*" name="foto" required> <!-- th:file="*{enlacefoto}" -->
                 </div>
-				
-				<div class="campo-boton-form">
-					<input class="boton-form" type="submit" name="login-submit" id="login-submit" value="Guardar"/>
-				</div>
+
+                <div class="form-manga">
+
+                    <a class="boton-form volver-form" th:href="@{${#httpServletRequest.getHeader('Referer')}}">Cancelar</a>
+                    
+                    <div>
+                        <input class="boton-form" type="submit" value="Guardar"/>
+                    </div>
+
+                </div>
 					
 			</form>
 

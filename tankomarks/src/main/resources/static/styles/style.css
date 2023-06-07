@@ -116,6 +116,12 @@ body {
     margin-top: 1.5rem;
     border: 1px solid black;
     cursor: pointer;
+    font-family: cuerpo;
+}
+
+.volver-form {
+    width: 80%;
+    text-decoration: none;
 }
 
 .span-form {
@@ -135,6 +141,10 @@ body {
     .form-manga {
         display: grid;
         grid-template-columns: 1fr;
+    }
+
+    .volver-form {
+        width: 90%;
     }
 
 }
