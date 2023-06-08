@@ -39,6 +39,16 @@ public interface MangaRepository extends JpaRepository<Manga, Integer> {
 	
 	@Modifying
     @Transactional
+    @Query(value="INSERT INTO manga (nombre, descripcion, enlacefoto, demografia_id_demografia) VALUES (:nombre, :descripcion, :enlacefoto, :demografia)", nativeQuery=true)
+    int guardarManga(@Param("nombre") String nombre, @Param("descripcion") String descripcion, @Param("enlacefoto") String enlacefoto, @Param("demografia") int demografia);
+	
+	@Modifying
+    @Transactional
+    @Query(value="UPDATE manga SET nombre = :nombre, descripcion = :descripcion, enlacefoto = :enlacefoto, demografia_id_demografia = :demografia WHERE id_manga = :id_manga", nativeQuery=true)
+    int actualizarManga(@Param("nombre") String nombre, @Param("descripcion") String descripcion, @Param("enlacefoto") String enlacefoto, @Param("demografia") int demografia, @Param("id_manga") int id_manga);
+	
+	@Modifying
+    @Transactional
     @Query(value="DELETE FROM manga WHERE id_manga = :id_manga", nativeQuery=true)
     int eliminarManga(@Param("id_manga") int id_manga);
 	

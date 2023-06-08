@@ -374,41 +374,66 @@ public class TankomarksController {
     }
 	
 	@PostMapping("/adminGuardar")
-	public String adminGuardar(Manga manga, @RequestParam("foto") MultipartFile foto, @RequestParam("demografia") String StringDemografia) {
+	public String adminGuardar(int id_manga, String nombre, String descripcion, int demografia, @RequestParam("foto") MultipartFile foto) {
 		
 		try {
 			
-			// Obtener los bytes del archivo
-		    byte[] bytes = foto.getBytes();
-		      
-		    // Guardar el archivo en el sistema de archivos
-		    String nombreFotoUnico = UUID.randomUUID().toString();
-		    String nombreFotoOriginal = foto.getOriginalFilename();
-		    String extensionFoto = nombreFotoOriginal.substring(nombreFotoOriginal.lastIndexOf("."));
-		    String nombreFotoFinal = nombreFotoUnico + extensionFoto;
-			    
-		    Path rutaArchivo = Paths.get("src/main/resources/static/imagesDB/" + nombreFotoFinal); // "../imagesDB/" + nombreFotoFinal
-			Files.write(rutaArchivo, bytes);
-			    
-		    // Realizar otras acciones necesarias, como guardar la ruta del archivo en la base de datos
-			String ruta = "../../../imagesDB/";
-			String enlacefoto = ruta + nombreFotoFinal;
-			manga.setEnlacefoto(enlacefoto);
+			String enlacefoto;
 			
-			Demografia demografia = demografiaRepo.convierteDemografia(StringDemografia);
-			manga.setDemografia(demografia);
+			if (foto.isEmpty()) {
+				
+				Manga aux = mangaRepo.mostrarDetallesManga(id_manga);
+				enlacefoto = aux.getEnlacefoto();
+				
+			} else {
+				
+				if (id_manga != 0) {
+					
+					Manga manga = mangaRepo.mostrarDetallesManga(id_manga);
+					String rutaImagen = "src/main/resources/static/imagesDB/" + manga.getEnlacefoto();
+					String rutaLimpia = rutaImagen.replace("../../../imagesDB/", "");
+				    Path path = Paths.get(rutaLimpia);
+				    Files.delete(path);
+				    
+				}
+				
+				byte[] bytes = foto.getBytes();
+			      
+			    String nombreFotoUnico = UUID.randomUUID().toString();
+			    String nombreFotoOriginal = foto.getOriginalFilename();
+			    String extensionFoto = nombreFotoOriginal.substring(nombreFotoOriginal.lastIndexOf("."));
+			    String nombreFotoFinal = nombreFotoUnico + extensionFoto;
+				    
+			    Path rutaArchivo = Paths.get("src/main/resources/static/imagesDB/" + nombreFotoFinal); // "../imagesDB/" + nombreFotoFinal
+				Files.write(rutaArchivo, bytes);
+				    
+				String ruta = "../../../imagesDB/";
+				enlacefoto = ruta + nombreFotoFinal;
+				//manga.setEnlacefoto(enlacefoto);
+				
+			}
+			
+			//Demografia demografia = demografiaRepo.convierteDemografia(StringDemografia);
+			//manga.setDemografia(demografia);
 			
 			// !!!!!!! USAR IF PARA MANGA.SETUSUARIO !!!!!!!
 			
-			mangaRepo.save(manga);
-		      
-		    // Redirigir al usuario
-			return "redirect:/administracion?success";
+			if (id_manga == 0) {
+				
+				mangaRepo.guardarManga(nombre, descripcion, enlacefoto, demografia);
+				return "redirect:/administracion?success";
+				
+			} else {
+				
+				mangaRepo.actualizarManga(nombre, descripcion, enlacefoto, demografia, id_manga);
+				return "redirect:/administracion?success2";
+				
+			}
 		      
 		} catch (IOException e) {
+			
 		    e.printStackTrace();
-		    // Manejar la excepción en caso de error al guardar el archivo
-		    // Mostrar mensaje de error al usuario
+		    
 			return "redirect:/adminNuevo?error";
 			
 	    }

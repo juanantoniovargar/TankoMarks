@@ -42,7 +42,7 @@
                     
                     <div class="campo-form campo-manga">
                         <label class="label-form"> Demografía </label>
-                        <select class="desplegable-nav desplegable-form" name="demografia" th:field="*{demografia}" required> <!-- th:field="*{demografia}" -->
+                        <select class="desplegable-nav desplegable-form" name="demografia" th:field="*{demografia}" required> 
                             <option value="1">Seinen</option>
                             <option value="2">Shonen</option>
                             <option value="3">Shojo</option>
@@ -59,8 +59,11 @@
 
                 <div class="campo-form campo-manga">
                     <label class="label-form"> Foto </label>
-                    <input class="input-form file-form" type="file" accept="image/*" name="foto" required> <!-- th:file="*{enlacefoto}" -->
+                    <input th:if="${manga.enlacefoto == null}" class="input-form file-form" type="file" accept="image/*" name="foto" required> <!-- th:file="*{enlacefoto}" -->
+                    <input th:unless="${manga.enlacefoto == null}"class="input-form file-form" type="file" accept="image/*" name="foto">
                 </div>
+
+                <input type="hidden" name="id_manga" th:field="*{id_manga}">
 
                 <div class="form-manga">
 
