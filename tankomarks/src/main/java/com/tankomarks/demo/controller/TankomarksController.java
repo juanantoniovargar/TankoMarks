@@ -24,12 +24,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tankomarks.demo.model.Capitulo;
-import com.tankomarks.demo.model.Demografia;
+//import com.tankomarks.demo.model.Demografia;
 import com.tankomarks.demo.model.Manga;
+import com.tankomarks.demo.model.Tomo;
 import com.tankomarks.demo.model.Usuario;
 import com.tankomarks.demo.model.Valoracion;
 import com.tankomarks.demo.repository.CapituloRepository;
-import com.tankomarks.demo.repository.DemografiaRepository;
+//import com.tankomarks.demo.repository.DemografiaRepository;
 import com.tankomarks.demo.repository.MangaRepository;
 import com.tankomarks.demo.repository.TomoRepository;
 import com.tankomarks.demo.repository.UsuarioRepository;
@@ -53,8 +54,8 @@ public class TankomarksController {
 	@Autowired
 	private CapituloRepository capituloRepo;
 	
-	@Autowired
-	private DemografiaRepository demografiaRepo;
+	// @Autowired
+	// private DemografiaRepository demografiaRepo;
 	
 	// @Autowired
 	// EntityManager entityManager;
@@ -409,14 +410,10 @@ public class TankomarksController {
 				    
 				String ruta = "../../../imagesDB/";
 				enlacefoto = ruta + nombreFotoFinal;
-				//manga.setEnlacefoto(enlacefoto);
 				
 			}
 			
-			//Demografia demografia = demografiaRepo.convierteDemografia(StringDemografia);
-			//manga.setDemografia(demografia);
-			
-			// !!!!!!! USAR IF PARA MANGA.SETUSUARIO !!!!!!!
+			// !!!!!!! USAR IF PARA MANGA.SETUSUARIO (COMPROBAR MIRANDO QUE NO SEA ROL ADMINISTRADOR) !!!!!!!
 			
 			if (id_manga == 0) {
 				
@@ -459,8 +456,8 @@ public class TankomarksController {
 	    Files.delete(path);
 		
 		mangaRepo.eliminarManga(id_manga);
-		
-		//borrar tambien tomos y capitulos
+		tomoRepo.eliminarTomoPorManga(id_manga);
+		capituloRepo.eliminarCapitulosPorManga(id_manga);
 		
         return "redirect:/administracion";
         
@@ -470,27 +467,103 @@ public class TankomarksController {
     public String adminTomos(@PathVariable("manga_id_manga") int id_manga, Model model) {
 		
 		model.addAttribute("tomos", tomoRepo.mostrarTomos(id_manga));
+		model.addAttribute("tomoManga", id_manga);
 		
         return "adminTomos";
         
     }
 	
-	@GetMapping("/adminNuevoTomo")
-    public String adminNuevoTomo() {
+	@GetMapping("/adminNuevoTomo/{manga_id_manga}")
+    public String adminNuevoTomo(Model model, @PathVariable("manga_id_manga") int id_manga) {
+		
+		model.addAttribute("tomo", new Tomo());
+		model.addAttribute("tomoManga", id_manga);
+		
         return "formularioTomo";
-    }
+    
+	}
 	
-	@GetMapping("/adminEditarTomo")
-    public String adminEditarTomo() {
+	@PostMapping("/adminGuardarTomo")
+	public String adminGuardarTomo(int id_tomo, int numero, Integer manga, @RequestParam("foto") MultipartFile foto) {
+		
+		try {
+			
+			String enlacefoto;
+			
+			if (foto.isEmpty()) {
+				
+				Tomo aux = tomoRepo.VerTomo(id_tomo);
+				enlacefoto = aux.getEnlacefoto();
+				
+			} else {
+				
+				if (id_tomo != 0) {
+					
+					Tomo tomo = tomoRepo.VerTomo(id_tomo);
+					String rutaImagen = "src/main/resources/static/imagesDB/" + tomo.getEnlacefoto();
+					String rutaLimpia = rutaImagen.replace("../../../imagesDB/", "");
+				    Path path = Paths.get(rutaLimpia);
+				    Files.delete(path);
+				    
+				}
+				
+				byte[] bytes = foto.getBytes();
+			      
+			    String nombreFotoUnico = UUID.randomUUID().toString();
+			    String nombreFotoOriginal = foto.getOriginalFilename();
+			    String extensionFoto = nombreFotoOriginal.substring(nombreFotoOriginal.lastIndexOf("."));
+			    String nombreFotoFinal = nombreFotoUnico + extensionFoto;
+				    
+			    Path rutaArchivo = Paths.get("src/main/resources/static/imagesDB/" + nombreFotoFinal); // "../imagesDB/" + nombreFotoFinal
+				Files.write(rutaArchivo, bytes);
+				    
+				String ruta = "../../../imagesDB/";
+				enlacefoto = ruta + nombreFotoFinal;
+				
+			}
+			
+			if (id_tomo == 0) {
+				
+				tomoRepo.guardarTomo(numero, enlacefoto, manga);
+				return "redirect:/adminTomos"; // /" + manga + "?success
+				
+			} else {
+				
+				tomoRepo.actualizarTomo(numero, enlacefoto, id_tomo);
+				return "redirect:/adminTomos"; // /" + manga + "?success2
+				
+			}
+		      
+		} catch (IOException e) {
+			
+		    e.printStackTrace();
+		    
+			return "redirect:/adminNuevoTomo?error";
+			
+	    }
+		
+	}
+	
+	@GetMapping("/adminEditarTomo/{id_tomo}")
+    public String adminEditarTomo(@PathVariable("id_tomo") int id_tomo, Model model) {
+		
+		model.addAttribute("tomo", tomoRepo.VerTomo(id_tomo));
+		
         return "formularioTomo";
-    }
+    
+	}
 	
 	@GetMapping("/adminEliminarTomo/{id_tomo}")
-    public String adminEliminarTomo(@PathVariable("id_tomo") int id_tomo, Model model, HttpServletRequest request) {
+    public String adminEliminarTomo(@PathVariable("id_tomo") int id_tomo, Model model, HttpServletRequest request) throws IOException {
+		
+		Tomo tomo = tomoRepo.VerTomo(id_tomo);
+		String rutaImagen = "src/main/resources/static/imagesDB/" + tomo.getEnlacefoto();
+		String rutaLimpia = rutaImagen.replace("../../../imagesDB/", "");
+	    Path path = Paths.get(rutaLimpia);
+	    Files.delete(path);
 		
 		tomoRepo.eliminarTomo(id_tomo);
-		
-		//borrar tambien capitulos
+		capituloRepo.eliminarCapitulosPorTomo(id_tomo);
 		
 		String referer = request.getHeader("Referer");
 		return "redirect:" + referer;
@@ -501,6 +574,7 @@ public class TankomarksController {
     public String adminCapitulos(@PathVariable("tomo_id_tomo") int id_tomo, Model model) {
 		
 		model.addAttribute("capitulos", capituloRepo.mostrarCapitulos(id_tomo));
+		model.addAttribute("capituloVolver", capituloRepo.mostrarImagenTomoCapitulos(id_tomo));
 		
         return "adminCapitulos";
         

@@ -24,7 +24,7 @@
 			<img class="imagen-nav" src="../static/images/logo.png" th:src="@{/images/logo.png}" alt="Logo de Tankomarks">
 			
 			<a class="link-nav" th:href="@{/administracion}">Inicio</a>
-			<a class="add-admin" th:href="@{/adminNuevoTomo}">Añadir</a>
+			<a class="add-admin" th:href="@{/adminNuevoTomo/} + ${tomoManga}">Añadir</a>
 			
 			<form class="busqueda-form" th:action="@{/administracion}" method="get">
 				<select class="desplegable-nav" name="demografia">
@@ -48,6 +48,16 @@
 		</nav>
 
 
+		<!-- success message -->
+		<div th:if="${param.success}">
+			<div class="msg msg-success msg-admin">Tomo creado correctamente.</div>
+		</div>
+
+		<!-- success2 message -->
+		<div th:if="${param.success2}">
+			<div class="msg msg-success msg-admin">Tomo editado correctamente.</div>
+		</div>
+
         <div class="admin-tabla-tomo admin-cabecera">
             <h3>ID</h3>
             <h3>Imagen</h3>
@@ -67,6 +77,10 @@
             <a class="admin-edit" th:href="@{/adminEditarTomo/} + ${tomo.id_tomo}"><i class="fa-solid fa-pen-to-square"></i></a>
             <a class="admin-delete" th:onclick="adminEliminarTomo([[${tomo.id_tomo}]])"><i class="fa-solid fa-trash"></i></a> <!-- th:href="@{/adminEliminar/} + ${manga.id_manga}" -->
 
+        </div>
+
+		<div class="volver-caps">
+            <a class="link-volver" th:href="@{/administracion}">Volver</a>
         </div>
 
 

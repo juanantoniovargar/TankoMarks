@@ -26,6 +26,16 @@ public interface CapituloRepository extends JpaRepository<Capitulo, Integer> {
     @Transactional
     @Query(value="DELETE FROM capitulo WHERE id_capitulo = :id_capitulo", nativeQuery=true)
     int eliminarCapitulo(@Param("id_capitulo") int id_capitulo);
+	
+	@Modifying
+    @Transactional
+    @Query(value="DELETE FROM capitulo WHERE tomo_id_tomo = :id_tomo", nativeQuery=true)
+    int eliminarCapitulosPorTomo(@Param("id_tomo") int id_tomo);
+	
+	@Modifying
+    @Transactional
+    @Query(value="DELETE FROM capitulo WHERE tomo_id_tomo IN (SELECT id_tomo FROM tomo WHERE manga_id_manga = :id_manga)", nativeQuery=true)
+    int eliminarCapitulosPorManga(@Param("id_manga") int id_manga);
 
 	@Query(value="SELECT c.* "
 			+ "FROM capitulo c "

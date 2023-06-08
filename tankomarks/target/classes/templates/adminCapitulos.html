@@ -48,6 +48,16 @@
 		</nav>
 
 
+		<!-- success message -->
+		<div th:if="${param.success}">
+			<div class="msg msg-success msg-admin">Capítulo creado correctamente.</div>
+		</div>
+
+		<!-- success2 message -->
+		<div th:if="${param.success2}">
+			<div class="msg msg-success msg-admin">Capítulo editado correctamente.</div>
+		</div>
+
         <div class="admin-tabla-cap admin-cabecera">
             <h3>ID</h3>
             <h3>Nombre</h3>
@@ -63,6 +73,10 @@
             <a class="admin-edit" th:href="@{/adminEditarCapitulo/} + ${capitulo.id_capitulo}"><i class="fa-solid fa-pen-to-square"></i></a>
             <a class="admin-delete" th:onclick="adminEliminarCapitulo([[${capitulo.id_capitulo}]])"><i class="fa-solid fa-trash"></i></a> <!-- th:href="@{/adminEliminar/} + ${manga.id_manga}" -->
 
+        </div>
+
+		<div class="volver-caps" th:each="capitulo : ${capituloVolver}">
+            <a class="link-volver" th:href="@{/adminTomos/} + ${capitulo.tomo.manga.id_manga}">Volver</a>
         </div>
 
 
