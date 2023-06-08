@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-06-2023 a las 08:24:22
+-- Tiempo de generación: 07-06-2023 a las 15:08:31
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -581,7 +581,8 @@ INSERT INTO `manga` (`id_manga`, `descripcion`, `enlacefoto`, `nombre`, `demogra
 (10, 'Narra la historia de Miki Koishikawa, una estudiante de 16 años, cuyos padres realizan un intercambio de parejas con la familia Matsura, que tiene un hijo de su edad, Yuu. Los padres deciden vivir bajo el mismo techo con sus hijos. Miki, que demuestra no estar conforme al principio, se enamora poco a poco del hijo de los Matsura. Ambos se corresponderán, pero a lo largo de la serie sortean muchas dificultades y conocen a más personas que complicarán la relación.', '../../../imagesDB/m1.jpg', 'Marmalade Boy', 3, NULL),
 (11, 'Se centra en un Japón alterno del periodo Edo, donde una desconocida enfermedad elimina a la mayoría de la población masculina.\r\n\r\nLa escasez de varones provocan que estos sean cuidadosamente protegidos. Con todo lo que conlleva esto, la sociedad adopta un estado matriarcal en la que Ooku se convierte en un harén de hombres al servicio del ahora shogun femenino.', '../../../imagesDB/o1.jpg', 'Ooku: The Inner Chambers', 4, NULL),
 (12, 'Imagina que caminas por un oscuro callejón del barrio chino de Los Ángeles. Encuentras una pintoresca tienda de mascotas regentada por el dueño de una tienda de voz suave, el Conde D. Este misterioso hombre te embauca para que entres en su tienda y compres un raro animal de apariencia humanoide. Incapaz de resistirse a sus esfuerzos, sales de la tienda con tu nueva mascota y un contrato de tres puntos con consecuencias nefastas si se rompe.', '../../../imagesDB/p1.jpg', 'Petshop of Horrors', 4, NULL),
-(13, 'Nana Ōsaki es una cantante punk cuyo único deseo es poder debutar con su grupo y superar a la banda Trapnest, en la cual su ex-novio, Ren Honjō, se desempeña como guitarrista. Nana y Ren fueron pareja y compañeros en la misma banda en el pasado, Black Stones (también conocidos como Blast para abreviar), pero se separaron cuando a Ren le ofrecieron la oportunidad de reemplazar a un integrante de la popular banda Trapnest, por lo que abandonó a su banda para dirigirse a Tokio. Nana, tras darse cuenta de que si iba con él a Tokio vería sus oportunidades de hacerse una cantante popular notablemente disminuidas, decide que una vida en la que simplemente sea considerada la novia de Ren, quedando profesionalmente a su sombra y cumpliendo un papel más de ama de casa que de mujer independiente, no es la vida que ella desea. Por lo que, finalmente, decide quedarse con los suyos.', '../../../imagesDB/n1.jpg', 'Nana', 3, NULL);
+(13, 'Nana Ōsaki es una cantante punk cuyo único deseo es poder debutar con su grupo y superar a la banda Trapnest, en la cual su ex-novio, Ren Honjō, se desempeña como guitarrista. Nana y Ren fueron pareja y compañeros en la misma banda en el pasado, Black Stones (también conocidos como Blast para abreviar), pero se separaron cuando a Ren le ofrecieron la oportunidad de reemplazar a un integrante de la popular banda Trapnest, por lo que abandonó a su banda para dirigirse a Tokio. Nana, tras darse cuenta de que si iba con él a Tokio vería sus oportunidades de hacerse una cantante popular notablemente disminuidas, decide que una vida en la que simplemente sea considerada la novia de Ren, quedando profesionalmente a su sombra y cumpliendo un papel más de ama de casa que de mujer independiente, no es la vida que ella desea. Por lo que, finalmente, decide quedarse con los suyos.', '../../../imagesDB/n1.jpg', 'Nana', 3, NULL),
+(27, 'pruebas', '../../../imagesDB/e629dacb-d4c4-4956-8ec9-511dcb927094.jpg', 'pruebas', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -854,7 +855,7 @@ ALTER TABLE `demografia`
 -- AUTO_INCREMENT de la tabla `manga`
 --
 ALTER TABLE `manga`
-  MODIFY `id_manga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_manga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
