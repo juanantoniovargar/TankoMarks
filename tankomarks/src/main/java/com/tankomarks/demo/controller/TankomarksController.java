@@ -575,7 +575,7 @@ public class TankomarksController {
     public String adminCapitulos(@PathVariable("tomo_id_tomo") int id_tomo, Model model) {
 		
 		model.addAttribute("capitulos", capituloRepo.mostrarCapitulos(id_tomo));
-		model.addAttribute("capituloVolver", capituloRepo.mostrarImagenTomoCapitulos(id_tomo));
+		model.addAttribute("volver", tomoRepo.VerTomo(id_tomo));
 		
         return "adminCapitulos";
         
