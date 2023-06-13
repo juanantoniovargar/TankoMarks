@@ -22,6 +22,9 @@ public interface TomoRepository extends JpaRepository<Tomo, Integer> {
 	@Query(value="SELECT * FROM tomo WHERE id_tomo = :id_tomo", nativeQuery=true)
 	Tomo VerTomo(@Param("id_tomo") int id_tomo);
 	
+	@Query(value="SELECT manga_id_manga FROM tomo WHERE id_tomo = :id_tomo LIMIT 1", nativeQuery=true)
+	int getMangaPorId_tomo(@Param("id_tomo") int id_tomo);
+	
 	@Modifying
     @Transactional
     @Query(value="INSERT INTO tomo (numero, enlacefoto, manga_id_manga) VALUES (:numero, :enlacefoto, :manga)", nativeQuery=true)

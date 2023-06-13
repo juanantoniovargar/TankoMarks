@@ -525,12 +525,13 @@ public class TankomarksController {
 			if (id_tomo == 0) {
 				
 				tomoRepo.guardarTomo(numero, enlacefoto, manga);
-				return "redirect:/adminTomos"; // /" + manga + "?success
+				return "redirect:/adminTomos/" + manga + "?success"; // /" + manga + "?success
 				
 			} else {
 				
 				tomoRepo.actualizarTomo(numero, enlacefoto, id_tomo);
-				return "redirect:/adminTomos"; // /" + manga + "?success2
+				int id_manga = tomoRepo.getMangaPorId_tomo(id_tomo);
+				return "redirect:/adminTomos/" + id_manga + "?success2"; // /" + manga + "?success2
 				
 			}
 		      

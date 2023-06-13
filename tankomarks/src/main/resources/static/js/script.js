@@ -41,6 +41,9 @@ function adminEliminar(id_manga) {
 
 // confirmacion eliminar tomo administracion
 function adminEliminarTomo(id_tomo) {
+
+    let currentPageURL = window.location.href;
+
     swal({
         title: "¿Estás seguro?",
         text: "Una vez eliminado, no podrás recuperar el tomo.",
@@ -60,7 +63,7 @@ function adminEliminarTomo(id_tomo) {
                 icon: "success",
             }).then((ok) => {
                 if (ok) {
-                    location.href = document.referrer; // "/adminTomos/" + id_manga
+                    location.href = currentPageURL; // "/adminTomos/" + id_manga
                 }
             });
         } else {
