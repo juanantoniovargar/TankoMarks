@@ -575,20 +575,48 @@ public class TankomarksController {
     public String adminCapitulos(@PathVariable("tomo_id_tomo") int id_tomo, Model model) {
 		
 		model.addAttribute("capitulos", capituloRepo.mostrarCapitulos(id_tomo));
+		model.addAttribute("capituloTomo", id_tomo);
 		model.addAttribute("volver", tomoRepo.VerTomo(id_tomo));
 		
         return "adminCapitulos";
         
     }
 	
-	@GetMapping("/adminNuevoCapitulo")
-    public String adminNuevoCapitulo() {
+	@GetMapping("/adminNuevoCapitulo/{tomo_id_tomo}")
+    public String adminNuevoCapitulo(@PathVariable("tomo_id_tomo") int id_tomo, Model model) {
+		
+		model.addAttribute("capitulo", new Capitulo());
+		model.addAttribute("capituloTomo", id_tomo);
+		
         return "formularioCapitulo";
+        
     }
 	
-	@GetMapping("/adminEditarCapitulo")
-    public String adminEditarCapitulo() {
+	@PostMapping("/adminGuardarCapitulo")
+	public String adminGuardarCapitulo(int id_capitulo, String nombre, Integer tomo) {
+			
+			if (id_capitulo == 0) {
+				
+				capituloRepo.guardarCapitulo(nombre, tomo);
+				return "redirect:/adminCapitulos/" + tomo + "?success"; 
+				
+			} else {
+				
+				capituloRepo.actualizarCapitulo(nombre, id_capitulo);
+				int id_tomo = capituloRepo.getTomoPorId_capitulo(id_capitulo);
+				return "redirect:/adminCapitulos/" + id_tomo + "?success2";
+				
+			}
+			
+	}
+	
+	@GetMapping("/adminEditarCapitulo/{id_capitulo}")
+    public String adminEditarCapitulo(@PathVariable("id_capitulo") int id_capitulo, Model model) {
+		
+		model.addAttribute("capitulo", capituloRepo.mostrarDetallesCapitulo(id_capitulo));
+		
         return "formularioCapitulo";
+        
     }
 	
 	@GetMapping("/adminEliminarCapitulo/{id_capitulo}")

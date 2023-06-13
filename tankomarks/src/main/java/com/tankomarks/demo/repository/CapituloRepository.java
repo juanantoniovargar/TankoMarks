@@ -22,6 +22,19 @@ public interface CapituloRepository extends JpaRepository<Capitulo, Integer> {
 	@Query(value="SELECT * FROM capitulo WHERE id_capitulo = :id_capitulo", nativeQuery=true)
 	Capitulo mostrarDetallesCapitulo(@Param("id_capitulo") int id_capitulo);
 	
+	@Query(value="SELECT tomo_id_tomo FROM capitulo WHERE id_capitulo = :id_capitulo LIMIT 1", nativeQuery=true)
+	int getTomoPorId_capitulo(@Param("id_capitulo") int id_capitulo);
+	
+	@Modifying
+    @Transactional
+    @Query(value="INSERT INTO capitulo (nombre, tomo_id_tomo) VALUES (:nombre, :tomo)", nativeQuery=true)
+    int guardarCapitulo(@Param("nombre") String nombre, @Param("tomo") int tomo);
+	
+	@Modifying
+    @Transactional
+    @Query(value="UPDATE capitulo SET nombre = :nombre WHERE id_capitulo = :id_capitulo", nativeQuery=true)
+    int actualizarCapitulo(@Param("nombre") String nombre, @Param("id_capitulo") int id_capitulo);
+	
 	@Modifying
     @Transactional
     @Query(value="DELETE FROM capitulo WHERE id_capitulo = :id_capitulo", nativeQuery=true)
