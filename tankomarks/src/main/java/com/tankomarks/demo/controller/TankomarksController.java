@@ -82,7 +82,7 @@ public class TankomarksController {
 		
 		if (busqueda != null && demografia.equals("0")) {
 			
-			List<Manga> manga = mangaRepo.buscarMangas(busqueda);
+			List<Manga> manga = mangaRepo.buscarMangasAdmin(busqueda);
 			model.addAttribute("mangas", manga);
 			
 			int size = manga.size();
@@ -90,7 +90,7 @@ public class TankomarksController {
 			
 		} else if (busqueda != null && !(demografia.equals("0"))) {
 			
-			List<Manga> manga = mangaRepo.buscarMangasFiltrados(busqueda, demografia);
+			List<Manga> manga = mangaRepo.buscarMangasFiltradosAdmin(busqueda, demografia);
 			model.addAttribute("mangas", manga);
 			
 			int size = manga.size();
@@ -107,9 +107,12 @@ public class TankomarksController {
 	@GetMapping("/")
 	public String home(Model model, Principal principal, String busqueda, String demografia) {
 		
+		String email = principal.getName();
+		int id_usuario = usuarioRepo.getId_usuario(email);
+		
 		if (busqueda != null && demografia.equals("0")) {
 			
-			List<Manga> manga = mangaRepo.buscarMangas(busqueda);
+			List<Manga> manga = mangaRepo.buscarMangas(busqueda, id_usuario);
 			model.addAttribute("mangas", manga);
 			
 			int size = manga.size();
@@ -119,7 +122,7 @@ public class TankomarksController {
 			
 		} else if (busqueda != null && !(demografia.equals("0"))) {
 			
-			List<Manga> manga = mangaRepo.buscarMangasFiltrados(busqueda, demografia);
+			List<Manga> manga = mangaRepo.buscarMangasFiltrados(busqueda, demografia, id_usuario);
 			model.addAttribute("mangas", manga);
 			
 			int size = manga.size();
@@ -129,8 +132,6 @@ public class TankomarksController {
 			
 		} else {
 			
-			String email = principal.getName();
-			int id_usuario = usuarioRepo.getId_usuario(email);
 			model.addAttribute("mangasLeyendo", mangaRepo.mostrarMangasLeyendo(id_usuario));
 			model.addAttribute("mangasLeido", mangaRepo.mostrarMangasLeido(id_usuario));
 			return "index";
@@ -351,8 +352,15 @@ public class TankomarksController {
 	}
 	
 	@GetMapping("/mangasPropios")
-    public String mangasPropios() {
-        return "";
+    public String mangasPropios(Principal principal, Model model) {
+		
+		String email = principal.getName();
+		int id_usuario = usuarioRepo.getId_usuario(email);
+		
+		model.addAttribute("mangas", mangaRepo.mostrarMangasPropios(id_usuario));
+		
+        return "administracion";
+        
     }
 	
 	@GetMapping("/leyendo")
@@ -375,7 +383,7 @@ public class TankomarksController {
     }
 	
 	@PostMapping("/adminGuardar")
-	public String adminGuardar(int id_manga, String nombre, String descripcion, int demografia, @RequestParam("foto") MultipartFile foto) {
+	public String adminGuardar(int id_manga, String nombre, String descripcion, int demografia, @RequestParam("foto") MultipartFile foto, Principal principal) {
 		
 		try {
 			
@@ -415,17 +423,41 @@ public class TankomarksController {
 			
 			// !!!!!!! USAR IF PARA MANGA.SETUSUARIO (COMPROBAR MIRANDO QUE NO SEA ROL ADMINISTRADOR) !!!!!!!
 			
-			if (id_manga == 0) {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
 				
-				mangaRepo.guardarManga(nombre, descripcion, enlacefoto, demografia);
-				return "redirect:/administracion?success";
+				if (id_manga == 0) {
+					
+					mangaRepo.guardarManga(nombre, descripcion, enlacefoto, demografia);
+					return "redirect:/administracion?success";
+					
+				} else {
+					
+					mangaRepo.actualizarManga(nombre, descripcion, enlacefoto, demografia, id_manga);
+					return "redirect:/administracion?success2";
+					
+				}
 				
 			} else {
 				
-				mangaRepo.actualizarManga(nombre, descripcion, enlacefoto, demografia, id_manga);
-				return "redirect:/administracion?success2";
+				String email = principal.getName();
+				int id_usuario = usuarioRepo.getId_usuario(email);
+				
+				if (id_manga == 0) {
+					
+					mangaRepo.guardarMangaPropio(nombre, descripcion, enlacefoto, demografia, id_usuario);
+					return "redirect:/mangasPropios?success";
+					
+				} else {
+					
+					mangaRepo.actualizarMangaPropio(nombre, descripcion, enlacefoto, demografia, id_manga, id_usuario);
+					return "redirect:/mangasPropios?success2";
+					
+				}
 				
 			}
+			
+			
 		      
 		} catch (IOException e) {
 			
@@ -456,8 +488,8 @@ public class TankomarksController {
 	    Files.delete(path);
 		
 		mangaRepo.eliminarManga(id_manga);
-		tomoRepo.eliminarTomoPorManga(id_manga);
-		capituloRepo.eliminarCapitulosPorManga(id_manga);
+		//tomoRepo.eliminarTomoPorManga(id_manga);
+		//capituloRepo.eliminarCapitulosPorManga(id_manga);
 		
         return "redirect:/administracion";
         
@@ -468,6 +500,21 @@ public class TankomarksController {
 		
 		model.addAttribute("tomos", tomoRepo.mostrarTomos(id_manga));
 		model.addAttribute("tomoManga", id_manga);
+		
+		boolean check;
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+			
+			check = true;
+			
+		} else {
+			
+			check = false;
+			
+		}
+		
+		model.addAttribute("check", check);
 		
         return "adminTomos";
         
@@ -564,7 +611,7 @@ public class TankomarksController {
 	    Files.delete(path);
 		
 		tomoRepo.eliminarTomo(id_tomo);
-		capituloRepo.eliminarCapitulosPorTomo(id_tomo);
+		//capituloRepo.eliminarCapitulosPorTomo(id_tomo);
 		
 		String referer = request.getHeader("Referer");
 		return "redirect:" + referer;
@@ -577,6 +624,21 @@ public class TankomarksController {
 		model.addAttribute("capitulos", capituloRepo.mostrarCapitulos(id_tomo));
 		model.addAttribute("capituloTomo", id_tomo);
 		model.addAttribute("volver", tomoRepo.VerTomo(id_tomo));
+		
+		boolean check;
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+			
+			check = true;
+			
+		} else {
+			
+			check = false;
+			
+		}
+		
+		model.addAttribute("check", check);
 		
         return "adminCapitulos";
         

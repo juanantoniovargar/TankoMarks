@@ -52,8 +52,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/registro").hasRole("ANONYMOUS")
 				.antMatchers("/", "/favoritos", "/perfil", "/leyendo", "/leidos").hasAnyAuthority("USER")
 				.regexMatchers("/detalles/\\d+", "/tomos/\\d+", "/capitulos/\\d+", "/detallesCapitulo/\\d+").hasAnyAuthority("USER")
-				.antMatchers("/administracion", "/adminNuevo", "/adminNuevoTomo", "/adminNuevoCapitulo").hasAnyAuthority("ADMIN")
-				.regexMatchers("/adminEditar/\\d+", "/adminEditarTomo/\\d+", "/adminEditarCapitulo/\\d+", "/adminEliminar/\\d+", "/adminEliminarTomo/\\d+", "/adminEliminarCapitulo/\\d+").hasAnyAuthority("ADMIN")
+				.antMatchers("/administracion").hasAnyAuthority("ADMIN") //, "/adminNuevo"
+				//.regexMatchers("/adminNuevoTomo/\\d+", "/adminNuevoCapitulo/\\d+", "/adminEditar/\\d+", "/adminEditarTomo/\\d+", "/adminEditarCapitulo/\\d+", "/adminEliminar/\\d+", "/adminEliminarTomo/\\d+", "/adminEliminarCapitulo/\\d+").hasAnyAuthority("ADMIN")
 				.anyRequest().authenticated()
 				.and()
 				.formLogin()

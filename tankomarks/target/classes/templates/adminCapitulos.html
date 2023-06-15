@@ -20,6 +20,8 @@
 
 	<div class="container">
 
+		<th:block th:if="${check}">
+
 		<nav>
 			<img class="imagen-nav" src="../static/images/logo.png" th:src="@{/images/logo.png}" alt="Logo de Tankomarks">
 			
@@ -47,6 +49,43 @@
 			</div>
 		</nav>
 
+		</th:block>
+
+		<th:block th:unless="${check}">
+
+		<nav>
+			<img class="imagen-nav" src="../static/images/logo.png" th:src="@{/images/logo.png}" alt="Logo de Tankomarks">
+			
+			<a class="link-nav" th:href="@{/}">Inicio</a>
+			<a class="add-admin" th:href="@{/adminNuevoCapitulo/} + ${capituloTomo}">Añadir</a>
+			
+			<form class="busqueda-form" th:action="@{/}" method="get">
+				<select class="desplegable-nav" name="demografia">
+					<option value="0" selected>Todos</option>
+					<option value="1">Seinen</option>
+					<option value="2">Shonen</option>
+					<option value="3">Shojo</option>
+					<option value="4">Josei</option>
+				</select>
+				<input class="busqueda" type="text" name="busqueda" placeholder="Buscar..."> 
+				<button class="busqueda-submit" type="submit"> <i class="lupa fa-solid fa-magnifying-glass"></i> </button>
+			</form>
+
+			<a class="user-nav" th:href="@{/perfil}">
+				<i class="fa-solid fa-circle-user"></i>
+			</a>
+
+			<a class="logout-nav" th:href="@{/logout}">
+				<i class="fa-solid fa-arrow-right-from-bracket"></i>
+			</a>
+
+			<div class="toggle">
+				<i class="fa-solid fa-bars"></i>
+			</div>
+		</nav>
+
+		</th:block>
+
 
 		<!-- success message -->
 		<div th:if="${param.success}">
@@ -57,6 +96,8 @@
 		<div th:if="${param.success2}">
 			<div class="msg msg-success msg-admin">Capítulo editado correctamente.</div>
 		</div>
+
+		<h1 style="text-align: center; margin-top: 3rem;" th:unless="${check}">¡Añade tu propio capítulo!</h1>
 
         <div class="admin-tabla-cap admin-cabecera">
             <h3>ID</h3>

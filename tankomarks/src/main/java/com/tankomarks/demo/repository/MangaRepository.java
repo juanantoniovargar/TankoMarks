@@ -17,10 +17,19 @@ public interface MangaRepository extends JpaRepository<Manga, Integer> {
 	List<Manga> mostrarMangas();
 	
 	@Query(value="SELECT * FROM manga WHERE nombre LIKE %:busqueda% AND usuario_id_usuario IS NULL", nativeQuery=true)
-	List<Manga> buscarMangas(@Param("busqueda") String busqueda);
+	List<Manga> buscarMangasAdmin(@Param("busqueda") String busqueda);
 
 	@Query(value="SELECT * FROM manga WHERE nombre LIKE %:busqueda% AND usuario_id_usuario IS NULL AND demografia_id_demografia = :demografia", nativeQuery=true)
-	List<Manga> buscarMangasFiltrados(@Param("busqueda") String busqueda, @Param("demografia") String demografia);
+	List<Manga> buscarMangasFiltradosAdmin(@Param("busqueda") String busqueda, @Param("demografia") String demografia);
+	
+	@Query(value="SELECT * FROM manga WHERE nombre LIKE %:busqueda% AND (usuario_id_usuario IS NULL OR usuario_id_usuario = :id_usuario)", nativeQuery=true)
+	List<Manga> buscarMangas(@Param("busqueda") String busqueda, @Param("id_usuario") int id_usuario);
+
+	@Query(value="SELECT * FROM manga WHERE nombre LIKE %:busqueda% AND (usuario_id_usuario IS NULL OR usuario_id_usuario = :id_usuario) AND demografia_id_demografia = :demografia", nativeQuery=true)
+	List<Manga> buscarMangasFiltrados(@Param("busqueda") String busqueda, @Param("demografia") String demografia, @Param("id_usuario") int id_usuario);
+	
+	@Query(value="SELECT * FROM manga WHERE usuario_id_usuario = :id_usuario", nativeQuery=true)
+	List<Manga> mostrarMangasPropios(@Param("id_usuario") int id_usuario);
 	
 	@Query(value="SELECT m.* "
 			+ "FROM manga m "
@@ -46,6 +55,16 @@ public interface MangaRepository extends JpaRepository<Manga, Integer> {
     @Transactional
     @Query(value="UPDATE manga SET nombre = :nombre, descripcion = :descripcion, enlacefoto = :enlacefoto, demografia_id_demografia = :demografia WHERE id_manga = :id_manga", nativeQuery=true)
     int actualizarManga(@Param("nombre") String nombre, @Param("descripcion") String descripcion, @Param("enlacefoto") String enlacefoto, @Param("demografia") int demografia, @Param("id_manga") int id_manga);
+	
+	@Modifying
+    @Transactional
+    @Query(value="INSERT INTO manga (nombre, descripcion, enlacefoto, demografia_id_demografia, usuario_id_usuario) VALUES (:nombre, :descripcion, :enlacefoto, :demografia, :id_usuario)", nativeQuery=true)
+    int guardarMangaPropio(@Param("nombre") String nombre, @Param("descripcion") String descripcion, @Param("enlacefoto") String enlacefoto, @Param("demografia") int demografia, @Param("id_usuario") int id_usuario);
+	
+	@Modifying
+    @Transactional
+    @Query(value="UPDATE manga SET nombre = :nombre, descripcion = :descripcion, enlacefoto = :enlacefoto, demografia_id_demografia = :demografia, usuario_id_usuario = :id_usuario WHERE id_manga = :id_manga", nativeQuery=true)
+    int actualizarMangaPropio(@Param("nombre") String nombre, @Param("descripcion") String descripcion, @Param("enlacefoto") String enlacefoto, @Param("demografia") int demografia, @Param("id_manga") int id_manga, @Param("id_usuario") int id_usuario);
 	
 	@Modifying
     @Transactional

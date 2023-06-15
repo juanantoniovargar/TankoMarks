@@ -11,6 +11,9 @@ $(".boton-perfil").click(function(){
 
 // confirmacion eliminar manga administracion
 function adminEliminar(id_manga) {
+
+    let currentPageURL = window.location.href;
+
     swal({
         title: "¿Estás seguro?",
         text: "Una vez eliminado, no podrás recuperar el manga.",
@@ -30,7 +33,7 @@ function adminEliminar(id_manga) {
                 icon: "success",
             }).then((ok) => {
                 if (ok) {
-                    location.href="/administracion";
+                    location.href = currentPageURL;
                 }
             });
         } else {
