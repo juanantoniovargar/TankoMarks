@@ -67,7 +67,8 @@
 
                 <div class="form-manga">
 
-                    <a class="boton-form volver-form" th:href="@{/administracion}">Cancelar</a>
+                    <a th:if="${check}" class="boton-form volver-form" th:href="@{/administracion}">Cancelar</a>
+                    <a th:unless="${check}" class="boton-form volver-form" th:href="@{/mangasPropios}">Cancelar</a>
                     
                     <div>
                         <input class="boton-form" type="submit" value="Guardar"/>

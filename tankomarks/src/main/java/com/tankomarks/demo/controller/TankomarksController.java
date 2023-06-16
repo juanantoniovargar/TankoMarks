@@ -363,20 +363,25 @@ public class TankomarksController {
         
     }
 	
-	@GetMapping("/leyendo")
-    public String leyendo() {
-        return "";
-    }
-	
-	@GetMapping("/leidos")
-    public String leidos() {
-        return "";
-    }
-	
 	@GetMapping("/adminNuevo")
     public String adminNuevo(Model model) {
 		
 		model.addAttribute("manga", new Manga());
+		
+		boolean check;
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+			
+			check = true;
+			
+		} else {
+			
+			check = false;
+			
+		}
+		
+		model.addAttribute("check", check);
 		
         return "formularioManga";
         
@@ -473,6 +478,21 @@ public class TankomarksController {
     public String adminEditar(@PathVariable("id_manga") int id_manga, Model model) {
 		
 		model.addAttribute("manga", mangaRepo.mostrarDetallesManga(id_manga));
+		
+		boolean check;
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+			
+			check = true;
+			
+		} else {
+			
+			check = false;
+			
+		}
+		
+		model.addAttribute("check", check);
 		
         return "formularioManga";
         
@@ -689,6 +709,30 @@ public class TankomarksController {
 		String referer = request.getHeader("Referer");
 		return "redirect:" + referer;
 		
+    }
+	
+	@GetMapping("/leyendo")
+    public String leyendo(Model model, Principal principal) {
+		
+		String email = principal.getName();
+		int id_usuario = usuarioRepo.getId_usuario(email);
+		
+		model.addAttribute("mangas", mangaRepo.mostrarTodosMangasLeyendo(id_usuario));
+		
+        return "leyendo";
+    
+	}
+	
+	@GetMapping("/leidos")
+    public String leidos(Model model, Principal principal) {
+		
+		String email = principal.getName();
+		int id_usuario = usuarioRepo.getId_usuario(email);
+		
+		model.addAttribute("mangas", mangaRepo.mostrarTodosMangasLeido(id_usuario));
+		
+        return "leidos";
+        
     }
 	
 	@GetMapping("/404")
