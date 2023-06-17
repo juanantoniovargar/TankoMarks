@@ -1083,3 +1083,48 @@ footer {
     }
 
 }
+
+/* drag and drop */
+
+.cuerpo-padre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 3rem;
+}
+
+.zona {
+    display: inline-grid;
+    grid-template-columns: 290px 290px 290px;
+    margin: auto;
+    background-color: #1E1E1E;
+    border-radius: 30px;
+}
+
+.zonaLeido {
+    display: inline-grid;
+    grid-template-columns: 290px 290px 290px 290px;
+    margin: auto;
+    background-color: #1E1E1E;
+    border-radius: 30px;
+}
+
+.zonaParaSoltar {
+    height: 224px;
+    border: 1px solid white;
+    margin: 4rem;
+}
+
+@media only screen and (max-width:875px) {
+
+    .zona {
+        grid-template-columns: 200px 200px 200px;
+    }
+    
+
+    .zonaParaSoltar {
+        margin: 2rem;
+    }
+
+}

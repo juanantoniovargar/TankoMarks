@@ -14,6 +14,7 @@
 	<script defer type="text/javascript" src="../static/js/nav.js" th:src="@{/js/nav.js}"></script>
 	<script defer type="text/javascript" src="../static/js/validaciones.js" th:src="@{/js/validaciones.js}"></script>
 	<script defer type="text/javascript" src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+	<script defer type="text/javascript" src="../static/js/draganddrop.js" th:src="@{/js/draganddrop.js}"></script>
 </head>
 
 <body>
@@ -50,11 +51,25 @@
 			</div>
 		</nav>
 
+
+		<th:block th:unless="${mangas.isEmpty()}">
+
+			<div class="cuerpo-padre">
+				<h2>¡Arrastra aquí los mangas que quieras que te aparezcan!</h2>
+				<div class="zona">
+					<div class="zonaParaSoltar" id="zona1"></div>
+					<div class="zonaParaSoltar" id="zona2"></div>
+					<div class="zonaParaSoltar" id="zona3"></div>
+				</div>
+			</div>
+
+		</th:block>
+
 		<div class="total-busqueda">
 
 			<th:block th:each="manga : ${mangas}">
 
-				<a class="busqueda-imagen enlace-busqueda" th:href="@{/detalles/} + ${manga.id_manga}">
+				<a class="busqueda-imagen enlace-busqueda" th:href="@{/detalles/} + ${manga.id_manga}" draggable="false">
 					<img class="cuerpo-imagen" th:src="${manga.enlacefoto}" alt="Portada del manga"/>
 					<h2 class="nombre-busqueda" th:text="${manga.nombre}"></h2>
 				</a>
@@ -62,6 +77,9 @@
 			</th:block>
 
 		</div>
+
+		<h2 style="text-align: center; padding: 2rem;" th:if="${mangas.isEmpty()}">Aún no hay mangas.</h2>
+
 
 		<footer>
 			<div class="copy-footer">
