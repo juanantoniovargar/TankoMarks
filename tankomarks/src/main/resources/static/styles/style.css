@@ -1116,6 +1116,11 @@ footer {
     margin: 4rem;
 }
 
+.submit-leyendo {
+    margin-top: 2rem;
+    margin-left: 0;
+}
+
 @media only screen and (max-width:875px) {
 
     .zona {

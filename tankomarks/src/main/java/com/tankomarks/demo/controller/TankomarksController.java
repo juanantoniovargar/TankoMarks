@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.List;
+//import java.util.Map;
+//import java.util.HashMap;
 import java.util.UUID;
 
 //import javax.persistence.EntityManager;
@@ -59,6 +61,10 @@ public class TankomarksController {
 	
 	// @Autowired
 	// EntityManager entityManager;
+	
+	private String idManga1;
+    private String idManga2;
+    private String idManga3;
 	
 	
 	@GetMapping("/login")
@@ -132,9 +138,19 @@ public class TankomarksController {
 			
 		} else {
 			
-			model.addAttribute("mangasLeyendo", mangaRepo.mostrarMangasLeyendo(id_usuario));
-			model.addAttribute("mangasLeido", mangaRepo.mostrarMangasLeido(id_usuario));
-			return "index";
+			if (idManga1 == null) {
+				
+				model.addAttribute("mangasLeyendo", mangaRepo.mostrarMangasLeyendo(id_usuario));
+				model.addAttribute("mangasLeido", mangaRepo.mostrarMangasLeido(id_usuario));
+				return "index";
+				
+			} else {
+				
+				model.addAttribute("mangasLeyendo", mangaRepo.mostrarMangasOrdenados(idManga1, idManga2, idManga3));
+				model.addAttribute("mangasLeido", mangaRepo.mostrarMangasLeido(id_usuario));
+				return "index";
+				
+			}
 			
 		}
 		
@@ -721,6 +737,17 @@ public class TankomarksController {
 		
         return "leyendo";
     
+	}
+	
+	@PostMapping("/ordenLeyendo")
+	public String ordenLeyendo(@RequestParam("value1") String value1, @RequestParam("value2") String value2, @RequestParam("value3") String value3) {
+	    
+		idManga1 = value1;
+		idManga2 = value2;
+		idManga3 = value3;
+
+	    return "redirect:/";
+			
 	}
 	
 	@GetMapping("/leidos")

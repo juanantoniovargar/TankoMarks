@@ -52,20 +52,6 @@
 		</nav>
 
 
-		<th:block th:unless="${mangas.isEmpty()}">
-
-			<div class="cuerpo-padre">
-				<h2>¡Arrastra aquí los mangas que quieras que te aparezcan!</h2>
-				<div class="zonaLeido">
-					<div class="zonaParaSoltar" id="zona1"></div>
-					<div class="zonaParaSoltar" id="zona2"></div>
-					<div class="zonaParaSoltar" id="zona3"></div>
-					<div class="zonaParaSoltar" id="zona4"></div>
-				</div>
-			</div>
-
-		</th:block>
-
 		<div class="total-busqueda">
 
 			<th:block th:each="manga : ${mangas}">
