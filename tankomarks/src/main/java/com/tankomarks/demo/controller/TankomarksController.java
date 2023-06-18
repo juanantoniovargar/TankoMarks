@@ -12,6 +12,7 @@ import java.util.UUID;
 
 //import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -62,9 +63,9 @@ public class TankomarksController {
 	// @Autowired
 	// EntityManager entityManager;
 	
-	private String idManga1;
-    private String idManga2;
-    private String idManga3;
+	// private String idManga1;
+    // private String idManga2;
+    // private String idManga3;
 	
 	
 	@GetMapping("/login")
@@ -111,10 +112,15 @@ public class TankomarksController {
 	}
 	
 	@GetMapping("/")
-	public String home(Model model, Principal principal, String busqueda, String demografia) {
+	public String home(Model model, Principal principal, String busqueda, String demografia, HttpSession session) {
 		
 		String email = principal.getName();
 		int id_usuario = usuarioRepo.getId_usuario(email);
+		
+		String idManga1 = (String) session.getAttribute("idManga1");
+		String idManga2 = (String) session.getAttribute("idManga2");
+		String idManga3 = (String) session.getAttribute("idManga3");
+
 		
 		if (busqueda != null && demografia.equals("0")) {
 			
@@ -740,15 +746,19 @@ public class TankomarksController {
 	}
 	
 	@PostMapping("/ordenLeyendo")
-	public String ordenLeyendo(@RequestParam("value1") String value1, @RequestParam("value2") String value2, @RequestParam("value3") String value3) {
-	    
-		idManga1 = value1;
-		idManga2 = value2;
-		idManga3 = value3;
+	public String ordenLeyendo(@RequestParam("value1") String value1,
+	                           @RequestParam("value2") String value2,
+	                           @RequestParam("value3") String value3,
+	                           HttpSession session) {
+
+	    session.setAttribute("idManga1", value1);
+	    session.setAttribute("idManga2", value2);
+	    session.setAttribute("idManga3", value3);
 
 	    return "redirect:/";
-			
+	    
 	}
+
 	
 	@GetMapping("/leidos")
     public String leidos(Model model, Principal principal) {
