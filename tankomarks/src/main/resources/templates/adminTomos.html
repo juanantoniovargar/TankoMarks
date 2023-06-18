@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TankoMarks</title>
+	<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+	<link rel="icon" href="../static/images/logo.ico" th:href="@{/images/logo.ico}"/>
+	<link href="../static/styles/style.css" th:href="@{/styles/style.css}" rel="stylesheet"/>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script defer type="text/javascript" src="../static/js/nav.js" th:src="@{/js/nav.js}"></script>
+	<script defer type="text/javascript" src="../static/js/validaciones.js" th:src="@{/js/validaciones.js}"></script>
+	<script defer type="text/javascript" src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+</head>
+
+<body>
+
+	<div class="container">
+
+		<th:block th:if="${check}">
+
+		<nav>
+			<img class="imagen-nav" src="../static/images/logo.png" th:src="@{/images/logo.png}" alt="Logo de Tankomarks">
+			
+			<a class="link-nav" th:href="@{/administracion}">Inicio</a>
+			<a class="add-admin" th:href="@{/adminNuevoTomo/} + ${tomoManga}">Añadir</a>
+			
+			<form class="busqueda-form" th:action="@{/administracion}" method="get">
+				<select class="desplegable-nav" name="demografia">
+					<option value="0" selected>Todos</option>
+					<option value="1">Seinen</option>
+					<option value="2">Shonen</option>
+					<option value="3">Shojo</option>
+					<option value="4">Josei</option>
+				</select>
+				<input class="busqueda" type="text" name="busqueda" placeholder="Buscar..."> 
+				<button class="busqueda-submit" type="submit"> <i class="lupa fa-solid fa-magnifying-glass"></i> </button>
+			</form>
+
+			<a class="logout-nav" th:href="@{/logout}">
+				<i class="fa-solid fa-arrow-right-from-bracket"></i>
+			</a>
+
+			<div class="toggle">
+				<i class="fa-solid fa-bars"></i>
+			</div>
+		</nav>
+
+		</th:block>
+
+		<th:block th:unless="${check}">
+
+		<nav>
+			<img class="imagen-nav" src="../static/images/logo.png" th:src="@{/images/logo.png}" alt="Logo de Tankomarks">
+			
+			<a class="link-nav" th:href="@{/}">Inicio</a>
+			<a class="add-admin" th:href="@{/adminNuevoTomo/} + ${tomoManga}">Añadir</a>
+			
+			<form class="busqueda-form" th:action="@{/}" method="get">
+				<select class="desplegable-nav" name="demografia">
+					<option value="0" selected>Todos</option>
+					<option value="1">Seinen</option>
+					<option value="2">Shonen</option>
+					<option value="3">Shojo</option>
+					<option value="4">Josei</option>
+				</select>
+				<input class="busqueda" type="text" name="busqueda" placeholder="Buscar..."> 
+				<button class="busqueda-submit" type="submit"> <i class="lupa fa-solid fa-magnifying-glass"></i> </button>
+			</form>
+
+			<a class="user-nav" th:href="@{/perfil}">
+				<i class="fa-solid fa-circle-user"></i>
+			</a>
+
+			<a class="logout-nav" th:href="@{/logout}">
+				<i class="fa-solid fa-arrow-right-from-bracket"></i>
+			</a>
+
+			<div class="toggle">
+				<i class="fa-solid fa-bars"></i>
+			</div>
+		</nav>
+
+		</th:block>
+
+
+		<!-- success message -->
+		<div th:if="${param.success}">
+			<div class="msg msg-success msg-admin">Tomo creado correctamente.</div>
+		</div>
+
+		<!-- success2 message -->
+		<div th:if="${param.success2}">
+			<div class="msg msg-success msg-admin">Tomo editado correctamente.</div>
+		</div>
+
+		<h1 style="text-align: center; margin-top: 3rem;" th:unless="${check}">¡Añade tu propio tomo!</h1>
+
+        <div class="admin-tabla-tomo admin-cabecera">
+            <h3>ID</h3>
+            <h3>Imagen</h3>
+            <h3>Número</h3>
+            <h3>Ver caps</h3>
+            <h3>Editar</h3>
+            <h3>Eliminar</h3>
+        </div>
+
+        <div class="admin-tabla-tomo" th:each="tomo : ${tomos}">
+
+            <p th:text="${tomo.id_tomo}"></p>
+            <img class="admin-imagen" th:src="${tomo.enlacefoto}" alt="Portada del tomo">
+            <p th:text="${tomo.numero}"></p>
+            <a class="admin-tomos" th:href="@{/adminCapitulos/} + ${tomo.id_tomo}">Capítulos</a>
+
+            <a class="admin-edit" th:href="@{/adminEditarTomo/} + ${tomo.id_tomo}"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a class="admin-delete" th:onclick="adminEliminarTomo([[${tomo.id_tomo}]])"><i class="fa-solid fa-trash"></i></a> <!-- th:href="@{/adminEliminar/} + ${manga.id_manga}" -->
+
+        </div>
+
+		<div class="volver-caps">
+            <a th:if="${check}" class="link-volver" th:href="@{/administracion}">Volver</a>
+            <a th:unless="${check}" class="link-volver" th:href="@{/mangasPropios}">Volver</a>
+        </div>
+
+
+		<footer>
+			<div class="copy-footer">
+				Copyright &copy; TankoMarks 2023
+			</div>
+
+			<div class="contact-footer">
+				<a class="icon-footer" href="mailto:juanan0012@gmail.com"><i class="fa-regular fa-envelope"></i></a>
+				<a class="icon-footer" href="#"><i class="fa-brands fa-twitter"></i></a>
+				<a class="icon-footer" href="#"><i class="fa-brands fa-facebook"></i></a>
+				<a class="icon-footer" href="#"><i class="fa-brands fa-instagram"></i></a>
+			</div>
+		</footer>
+
+	</div>
+
+</body>
+</html>
