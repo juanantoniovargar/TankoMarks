@@ -16,7 +16,14 @@ public interface MangaRepository extends JpaRepository<Manga, Integer> {
 	@Query(value="SELECT * FROM manga WHERE usuario_id_usuario IS NULL", nativeQuery=true)
 	List<Manga> mostrarMangas();
 	
-	@Query(value="SELECT * FROM manga WHERE id_manga = :id1 OR id_manga = :id2 OR id_manga = :id3", nativeQuery=true)
+	@Query(value="SELECT * "
+			+ "FROM manga "
+			+ "WHERE id_manga IN (:id1, :id2, :id3) "
+			+ "ORDER BY CASE id_manga "
+			+ "    WHEN :id1 THEN 1 "
+			+ "    WHEN :id2 THEN 2 "
+			+ "    WHEN :id3 THEN 3 "
+			+ "END", nativeQuery=true)
 	List<Manga> mostrarMangasOrdenados(@Param("id1") String id1, @Param("id2") String id2, @Param("id3") String id3);
 	
 	@Query(value="SELECT * FROM manga WHERE nombre LIKE %:busqueda% AND usuario_id_usuario IS NULL", nativeQuery=true)
