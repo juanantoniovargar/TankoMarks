@@ -528,10 +528,10 @@ public class TankomarksController {
 		String rutaLimpia = rutaImagen.replace("../../../imagesDB/", "");
 	    Path path = Paths.get(rutaLimpia);
 	    Files.delete(path);
-		
+
+		capituloRepo.eliminarCapitulosPorManga(id_manga);
+		tomoRepo.eliminarTomoPorManga(id_manga);
 		mangaRepo.eliminarManga(id_manga);
-		//tomoRepo.eliminarTomoPorManga(id_manga);
-		//capituloRepo.eliminarCapitulosPorManga(id_manga);
 		
         return "redirect:/administracion";
         
@@ -651,9 +651,9 @@ public class TankomarksController {
 		String rutaLimpia = rutaImagen.replace("../../../imagesDB/", "");
 	    Path path = Paths.get(rutaLimpia);
 	    Files.delete(path);
-		
+
+		capituloRepo.eliminarCapitulosPorTomo(id_tomo);
 		tomoRepo.eliminarTomo(id_tomo);
-		//capituloRepo.eliminarCapitulosPorTomo(id_tomo);
 		
 		String referer = request.getHeader("Referer");
 		return "redirect:" + referer;
